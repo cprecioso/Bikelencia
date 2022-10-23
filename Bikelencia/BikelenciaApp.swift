@@ -4,7 +4,9 @@ import SwiftUI
 struct BikelenciaApp: App {
   var body: some Scene {
     WindowGroup {
-      BikeMapScreen()
+      NavigationStack {
+        BikeMapScreen()
+      }
     }
   }
 }

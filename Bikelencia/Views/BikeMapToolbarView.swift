@@ -1,7 +1,7 @@
 import CoreLocationUI
 import SwiftUI
 
-struct BikeMapToolbarView: View {
+struct BikeMapToolbarView: ToolbarContent {
   var isLoading: Bool
   var onLocationClick: (() -> Void) = {}
 
@@ -12,19 +12,21 @@ struct BikeMapToolbarView: View {
       .cornerRadius(5)
   }
 
-  var body: some View {
-    HStack(alignment: .center) {
-      locationButton
-
-      Spacer()
-
-      if isLoading {
-        ProgressView()
-          .padding(.horizontal)
+  var body: some ToolbarContent {
+    Group {
+      ToolbarItem(placement: .navigationBarLeading) {
+        locationButton
       }
 
-      SettingsButton()
+      if isLoading {
+        ToolbarItem(placement: .navigationBarTrailing) {
+          ProgressView()
+        }
+      }
+
+      ToolbarItem(placement: .secondaryAction) {
+        SettingsButton()
+      }
     }
-    .padding()
   }
 }

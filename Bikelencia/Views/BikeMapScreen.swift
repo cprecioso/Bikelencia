@@ -16,15 +16,14 @@ struct BikeMapScreen: View {
   @State var selectedSpot: BikeParkings.Spot? = nil
 
   var body: some View {
-    ZStack(alignment: .top) {
-      BikeMapView(
-        isTrackingUser: $isTrackingUser,
-        onTap: { spot in
-          selectedSpot = spot
-        }
-      )
-      .ignoresSafeArea()
-
+    BikeMapView(
+      isTrackingUser: $isTrackingUser,
+      onTap: { spot in
+        selectedSpot = spot
+      }
+    )
+    .ignoresSafeArea()
+    .toolbar {
       BikeMapToolbarView(
         isLoading: appModel.isLoading,
         onLocationClick: {
