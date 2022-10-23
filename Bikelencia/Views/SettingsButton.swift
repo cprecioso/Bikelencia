@@ -4,10 +4,13 @@ struct SettingsButton: View {
   @State var isShowingSettings = false
 
   var body: some View {
-    Button("Settings") {
+    Button {
       isShowingSettings = true
+    } label: {
+      Label("Settings", systemImage: "gear")
     }
-    .buttonStyle(.bordered)
+    .labelStyle(.iconOnly)
+    .buttonStyle(.borderedProminent)
     .popover(isPresented: $isShowingSettings) {
       SettingsScreen()
     }
