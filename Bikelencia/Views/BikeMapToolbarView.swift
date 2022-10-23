@@ -7,9 +7,11 @@ struct BikeMapToolbarView: ToolbarContent {
 
   var locationButton: some View {
     LocationButton(action: onLocationClick)
-      .foregroundColor(Color.white)
+      .foregroundColor(.white)
       .tint(.accentColor)
       .cornerRadius(5)
+      .symbolVariant(.fill)
+      .buttonStyle(.bordered)
   }
 
   var body: some ToolbarContent {
