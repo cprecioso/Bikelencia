@@ -1,18 +1,15 @@
 import SwiftUI
 
 struct SettingsButton: View {
-  @State var isShowingSettings = false
+  @Environment(\.isShowingSettings) var isShowing: Binding<Bool>
 
   var body: some View {
     Button {
-      isShowingSettings = true
+      isShowing.wrappedValue = true
     } label: {
       Label("Settings", systemImage: "gear")
     }
     .labelStyle(.iconOnly)
     .buttonStyle(.borderedProminent)
-    .popover(isPresented: $isShowingSettings) {
-      SettingsScreen()
-    }
   }
 }
