@@ -55,6 +55,7 @@ struct ParkingSpotScreen: View {
         .listStyle(.grouped)
       }
       .navigationTitle("Parking spot")
+      .toolbar(.hidden)
       .task(updateScene)
     }
   }
