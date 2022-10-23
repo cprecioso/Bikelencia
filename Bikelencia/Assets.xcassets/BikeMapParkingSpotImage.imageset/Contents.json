@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "image.svg",
+      "filename" : "BikeMapParkingSpotImage.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "BikeMapParkingSpotImage-Dark.svg",
       "idiom" : "universal"
     }
   ],
