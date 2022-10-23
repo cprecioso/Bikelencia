@@ -22,7 +22,7 @@ struct BikeMapView: UIViewRepresentable {
   var mapConfiguration: MKMapConfiguration {
     let config = MKStandardMapConfiguration()
     config.elevationStyle = .realistic
-    config.emphasisStyle = .muted
+    config.emphasisStyle = .default
     config.showsTraffic = true
     config.pointOfInterestFilter = .excludingAll
     return config
@@ -48,8 +48,8 @@ struct BikeMapView: UIViewRepresentable {
 
     view.visibleMapRect = MapInitialRect
 
-    view.showsCompass = true
-    view.showsScale = true
+    view.showsCompass = false
+    view.showsScale = false
     #if os(macOS)
       view.showsZoomControls = true
       view.showsPitchControl = false
