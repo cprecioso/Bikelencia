@@ -15,8 +15,7 @@ let project = Project(
     .package(url: "https://github.com/mergesort/Boutique.git", from: "2.2.0")
   ],
   settings: .settings(base: [
-    "DEVELOPMENT_TEAM": "K6ZPYZVLC6",
-    "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor"
+    "DEVELOPMENT_TEAM": "K6ZPYZVLC6"
   ]),
   targets: [
     Target(
@@ -26,7 +25,7 @@ let project = Project(
       productName: "Bikelencia",
       bundleId: "design.precioso.Bikelencia",
       deploymentTarget: .iOS(
-        targetVersion: "16.0",
+        targetVersion: "16.4",
         devices: [.iphone, .ipad],
         supportsMacDesignedForIOS: false
       ),
@@ -37,10 +36,14 @@ let project = Project(
       ]),
       sources: ["Bikelencia/Sources/**"],
       resources: ["Bikelencia/Resources/**"],
+      entitlements: "./Bikelencia/Bikelencia.entitlements",
       dependencies: [
         .package(product: "ValenciaKit"),
         .package(product: "Boutique")
-      ]
-    )
+      ],
+      settings: .settings(base: [
+        "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor"
+      ])
+    ),
   ]
 )
