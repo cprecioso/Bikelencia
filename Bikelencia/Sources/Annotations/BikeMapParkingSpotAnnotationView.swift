@@ -2,7 +2,7 @@ import MapKit
 import SwiftUI
 import ValenciaKit
 
-private let SpotImage = Asset.bikeMapParkingSpotImage
+private let SpotImage = BikelenciaAsset.bikeMapParkingSpotImage
 
 class BikeMapParkingSpotAnnotationView: MKAnnotationView {
   override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
