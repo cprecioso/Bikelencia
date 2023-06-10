@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mergesort/Boutique.git",
       "state" : {
-        "revision" : "13f913d33fa85b979d0e03524584de81e7d595b5",
-        "version" : "2.0.2"
+        "revision" : "ad47507dc0e1c4cf1693fd08567457d9caf664b7",
+        "version" : "2.2.0"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections",
       "state" : {
-        "revision" : "48254824bb4248676bf7ce56014ff57b142b77eb",
-        "version" : "1.0.2"
+        "revision" : "937e904258d22af6e447a0b72c0bc67583ef64a2",
+        "version" : "1.0.4"
       }
     }
   ],
