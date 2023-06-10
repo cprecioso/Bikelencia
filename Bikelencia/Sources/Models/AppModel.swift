@@ -25,7 +25,7 @@ class AppModel: ObservableObject {
   func updateData() async throws {
     isLoading = true
     defer { isLoading = false }
-    let parkings = try await BikeParkingFetcher.fetch()
+    let parkings = try await BikeParkings.fetch()
     try await $bikeParkings.set(parkings)
   }
 }
