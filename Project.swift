@@ -39,7 +39,7 @@ let project = Project(
       productName: "Bikelencia",
       bundleId: "design.precioso.Bikelencia",
       deploymentTarget: .iOS(
-        targetVersion: "16.4",
+        targetVersion: "17.0",
         devices: [.iphone, .ipad],
         supportsMacDesignedForIOS: false
       ),
