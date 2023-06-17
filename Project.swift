@@ -1,5 +1,19 @@
 import ProjectDescription
 
+let exportSketchAppIcon = {
+  let inputFile = Path.relativeToRoot("Icon.sketch")
+  let outputDir = Path.relativeToRoot("Bikelencia/Resources/Assets.xcassets/AppIcon.appiconset")
+
+  return TargetScript.pre(
+    tool: "/Applications/Sketch.app/Contents/MacOS/sketchtool",
+    arguments: ["export", "slices", inputFile.pathString, "--output=\(outputDir.pathString)", "--overwriting=YES"],
+    name: "Export Sketch App Icon",
+    inputPaths: [inputFile],
+    outputPaths: [outputDir],
+    basedOnDependencyAnalysis: true
+  )
+}()
+
 let project = Project(
   name: "Bikelencia",
   organizationName: "Carlos Precioso",
@@ -37,6 +51,7 @@ let project = Project(
       sources: ["Bikelencia/Sources/**"],
       resources: ["Bikelencia/Resources/**"],
       entitlements: "./Bikelencia/Bikelencia.entitlements",
+      scripts: [exportSketchAppIcon],
       dependencies: [
         .package(product: "ValenciaKit"),
         .package(product: "Boutique")
