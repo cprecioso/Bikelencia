@@ -25,7 +25,7 @@ struct ParkingSpotScreen: View {
     NavigationView {
       VStack(spacing: 0) {
         if let scene {
-          LookAround(scene: scene, showsRoadLabels: true, badgePosition: .bottomTrailing)
+          LookAroundPreview( initialScene: scene, badgePosition: .bottomTrailing)
             .ignoresSafeArea()
         }
 
