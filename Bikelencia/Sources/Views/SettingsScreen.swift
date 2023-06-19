@@ -24,7 +24,7 @@ struct SettingsScreen: View {
 
   var body: some View {
     List {
-      if let settingsURL = settingsURL {
+      if let settingsURL {
         Section {
           Link("Application settings", destination: settingsURL)
         } footer: {
