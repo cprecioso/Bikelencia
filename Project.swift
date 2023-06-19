@@ -44,10 +44,21 @@ let project = Project(
         supportsMacDesignedForIOS: false
       ),
       infoPlist: .extendingDefault(with: [
-        "NSLocationWhenInUseUsageDescription": "Bikelencia uses your location only to show where you are in the map",
+        "NSLocationWhenInUseUsageDescription": "Bikelencia uses your location only to show where you are in the map.",
+        "NSLocationTemporaryUsageDescriptionDictionary": "Bikelencia uses your location to show where you are in the map.",
         "NSLocationDefaultAccuracyReduced": false,
         "UILaunchScreen": [
           "UIColorName": "MapsBackground"
+        ],
+        "UIRequiredDeviceCapabilities": [
+          "armv7",
+          "gps",
+          "location-services",
+          "magnetometer"
+        ],
+        "LSApplicationCategoryType": "public.app-category.navigation",
+        "UIApplicationSceneManifest": [
+          "UIApplicationSupportsMultipleScenes": false
         ]
       ]),
       sources: ["Bikelencia/Sources/**"],
