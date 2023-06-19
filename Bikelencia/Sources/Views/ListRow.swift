@@ -13,12 +13,12 @@ func makeListRow(
 
 func makeListRow(
   _ label: String,
-  content: String
+  @ViewBuilder content: () -> some View
 ) -> some View {
   HStack {
     Text(label)
     Spacer()
-    Text(content)
+    content()
   }
 }
 
