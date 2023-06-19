@@ -9,19 +9,6 @@ struct SettingsScreen: View {
 
   let relativeDateTimeFormatter = RelativeDateTimeFormatter()
 
-  var lastUpdatedString: String? {
-    guard
-      let updatedAt = appModel.bikeParkings?.updatedAt
-    else {
-      return nil
-    }
-
-    return relativeDateTimeFormatter.localizedString(
-      for: updatedAt,
-      relativeTo: Date.now
-    )
-  }
-
   var body: some View {
     List {
       if let settingsURL {
@@ -37,17 +24,39 @@ struct SettingsScreen: View {
       Section {
         Link("Website", destination: URL(string: "https://precioso.design")!)
         Link("Contact", destination: URL(string: "mailto:bikelencia@precioso.design")!)
-        VStack(alignment: .leading) {
-          Text("Source of the data")
-          Link("Ajuntament de València - Dades Obertes", destination: URL(string: "http://www.valencia.es/dadesobertes/")!)
+      }
+
+      Section {
+        Link(
+          "Ajuntament de València - Dades Obertes",
+          destination: URL(string: "http://www.valencia.es/dadesobertes/")!)
+
+        if let updatedAt = appModel.bikeParkings?.updatedAt {
+          let updatedAtString = relativeDateTimeFormatter.localizedString(
+            for: updatedAt,
+            relativeTo: Date.now
+          )
+          HStack {
+            Text("Last modified")
+            Spacer()
+            Text(updatedAtString)
+          }
         }
+      } header: {
+        Text("Source data")
       } footer: {
-        if let lastUpdatedString {
-          Text("Last updated: \(lastUpdatedString)")
+        VStack {
+          if let fetchedAt = appModel.bikeParkings?.fetchedAt {
+            let fetchedAtString = relativeDateTimeFormatter.localizedString(
+              for: fetchedAt,
+              relativeTo: Date.now
+            )
+            Text("Last updated: \(fetchedAtString)")
         } else {
           Text("Not yet updated")
         }
       }
+    }
     }
     .refreshable {
       try? await appModel.updateData()
