@@ -49,6 +49,9 @@ struct SettingsScreen: View {
         }
       }
     }
+    .refreshable {
+      try? await appModel.updateData()
+    }
     .navigationTitle("Settings")
   }
 }
