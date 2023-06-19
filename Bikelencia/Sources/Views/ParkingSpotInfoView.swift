@@ -1,5 +1,5 @@
-import SwiftUI
 import CoreLocation
+import SwiftUI
 
 struct ParkingSpotInfoView: View {
   var coordinate: CLLocationCoordinate2D
@@ -56,4 +56,3 @@ struct ParkingSpotInfoView: View {
     }
   }
 }
-

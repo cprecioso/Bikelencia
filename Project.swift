@@ -6,7 +6,13 @@ let exportSketchAppIcon = {
 
   return TargetScript.pre(
     tool: "/Applications/Sketch.app/Contents/MacOS/sketchtool",
-    arguments: ["export", "slices", inputFile.pathString, "--output=\(outputDir.pathString)", "--overwriting=YES"],
+    arguments: [
+      "export",
+      "slices",
+      inputFile.pathString,
+      "--output=\(outputDir.pathString)",
+      "--overwriting=YES",
+    ],
     name: "Export Sketch App Icon",
     inputPaths: [inputFile],
     outputPaths: [outputDir],
@@ -26,7 +32,7 @@ let project = Project(
   ),
   packages: [
     .local(path: "./ValenciaKit"),
-    .package(url: "https://github.com/mergesort/Boutique.git", from: "2.2.0")
+    .package(url: "https://github.com/mergesort/Boutique.git", from: "2.2.0"),
   ],
   settings: .settings(base: [
     "DEVELOPMENT_TEAM": "K6ZPYZVLC6"
@@ -44,8 +50,10 @@ let project = Project(
         supportsMacDesignedForIOS: false
       ),
       infoPlist: .extendingDefault(with: [
-        "NSLocationWhenInUseUsageDescription": "Bikelencia uses your location only to show where you are in the map.",
-        "NSLocationTemporaryUsageDescriptionDictionary": "Bikelencia uses your location to show where you are in the map.",
+        "NSLocationWhenInUseUsageDescription":
+          "Bikelencia uses your location only to show where you are in the map.",
+        "NSLocationTemporaryUsageDescriptionDictionary":
+          "Bikelencia uses your location to show where you are in the map.",
         "NSLocationDefaultAccuracyReduced": false,
         "UILaunchScreen": [
           "UIColorName": "MapsBackground"
@@ -54,12 +62,12 @@ let project = Project(
           "armv7",
           "gps",
           "location-services",
-          "magnetometer"
+          "magnetometer",
         ],
         "LSApplicationCategoryType": "public.app-category.navigation",
         "UIApplicationSceneManifest": [
           "UIApplicationSupportsMultipleScenes": false
-        ]
+        ],
       ]),
       sources: ["Bikelencia/Sources/**"],
       resources: ["Bikelencia/Resources/**"],
@@ -67,11 +75,11 @@ let project = Project(
       scripts: [exportSketchAppIcon],
       dependencies: [
         .package(product: "ValenciaKit"),
-        .package(product: "Boutique")
+        .package(product: "Boutique"),
       ],
       settings: .settings(base: [
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor"
       ])
-    ),
+    )
   ]
 )

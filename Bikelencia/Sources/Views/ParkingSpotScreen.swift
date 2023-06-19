@@ -1,6 +1,6 @@
+import MapKit
 import SwiftUI
 import ValenciaKit
-import MapKit
 
 struct ParkingSpotScreen: View {
   var spot: BikeParkings.Spot
