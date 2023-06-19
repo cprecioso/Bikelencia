@@ -3,7 +3,7 @@ import CoreLocation
 public struct BikeParkings {
   public static let empty = BikeParkings(spots: [])
 
-  public var updatedAt: String = Date.now.ISO8601Format()
+  public var updatedAt = Date.now
   public var spots: [Spot] = []
 
   public struct Spot {

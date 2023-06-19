@@ -11,7 +11,11 @@ extension BikeParkings {
     async throws -> BikeParkings
   {
     let (rawData, _) = try await urlSession.data(for: makeRequest())
-    let data = try JSONDecoder().decode(BikeParkings.self, from: rawData)
+    
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = .jsDate
+    
+    let data = try decoder.decode(BikeParkings.self, from: rawData)
     return data
   }
 }
