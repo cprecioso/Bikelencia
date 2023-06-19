@@ -70,3 +70,9 @@ struct SettingsScreen: View {
     .navigationTitle("Settings")
   }
 }
+
+struct SettingsScreen_Previews: PreviewProvider {
+  static var previews: some View {
+    SettingsScreen()
+  }
+}
