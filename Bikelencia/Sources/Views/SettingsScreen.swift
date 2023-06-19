@@ -4,6 +4,7 @@ struct SettingsScreen: View {
   @ObservedObject var appModel = AppModel.shared
 
   @State var currentDate = Date.now
+  let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
   var settingsURL: URL? {
     URL(string: UIApplication.openSettingsURLString)
@@ -62,6 +63,9 @@ struct SettingsScreen: View {
     }
     .refreshable {
       try? await appModel.updateData()
+    }
+    .onReceive(timer) { input in
+      currentDate = input
     }
     .navigationTitle("Settings")
   }
