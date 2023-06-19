@@ -44,9 +44,11 @@ let project = Project(
         supportsMacDesignedForIOS: false
       ),
       infoPlist: .extendingDefault(with: [
-        "UILaunchStoryboardName": "Launch Screen.storyboard",
         "NSLocationWhenInUseUsageDescription": "Bikelencia uses your location only to show where you are in the map",
-        "NSLocationDefaultAccuracyReduced": false
+        "NSLocationDefaultAccuracyReduced": false,
+        "UILaunchScreen": [
+          "UIColorName": "MapsBackground"
+        ]
       ]),
       sources: ["Bikelencia/Sources/**"],
       resources: ["Bikelencia/Resources/**"],
