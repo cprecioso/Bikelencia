@@ -19,6 +19,7 @@ struct SettingsScreen: View {
 
       Section {
         Link("Website", destination: URL(string: "https://precioso.design")!)
+        Link("Contact", destination: URL(string: "mailto:bikelencia@precioso.design")!)
       }
     }
     .navigationTitle("Settings")
