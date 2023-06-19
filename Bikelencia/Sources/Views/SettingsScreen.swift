@@ -3,6 +3,8 @@ import SwiftUI
 struct SettingsScreen: View {
   @ObservedObject var appModel = AppModel.shared
 
+  @State var currentDate = Date.now
+
   var settingsURL: URL? {
     URL(string: UIApplication.openSettingsURLString)
   }
@@ -13,7 +15,7 @@ struct SettingsScreen: View {
     List {
       if let settingsURL {
         Section {
-          Link("Application settings", destination: settingsURL)
+          makeListRow("Application settings", destination: settingsURL, image: "gearshape")
         } footer: {
           Text(
             "For the best possible experience, enable location when in use, with full accuracy. However, the application can work with any settings."
@@ -22,25 +24,25 @@ struct SettingsScreen: View {
       }
 
       Section {
-        Link("Website", destination: URL(string: "https://precioso.design")!)
-        Link("Contact", destination: URL(string: "mailto:bikelencia@precioso.design")!)
+        makeListRow(
+          "Website", destination: URL(string: "https://precioso.design")!, image: "safari")
+        makeListRow(
+          "Contact", destination: URL(string: "mailto:bikelencia@precioso.design")!,
+          image: "envelope")
       }
 
       Section {
-        Link(
+        makeListRow(
           "Ajuntament de València - Dades Obertes",
-          destination: URL(string: "http://www.valencia.es/dadesobertes/")!)
+          destination: URL(string: "http://www.valencia.es/dadesobertes/")!,
+          image: "arrow.forward.circle")
 
         if let updatedAt = appModel.bikeParkings?.updatedAt {
           let updatedAtString = relativeDateTimeFormatter.localizedString(
             for: updatedAt,
-            relativeTo: Date.now
+            relativeTo: currentDate
           )
-          HStack {
-            Text("Last modified")
-            Spacer()
-            Text(updatedAtString)
-          }
+          makeListRow("Last modified", content: updatedAtString)
         }
       } header: {
         Text("Source data")
@@ -49,14 +51,14 @@ struct SettingsScreen: View {
           if let fetchedAt = appModel.bikeParkings?.fetchedAt {
             let fetchedAtString = relativeDateTimeFormatter.localizedString(
               for: fetchedAt,
-              relativeTo: Date.now
+              relativeTo: currentDate
             )
             Text("Last updated: \(fetchedAtString)")
-        } else {
-          Text("Not yet updated")
+          } else {
+            Text("Not yet updated")
+          }
         }
       }
-    }
     }
     .refreshable {
       try? await appModel.updateData()
