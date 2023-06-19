@@ -68,6 +68,7 @@ let project = Project(
         "UIApplicationSceneManifest": [
           "UIApplicationSupportsMultipleScenes": false
         ],
+        "ITSAppUsesNonExemptEncryption": false,
       ]),
       sources: ["Bikelencia/Sources/**"],
       resources: ["Bikelencia/Resources/**"],
