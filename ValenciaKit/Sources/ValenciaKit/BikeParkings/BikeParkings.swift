@@ -3,6 +3,7 @@ import CoreLocation
 public struct BikeParkings {
   public static let empty = BikeParkings(spots: [])
 
+  public var fetchedAt: Date? = Date.now
   public var updatedAt = Date.now
   public var spots: [Spot] = []
 

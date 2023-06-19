@@ -15,7 +15,8 @@ extension BikeParkings {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .jsDate
     
-    let data = try decoder.decode(BikeParkings.self, from: rawData)
+    var data = try decoder.decode(BikeParkings.self, from: rawData)
+    data.fetchedAt = Date.now
     return data
   }
 }
