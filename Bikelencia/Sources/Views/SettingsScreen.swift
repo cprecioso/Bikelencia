@@ -20,6 +20,10 @@ struct SettingsScreen: View {
       Section {
         Link("Website", destination: URL(string: "https://precioso.design")!)
         Link("Contact", destination: URL(string: "mailto:bikelencia@precioso.design")!)
+        VStack(alignment: .leading) {
+          Text("Source of the data")
+          Link("Ajuntament de València - Dades Obertes", destination: URL(string: "http://www.valencia.es/dadesobertes/")!)
+        }
       }
     }
     .navigationTitle("Settings")
