@@ -2,11 +2,22 @@ import MapKit
 import SwiftUI
 import ValenciaKit
 
-class BikeMapViewCoordinator: NSObject, MKMapViewDelegate {
+class BikeMapViewCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
   var parent: BikeMapView
+  let manager = CLLocationManager()
 
   init(_ parent: BikeMapView) {
     self.parent = parent
+    
+    super.init()
+    
+    self.manager.delegate = self
+  }
+  
+  func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse {
+      parent.isTrackingUser = true
+    }
   }
 
   func registerAnnotationViews(at mapView: MKMapView) {
