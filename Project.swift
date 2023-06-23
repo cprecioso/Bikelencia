@@ -24,6 +24,8 @@ let project = Project(
   name: "Bikelencia",
   organizationName: "Carlos Precioso",
   options: .options(
+    defaultKnownRegions: ["en", "es"],
+    developmentRegion: "en",
     textSettings: .textSettings(
       usesTabs: false,
       indentWidth: 2,

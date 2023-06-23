@@ -30,31 +30,33 @@ struct ParkingSpotScreen: View {
         }
 
         List {
-          Section("Spot information") {
+          Section(BikelenciaStrings.Localizable.spotInformationHeader) {
             if let spotType = spot.spotType {
               HStack {
-                Text("Type")
+                Text(BikelenciaStrings.Localizable.bikeParkingType)
                 Spacer()
                 Text(spotType)
               }
             }
             HStack {
-              Text("Capacity")
+              Text(BikelenciaStrings.Localizable.capacity)
               Spacer()
-              Text("\(spot.capacity) bikes")
+              Text(BikelenciaStrings.Localizable.bikeAmount(Int(spot.capacity)))
             }
           }
 
-          Section("Location") {
+          Section(BikelenciaStrings.Localizable.locationHeader) {
             ParkingSpotInfoView(coordinate: spot.coordinate)
-            Button("See in Maps") {
-              openURL(spot.coordinate.getAppleMapsURL(name: "Bike parking"))
+            Button(BikelenciaStrings.Localizable.seeInMapsLink) {
+              openURL(
+                spot.coordinate.getAppleMapsURL(
+                  name: BikelenciaStrings.Localizable.bikeParkingPlaceNameInMaps))
             }
           }
         }
         .listStyle(.grouped)
       }
-      .navigationTitle("Parking spot")
+      .navigationTitle(BikelenciaStrings.Localizable.spotScreenHeader)
       .toolbar(.hidden)
       .task(updateScene)
     }

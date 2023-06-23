@@ -24,7 +24,7 @@ struct BikelenciaApp: App {
               SettingsScreen()
                 .toolbar {
                   ToolbarItem(placement: .primaryAction) {
-                    Button("Done") {
+                    Button(BikelenciaStrings.Localizable.settingsDoneButton) {
                       isShowingSettings = false
                     }
                   }

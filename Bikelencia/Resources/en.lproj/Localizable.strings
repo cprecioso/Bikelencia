@@ -1,0 +1,28 @@
+"Spot Screen Header" = "Parking spot";
+
+"Spot Information Header" = "Spot Information";
+"Bike Parking Type" = "Type";
+"Capacity" = "Capacity";
+"Bike Amount" = "%d bikes";
+
+"Location Header" = "Location";
+"Address With Subdivision" = "%@ (%@)";
+"Loading Address" = "Loading address";
+"No Address Found" = "No address found";
+"See in Maps Link" = "See in Maps";
+"Bike Parking Place Name in Maps" = "Bike Parking";
+
+"Settings Button" = "Settings";
+"Settings Header" = "Settings";
+"Settings Done Button" = "Done";
+
+"Application Settings Button" = "Application Settings";
+"Location Settings Guidance" = "For the best possible experience, enable **location when in use**, with **full accuracy**. However, the application can work with any settings.";
+
+"Website Link" = "Website";
+"Contact Link" = "Contact";
+
+"Data Source Header" = "Data source";
+"Last Modified Label" = "Last modified";
+"Last Updated %@ Ago Text" = "Last updated %@ ago";
+"Not Updated Text" = "Not yet updated. Pull down to update the data.";

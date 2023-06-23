@@ -15,7 +15,7 @@ struct ParkingSpotInfoView: View {
 
     if let thoroughfare = placemark.thoroughfare {
       if let subThoroughfare = placemark.subThoroughfare {
-        return "\(thoroughfare) (\(subThoroughfare)"
+        return BikelenciaStrings.Localizable.addressWithSubdivision(thoroughfare, subThoroughfare)
       } else {
         return thoroughfare
       }
@@ -45,13 +45,13 @@ struct ParkingSpotInfoView: View {
     } else {
       if isLoading {
         Label {
-          Text("Loading address")
+          Text(BikelenciaStrings.Localizable.loadingAddress)
         } icon: {
           ProgressView()
         }
         .task(updatePlacemark)
       } else {
-        Label("No address found", systemImage: "exclamationmark.circle")
+        Label(BikelenciaStrings.Localizable.noAddressFound, systemImage: "exclamationmark.circle")
       }
     }
   }

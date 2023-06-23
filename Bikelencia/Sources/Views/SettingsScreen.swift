@@ -11,19 +11,25 @@ struct SettingsScreen: View {
     List {
       if let settingsURL {
         Section {
-          makeListRow("Application settings", destination: settingsURL, image: "gearshape")
+          makeListRow(
+            BikelenciaStrings.Localizable.applicationSettingsButton, destination: settingsURL,
+            image: "gearshape")
         } footer: {
           Text(
-            "For the best possible experience, enable location when in use, with full accuracy. However, the application can work with any settings."
-          )
+            try! AttributedString(
+              markdown: BikelenciaStrings.Localizable.locationSettingsGuidance
+            ))
         }
       }
 
       Section {
         makeListRow(
-          "Website", destination: URL(string: "https://precioso.design")!, image: "safari")
+          BikelenciaStrings.Localizable.websiteLink,
+          destination: URL(string: "https://precioso.design")!,
+          image: "safari")
         makeListRow(
-          "Contact", destination: URL(string: "mailto:bikelencia@precioso.design")!,
+          BikelenciaStrings.Localizable.contactLink,
+          destination: URL(string: "mailto:bikelencia@precioso.design")!,
           image: "envelope")
       }
 
@@ -34,24 +40,24 @@ struct SettingsScreen: View {
           image: "arrow.forward.circle")
 
         if let updatedAt = appModel.bikeParkings?.updatedAt {
-          makeListRow("Last modified") {
+          makeListRow(BikelenciaStrings.Localizable.lastModifiedLabel) {
             Text(updatedAt, style: .date)
           }
         }
       } header: {
-        Text("Source data")
+        Text(BikelenciaStrings.Localizable.dataSourceHeader)
       } footer: {
         if let fetchedAt = appModel.bikeParkings?.fetchedAt {
-          Text("Last updated \(Text(fetchedAt, style: .relative)) ago")
+          Text("Last Updated \(fetchedAt, style: .relative) Ago Text")
         } else {
-          Text("Not yet updated")
+          Text(BikelenciaStrings.Localizable.notUpdatedText)
         }
       }
     }
     .refreshable {
       try? await appModel.updateData()
     }
-    .navigationTitle("Settings")
+    .navigationTitle(BikelenciaStrings.Localizable.settingsHeader)
   }
 }
 
