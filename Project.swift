@@ -57,7 +57,7 @@ let project = Project(
           "UIColorName": "MapsBackground"
         ],
         "UIRequiredDeviceCapabilities": [
-          "armv7",
+          "arm64",
           "gps",
           "location-services",
           "magnetometer",
