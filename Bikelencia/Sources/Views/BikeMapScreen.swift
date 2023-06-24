@@ -18,9 +18,7 @@ struct BikeMapScreen: View {
   var body: some View {
     BikeMapView(
       isTrackingUser: $isTrackingUser,
-      onTap: { spot in
-        selectedSpot = spot
-      }
+      selectedSpot: $selectedSpot
     )
     .ignoresSafeArea()
     .toolbar {

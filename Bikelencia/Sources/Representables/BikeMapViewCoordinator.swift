@@ -8,14 +8,16 @@ class BikeMapViewCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDele
 
   init(_ parent: BikeMapView) {
     self.parent = parent
-    
+
     super.init()
-    
+
     self.manager.delegate = self
   }
-  
+
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-    if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse {
+    if manager.authorizationStatus == .authorizedAlways
+      || manager.authorizationStatus == .authorizedWhenInUse
+    {
       parent.isTrackingUser = true
     }
   }
@@ -44,6 +46,10 @@ class BikeMapViewCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDele
     currentSpotAnnotations = newSpotAnnotions
   }
 
+  func annotation(for spot: BikeParkings.Spot) -> BikeMapParkingSpotAnnotation? {
+    currentSpotAnnotations.first(where: { $0.spot == spot })
+  }
+
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     if let annotation = annotation as? BikeMapParkingSpotAnnotation {
       let view = mapView.dequeueReusableAnnotationView(
@@ -55,12 +61,16 @@ class BikeMapViewCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDele
     return nil
   }
 
-  func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-    guard
-      let annotation = annotation as? BikeMapParkingSpotAnnotation,
-      let onTap = parent.onTap
-    else { return }
+  func spot(from annotation: MKAnnotation) -> BikeParkings.Spot? {
+    (annotation as? BikeMapParkingSpotAnnotation)?.spot
+  }
 
-    onTap(annotation.spot)
+  func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+    guard let spot = spot(from: annotation) else { return }
+    parent.selectedSpot = spot
+  }
+
+  func mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation) {
+    parent.selectedSpot = nil
   }
 }

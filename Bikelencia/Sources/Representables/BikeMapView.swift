@@ -15,7 +15,7 @@ struct BikeMapView: UIViewRepresentable {
     }
   }
 
-  var onTap: ((BikeParkings.Spot) -> Void)? = nil
+  @Binding var selectedSpot: BikeParkings.Spot?
 
   @ObservedObject var appModel = AppModel.shared
 
@@ -64,6 +64,14 @@ struct BikeMapView: UIViewRepresentable {
   func updateUIView(_ view: MKMapView, context: Context) {
     if userTrackingMode != view.userTrackingMode {
       view.setUserTrackingMode(userTrackingMode, animated: true)
+    }
+
+    if let selectedSpot,
+      let annotation = context.coordinator.annotation(for: selectedSpot)
+    {
+      view.selectedAnnotations = [annotation]
+    } else {
+      view.selectedAnnotations = []
     }
 
     context.coordinator.update(spots: appModel.bikeParkings?.spots ?? [], of: view)
