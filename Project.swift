@@ -56,12 +56,7 @@ let project = Project(
         "UILaunchScreen": [
           "UIColorName": "MapsBackground"
         ],
-        "UIRequiredDeviceCapabilities": [
-          "arm64",
-          "gps",
-          "location-services",
-          "magnetometer",
-        ],
+        "UIRequiredDeviceCapabilities": ["arm64"],
         "LSApplicationCategoryType": "public.app-category.navigation",
         "UIApplicationSceneManifest": [
           "UIApplicationSupportsMultipleScenes": false
