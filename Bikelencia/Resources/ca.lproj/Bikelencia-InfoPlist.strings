@@ -1,0 +1,5 @@
+/* Privacy - Location Temporary Usage Description Dictionary */
+"NSLocationTemporaryUsageDescriptionDictionary" = "Bikelencia usa la teua localització per mostrar-te on ets al mapa.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "Bikelencia només usa la teua localització per mostrar-te on ets al mapa.";

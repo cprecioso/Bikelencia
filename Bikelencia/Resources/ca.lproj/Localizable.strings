@@ -1,0 +1,28 @@
+"Spot Screen Header" = "Aparcabicis";
+
+"Spot Information Header" = "Informació de l'aparcabicis";
+"Bike Parking Type" = "Tipus";
+"Capacity" = "Capacitat";
+"Bike Amount" = "%d bicicletes";
+
+"Location Header" = "Ubicació";
+"Address With Subdivision" = "%@ (%@)";
+"Loading Address" = "Carregant adreça";
+"No Address Found" = "No s'ha trobat l'adreça";
+"See in Maps Link" = "Veure a Mapes";
+"Bike Parking Place Name in Maps" = "Aparcabicis";
+
+"Settings Button" = "Opcions";
+"Settings Header" = "Opcions";
+"Settings Done Button" = "Fet";
+
+"Application Settings Button" = "Configuració de l'app";
+"Location Settings Guidance" = "Per a tindre la millor experiència, activa la **ubicació exacta**, **amb l'app en ús**. Encara així, l'aplicació pot funcionar amb qualsevol configuració.";
+
+"Website Link" = "Pàgina web";
+"Contact Link" = "Contacte";
+
+"Data Source Header" = "Font de les dades";
+"Last Modified Label" = "Última modificació";
+"Last Updated %@ Ago Text" = "Dades actualitzades fa %@";
+"Not Updated Text" = "Encara no s'han actualitzat. Tira cap avall per a actualitzar les dades.";
