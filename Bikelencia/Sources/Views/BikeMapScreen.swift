@@ -20,6 +20,7 @@ struct BikeMapScreen: View {
       isTrackingUser: $isTrackingUser,
       selectedSpot: $selectedSpot
     )
+    .tint(BikelenciaAsset.myLocationDotColor.swiftUIColor)
     .ignoresSafeArea()
     .toolbar {
       BikeMapToolbarView(
