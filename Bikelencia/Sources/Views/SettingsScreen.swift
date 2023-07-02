@@ -55,7 +55,7 @@ struct SettingsScreen: View {
       }
     }
     .refreshable {
-      try? await appModel.updateData()
+      try? await appModel.updateData(userInitiated: true)
     }
     .navigationTitle(BikelenciaStrings.Localizable.settingsHeader)
   }

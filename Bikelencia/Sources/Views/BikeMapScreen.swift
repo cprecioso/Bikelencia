@@ -30,11 +30,7 @@ struct BikeMapScreen: View {
         })
     }
     .task {
-      do {
-        try await appModel.updateData()
-      } catch {
-        print(error)
-      }
+      try? await appModel.updateData(userInitiated: false)
     }
     .sheet(item: $selectedSpot) { spot in
       ParkingSpotScreen(spot: spot)
