@@ -25,4 +25,4 @@
 "Data Source Header" = "Font de les dades";
 "Last Modified Label" = "Última modificació";
 "Last Updated %@ Ago Text" = "Dades actualitzades fa %@";
-"Not Updated Text" = "Encara no s'han actualitzat. Tira cap avall per a actualitzar les dades.";
+"Not Updated Text" = "Encara no s'han actualitzat. Llisca cap avall per a actualitzar les dades.";
