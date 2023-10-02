@@ -42,7 +42,7 @@ let project = Project(
   ),
   packages: [
     .local(path: "./ValenciaKit"),
-    .package(url: "https://github.com/mergesort/Boutique.git", from: "2.2.0"),
+    .package(url: "https://github.com/mergesort/Boutique.git", from: "2.4.1"),
   ],
   settings: .settings(base: [
     "DEVELOPMENT_TEAM": "K6ZPYZVLC6",
