@@ -1,6 +1,0 @@
-/* Privacy - Location Temporary Usage Description Dictionary */
-"NSLocationTemporaryUsageDescriptionDictionary" = "Bikelencia uses your location only to show where you are in the map.";
-
-/* Privacy - Location When In Use Usage Description */
-"NSLocationWhenInUseUsageDescription" = "Bikelencia uses your location to show where you are in the map.";
-
