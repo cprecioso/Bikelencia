@@ -5,7 +5,7 @@ let exportSketchAppIcon = {
   let outputDir = Path.relativeToRoot("Bikelencia/Resources/Assets.xcassets/AppIcon.appiconset")
 
   return TargetScript.pre(
-    tool: "/Applications/Sketch.app/Contents/MacOS/sketchtool",
+    path: "/Applications/Sketch.app/Contents/MacOS/sketchtool",
     arguments: [
       "export",
       "slices",
@@ -14,7 +14,7 @@ let exportSketchAppIcon = {
       "--overwriting=YES",
     ],
     name: "Export Sketch App Icon",
-    inputPaths: [inputFile],
+    inputPaths: [.glob(inputFile)],
     outputPaths: [outputDir],
     basedOnDependencyAnalysis: true
   )
