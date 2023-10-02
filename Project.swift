@@ -68,7 +68,10 @@ let project = Project(
       ]),
       sources: ["Bikelencia/Sources/**"],
       resources: ["Bikelencia/Resources/**"],
-      entitlements: "./Bikelencia/Bikelencia.entitlements",
+      entitlements: .dictionary([
+        "com.apple.developer.team-identifier": "$(DEVELOPMENT_TEAM)",
+        "com.apple.security.application-groups": ["group.\(teamName)"],
+      ]),
       scripts: [exportSketchAppIcon],
       dependencies: [
         .package(product: "ValenciaKit"),
