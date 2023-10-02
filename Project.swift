@@ -4,7 +4,7 @@ let teamName = "precioso.design"
 let productName = "Bikelencia"
 
 let deploymentTarget = DeploymentTarget.iOS(
-  targetVersion: "16.4",
+  targetVersion: "17.0",
   devices: [.iphone, .ipad],
   supportsMacDesignedForIOS: false
 )
