@@ -45,7 +45,8 @@ let project = Project(
     .package(url: "https://github.com/mergesort/Boutique.git", from: "2.2.0"),
   ],
   settings: .settings(base: [
-    "DEVELOPMENT_TEAM": "K6ZPYZVLC6"
+    "DEVELOPMENT_TEAM": "K6ZPYZVLC6",
+    "ENABLE_USER_SCRIPT_SANDBOXING": false,
   ]),
   targets: [
     Target(
