@@ -47,6 +47,8 @@ let project = Project(
   settings: .settings(base: [
     "DEVELOPMENT_TEAM": "K6ZPYZVLC6",
     "ENABLE_USER_SCRIPT_SANDBOXING": false,
+    "SWIFT_EMIT_LOC_STRINGS": true,
+    "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": true,
   ]),
   targets: [
     Target(
