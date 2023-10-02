@@ -12,52 +12,48 @@ struct SettingsScreen: View {
       if let settingsURL {
         Section {
           makeListRow(
-            BikelenciaStrings.Localizable.applicationSettingsButton, destination: settingsURL,
+            Text("Application Settings"), destination: settingsURL,
             image: "gearshape")
         } footer: {
           Text(
-            try! AttributedString(
-              markdown: BikelenciaStrings.Localizable.locationSettingsGuidance
-            ))
+            "For the best possible experience, enable **location when in use**, with **full accuracy**. However, the application can work with any settings."
+          )
         }
       }
 
       Section {
         makeListRow(
-          BikelenciaStrings.Localizable.websiteLink,
-          destination: URL(string: "https://precioso.design")!,
-          image: "safari")
+          Text("Website"), destination: URL(string: "https://precioso.design")!, image: "safari")
         makeListRow(
-          BikelenciaStrings.Localizable.contactLink,
-          destination: URL(string: "mailto:bikelencia@precioso.design")!,
+          Text("Contact"), destination: URL(string: "mailto:bikelencia@precioso.design")!,
           image: "envelope")
       }
 
       Section {
         makeListRow(
-          "Ajuntament de València - Dades Obertes",
+          Text(verbatim: "Ajuntament de València - Dades Obertes"),
           destination: URL(string: "http://www.valencia.es/dadesobertes/")!,
           image: "arrow.forward.circle")
 
         if let updatedAt = appModel.bikeParkings?.updatedAt {
-          makeListRow(BikelenciaStrings.Localizable.lastModifiedLabel) {
+          makeListRow(Text("Last modified")) {
             Text(updatedAt, style: .date)
           }
         }
       } header: {
-        Text(BikelenciaStrings.Localizable.dataSourceHeader)
+        Text("Data source")
       } footer: {
         if let fetchedAt = appModel.bikeParkings?.fetchedAt {
-          Text("Last Updated \(fetchedAt, style: .relative) Ago Text")
+          Text("Last updated \(fetchedAt, style: .relative) ago")
         } else {
-          Text(BikelenciaStrings.Localizable.notUpdatedText)
+          Text("Not yet updated. Pull down to update the data.")
         }
       }
     }
     .refreshable {
       try? await appModel.updateData(userInitiated: true)
     }
-    .navigationTitle(BikelenciaStrings.Localizable.settingsHeader)
+    .navigationTitle("Settings")
   }
 }
 

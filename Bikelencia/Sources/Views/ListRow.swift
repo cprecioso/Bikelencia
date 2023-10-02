@@ -12,24 +12,25 @@ func makeListRow(
 }
 
 func makeListRow(
-  _ label: String,
+  _ label: Text,
   @ViewBuilder content: () -> some View
 ) -> some View {
   HStack {
-    Text(label)
+    label
+
     Spacer()
     content()
   }
 }
 
 func makeListRow(
-  _ label: String,
+  _ label: Text,
   destination: URL,
   image: String? = nil
 ) -> some View {
   Link(destination: destination) {
     HStack {
-      Text(label)
+      label
 
       if let image {
         Spacer()

@@ -7,7 +7,7 @@ struct ParkingSpotInfoView: View {
   @State var placemark: CLPlacemark?
   @State var isLoading = true
 
-  var placemarkString: String? {
+  var placemarkText: String? {
     guard let placemark else { return nil }
     if let name = placemark.name {
       return name
@@ -15,7 +15,9 @@ struct ParkingSpotInfoView: View {
 
     if let thoroughfare = placemark.thoroughfare {
       if let subThoroughfare = placemark.subThoroughfare {
-        return BikelenciaStrings.Localizable.addressWithSubdivision(thoroughfare, subThoroughfare)
+        return String(
+          localized: "\(thoroughfare) (\(subThoroughfare))",
+          comment: "Thoroughfare (sub-thoroughfare)")
       } else {
         return thoroughfare
       }
@@ -40,18 +42,18 @@ struct ParkingSpotInfoView: View {
   }
 
   var body: some View {
-    if let placemarkString {
-      Text(placemarkString)
+    if let placemarkText {
+      Text(placemarkText)
     } else {
       if isLoading {
         Label {
-          Text(BikelenciaStrings.Localizable.loadingAddress)
+          Text("Loading address...")
         } icon: {
           ProgressView()
         }
         .task(updatePlacemark)
       } else {
-        Label(BikelenciaStrings.Localizable.noAddressFound, systemImage: "exclamationmark.circle")
+        Label("No address found", systemImage: "exclamationmark.circle")
       }
     }
   }

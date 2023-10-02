@@ -21,6 +21,12 @@ struct ParkingSpotScreen: View {
 
   @Environment(\.openURL) private var openURL
 
+  var bikeParkingNameInAppleMaps =
+    LocalizedStringResource(
+      "Bike Parking",
+      comment: "Name of the bike parking when showed in Apple Maps"
+    )
+
   var body: some View {
     NavigationView {
       VStack(spacing: 0) {
@@ -30,33 +36,31 @@ struct ParkingSpotScreen: View {
         }
 
         List {
-          Section(BikelenciaStrings.Localizable.spotInformationHeader) {
+          Section("Spot Information") {
             if let spotType = spot.spotType {
               HStack {
-                Text(BikelenciaStrings.Localizable.bikeParkingType)
+                Text("Type")
                 Spacer()
                 Text(spotType)
               }
             }
             HStack {
-              Text(BikelenciaStrings.Localizable.capacity)
+              Text("Capacity")
               Spacer()
-              Text(BikelenciaStrings.Localizable.bikeAmount(Int(spot.capacity)))
+              Text("\(spot.capacity) bikes")
             }
           }
 
-          Section(BikelenciaStrings.Localizable.locationHeader) {
+          Section("Location") {
             ParkingSpotInfoView(coordinate: spot.coordinate)
-            Button(BikelenciaStrings.Localizable.seeInMapsLink) {
-              openURL(
-                spot.coordinate.getAppleMapsURL(
-                  name: BikelenciaStrings.Localizable.bikeParkingPlaceNameInMaps))
+            Button("See in Maps") {
+              openURL(spot.coordinate.getAppleMapsURL(name: bikeParkingNameInAppleMaps))
             }
           }
         }
         .listStyle(.grouped)
       }
-      .navigationTitle(BikelenciaStrings.Localizable.spotScreenHeader)
+      .navigationTitle("Parking spot")
       .toolbar(.hidden)
       .task(updateScene)
     }

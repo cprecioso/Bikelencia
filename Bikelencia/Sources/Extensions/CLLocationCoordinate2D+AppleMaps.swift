@@ -8,8 +8,15 @@ private enum QueryItemNames: String {
 }
 
 extension CLLocationCoordinate2D {
-  func getAppleMapsURL(name: String? = nil) -> URL {
+  func getAppleMapsURL(name localizedName: LocalizedStringResource? = nil) -> URL {
     var url = APPLE_MAPS_BASE_URL
+
+    let name: String?
+    if let localizedName {
+      name = String(localized: localizedName)
+    } else {
+      name = nil
+    }
 
     url.queryItems = .from([
       QueryItemNames.LatitudeLongitude: "\(latitude),\(longitude)",

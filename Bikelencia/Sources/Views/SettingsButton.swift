@@ -7,7 +7,7 @@ struct SettingsButton: View {
     Button {
       isShowing.wrappedValue = true
     } label: {
-      Label(BikelenciaStrings.Localizable.settingsButton, systemImage: "gear")
+      Label("Settings", systemImage: "gear")
     }
     .labelStyle(.iconOnly)
     .buttonStyle(.borderedProminent)
