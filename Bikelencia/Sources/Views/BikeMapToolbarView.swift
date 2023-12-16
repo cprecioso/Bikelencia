@@ -34,7 +34,7 @@ struct BikeMapToolbarView: ToolbarContent {
   var locationButton: some View {
     let button = LocationButton(action: onLocationClick)
       .foregroundColor(.white)
-      .tint(BikelenciaAsset.myLocationDotColor.swiftUIColor)
+      .tint(.myLocationDot)
       .cornerRadius(5)
       .symbolVariant(.fill)
       .buttonStyle(.bordered)

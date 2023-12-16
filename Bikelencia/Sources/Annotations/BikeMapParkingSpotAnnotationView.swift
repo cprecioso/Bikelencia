@@ -2,13 +2,10 @@ import MapKit
 import SwiftUI
 import ValenciaKit
 
-private let SpotImage = BikelenciaAsset.bikeMapParkingSpotImage
-
 class BikeMapParkingSpotAnnotationView: MKAnnotationView {
   override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
     super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-
-    self.image = SpotImage.image(compatibleWith: self.traitCollection)
+    self.image = UIImage.bikeMapParkingSpot
   }
 
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -16,7 +13,7 @@ class BikeMapParkingSpotAnnotationView: MKAnnotationView {
       return
     }
     let oldFrame = self.frame
-    self.image = SpotImage.image(compatibleWith: self.traitCollection)
+    self.image = UIImage.bikeMapParkingSpot
     self.frame = oldFrame
   }
 
