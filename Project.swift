@@ -36,7 +36,7 @@ let project = Project(
   ),
   packages: [
     .local(path: "./ValenciaKit"),
-    .package(url: "https://github.com/mergesort/Boutique.git", from: "2.4.2"),
+    .package(url: "https://github.com/mergesort/Boutique", from: "2.4.2"),
   ],
   settings: .settings(base: [
     "DEVELOPMENT_TEAM": "K6ZPYZVLC6",
