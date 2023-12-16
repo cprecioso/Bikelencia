@@ -3,12 +3,6 @@ import ProjectDescription
 let teamName = "precioso.design"
 let productName = "Bikelencia"
 
-let deploymentTarget = DeploymentTarget.iOS(
-  targetVersion: "17.2",
-  devices: [.iphone, .ipad],
-  supportsMacDesignedForIOS: false
-)
-
 let exportSketchAppIcon = {
   let inputFile = Path.relativeToRoot("Icon.sketch")
   let outputDir = Path.relativeToRoot("Bikelencia/Resources/Assets.xcassets/AppIcon.appiconset")
@@ -53,10 +47,10 @@ let project = Project(
   targets: [
     Target(
       name: "Bikelencia",
-      platform: .iOS,
+      destinations: [.iPhone, .iPad],
       product: .app,
       bundleId: "\(teamName).\(productName)",
-      deploymentTarget: deploymentTarget,
+      deploymentTargets: .iOS("17.2"),
       infoPlist: .extendingDefault(with: [
         "NSLocationDefaultAccuracyReduced": false,
         "UILaunchScreen": [
