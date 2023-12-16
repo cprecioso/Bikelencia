@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mergesort/Boutique.git",
       "state" : {
-        "revision" : "57c64c93d5382a6c4a55e4c0462b8a41b5e653aa",
-        "version" : "2.4.1"
+        "revision" : "c9044d78f577231d610005810b860870bbbf848f",
+        "version" : "2.4.2"
       }
     },
     {
