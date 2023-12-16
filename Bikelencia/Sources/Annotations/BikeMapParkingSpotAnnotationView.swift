@@ -15,8 +15,9 @@ class BikeMapParkingSpotAnnotationView: MKAnnotationView {
     guard previousTraitCollection != nil, previousTraitCollection != self.traitCollection else {
       return
     }
-
+    let oldFrame = self.frame
     self.image = SpotImage.image(compatibleWith: self.traitCollection)
+    self.frame = oldFrame
   }
 
   required init?(coder aDecoder: NSCoder) {
