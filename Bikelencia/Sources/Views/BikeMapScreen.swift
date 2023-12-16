@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Bikelencia
-//
-//  Created by Carlos Precioso on 22/5/22.
-//
-
 import CoreLocation
 import MapKit
 import SwiftUI

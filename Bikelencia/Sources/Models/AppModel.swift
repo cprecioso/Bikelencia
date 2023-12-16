@@ -1,10 +1,3 @@
-//
-//  PointOrderer.swift
-//  Bikelencia
-//
-//  Created by Carlos Precioso on 23/5/22.
-//
-
 import Boutique
 import Combine
 import Foundation
