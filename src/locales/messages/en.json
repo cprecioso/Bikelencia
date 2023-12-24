@@ -1,0 +1,11 @@
+{
+  "home-link": "Home",
+  "icon-alt": "Bikelencia Icon",
+  "app-name": "Bikelencia",
+  "app-shortdesc": "Find bike parkings in Valencia",
+  "download-alt": "Download Bikelencia from the App Store",
+  "privacy-policy-link": "Privacy Policy",
+  "privacy-policy": "Bikelencia does not explicitly collect any data from your device.\n\nFor fetching the bike parkings data, the app accesses the valenciakit.vercel.app domain. This website is hosted on Vercel and is subject to [Vercel's Privacy Policy](https://vercel.com/legal/privacy-policy).\n\nApple provides us by default with anonymous analytics about the app usage through its App Store. This data is subject to [Apple's Privacy Policy](https://www.apple.com/legal/privacy/en-ww/).\n\nIf you have any questions, please contact us at [bikelencia@precioso.design](mailto:bikelencia@precioso.design).",
+  "support-link": "Support",
+  "support": "If you have any problems, feature requests, or questions, please contact us at [bikelencia@precioso.design](mailto:bikelencia@precioso.design)."
+}
