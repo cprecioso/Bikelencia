@@ -1,12 +1,12 @@
 import { LOCALES, Locale, i18n } from "@/locales";
 import { parse as parseMarkdown } from "marked";
 
-export const enum Text {
+const enum Text {
   Privacy = "privacy-policy",
   Support = "support",
 }
 
-export type Params = { locale: Locale; text: Text };
+type Params = { locale: Locale; text: Text };
 
 export default async function TextPage({
   params: { locale, text },
