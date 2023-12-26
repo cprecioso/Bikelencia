@@ -1,6 +1,6 @@
 import ProjectDescription
 
-let teamName = "precioso.design"
+let teamName = "design.precioso"
 let productName = "Bikelencia"
 
 let exportSketchAppIcon = {
