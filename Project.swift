@@ -50,7 +50,7 @@ let project = Project(
       destinations: [.iPhone, .iPad],
       product: .app,
       bundleId: "\(teamName).\(productName)",
-      deploymentTargets: .iOS("17.2"),
+      deploymentTargets: .iOS("16.4"),
       infoPlist: .extendingDefault(with: [
         "NSLocationDefaultAccuracyReduced": false,
         "UILaunchScreen": [
