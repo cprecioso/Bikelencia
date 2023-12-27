@@ -39,7 +39,7 @@ export default async function IndexPage({
         <p>{t("app-shortdesc")}</p>
       </div>
 
-      <a href="">
+      <a href="https://apps.apple.com/us/app/bikelencia/id6450419237">
         <Image
           src={getAppStoreImage(locale)}
           alt={t("download-alt")}
