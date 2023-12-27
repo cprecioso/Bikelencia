@@ -870,6 +870,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/negotiator@npm:^0.6.3":
+  version: 0.6.3
+  resolution: "@types/negotiator@npm:0.6.3"
+  checksum: d182002d9d7d3248139008e29857dddbc98bd7ada1fddbb33c96fce2f62821698a1ac62e90a92ea004c594abc6865e143f50146e21123a0aeb0641c2bf832aa3
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:^20.10.5":
   version: 20.10.5
   resolution: "@types/node@npm:20.10.5"
@@ -1327,6 +1334,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "bikelencia-marketing@workspace:."
   dependencies:
+    "@types/negotiator": "npm:^0.6.3"
     "@types/node": "npm:^20.10.5"
     "@types/react": "npm:^18.2.45"
     "@types/react-dom": "npm:^18.2.18"
@@ -1335,6 +1343,7 @@ __metadata:
     eslint: "npm:^8.56.0"
     eslint-config-next: "npm:14.0.4"
     marked: "npm:^11.1.0"
+    negotiator: "npm:^0.6.3"
     next: "npm:14.0.4"
     prettier: "npm:3.1.1"
     prettier-plugin-organize-imports: "npm:3.2.4"
