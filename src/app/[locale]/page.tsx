@@ -1,4 +1,5 @@
 import { LOCALES, Locale, i18n } from "@/locales";
+import { Metadata } from "next";
 import Image from "next/image";
 import icon from "../icon.png";
 import downloadImageEn from "./media/download_en.svg";
@@ -12,6 +13,12 @@ const getAppStoreImage = (locale: Locale) => {
 
 type Params = {
   locale: Locale;
+};
+
+export const metadata: Metadata = {
+  itunes: {
+    appId: "6450419237",
+  },
 };
 
 export default async function IndexPage({
