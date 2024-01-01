@@ -23,9 +23,14 @@ struct SettingsScreen: View {
 
       Section {
         makeListRow(
-          Text("Website"), destination: URL(string: "https://precioso.design")!, image: "safari")
+          Text("Website"),
+          destination: URL(string: "https://bikelencia.precioso.design")!,
+          image: "safari"
+        )
+
         makeListRow(
-          Text("Contact"), destination: URL(string: "mailto:bikelencia@precioso.design")!,
+          Text("Contact"),
+          destination: URL(string: "mailto:bikelencia@precioso.design")!,
           image: "envelope")
       }
 
