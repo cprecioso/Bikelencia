@@ -45,7 +45,7 @@ let project = Project(
     "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": true,
   ]),
   targets: [
-    Target(
+    .target(
       name: "Bikelencia",
       destinations: [.iPhone, .iPad],
       product: .app,
