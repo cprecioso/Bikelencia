@@ -43,6 +43,7 @@ let project = Project(
     "ENABLE_USER_SCRIPT_SANDBOXING": false,
     "SWIFT_EMIT_LOC_STRINGS": true,
     "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": true,
+    "SWIFT_VERSION": "5.0",
   ]),
   targets: [
     .target(
