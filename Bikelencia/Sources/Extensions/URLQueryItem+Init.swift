@@ -10,7 +10,7 @@ extension [URLQueryItem] {
   }
 }
 
-extension [URLQueryItem]: ExpressibleByDictionaryLiteral {
+extension [Foundation.URLQueryItem]: Swift.ExpressibleByDictionaryLiteral {
   public init(dictionaryLiteral elements: (String, String?)...) {
     self = elements.map { URLQueryItem(name: $0.0, value: $0.1) }
   }

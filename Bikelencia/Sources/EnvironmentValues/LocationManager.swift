@@ -6,7 +6,7 @@ extension EnvironmentValues {
 }
 
 @Observable
-class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
+final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
   private let manager = CLLocationManager()
 
   var authorizationStatus: CLAuthorizationStatus
