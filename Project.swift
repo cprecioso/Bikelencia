@@ -36,7 +36,7 @@ let project = Project(
   ),
   packages: [
     .local(path: "./ValenciaKit"),
-    .package(url: "https://github.com/mergesort/Boutique", from: "2.4.2"),
+    .package(url: "https://github.com/mergesort/Boutique", from: "2.4.5"),
   ],
   settings: .settings(base: [
     "DEVELOPMENT_TEAM": "K6ZPYZVLC6",
@@ -50,7 +50,7 @@ let project = Project(
       destinations: [.iPhone, .iPad],
       product: .app,
       bundleId: "\(teamName).\(productName)",
-      deploymentTargets: .iOS("16.4"),
+      deploymentTargets: .iOS("18.0"),
       infoPlist: .extendingDefault(with: [
         "NSLocationDefaultAccuracyReduced": false,
         "UILaunchScreen": [

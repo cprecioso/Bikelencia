@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
   name: "ValenciaKit",
   platforms: [
-    .macOS(.v13),
-    .iOS(.v16),
+    .macOS(.v15),
+    .iOS(.v18),
   ],
   products: [
     .library(name: "ValenciaKit", targets: ["ValenciaKit"])
