@@ -7,6 +7,7 @@ struct BikeMapScreen: View {
   @State var isTrackingUser = true
   @ObservedObject var appModel = AppModel.shared
   @State var selectedSpot: BikeParkings.Spot? = nil
+  @Environment(\.locationManager) var locationManager: LocationManager
 
   var body: some View {
     BikeMapView(
@@ -28,6 +29,11 @@ struct BikeMapScreen: View {
     .sheet(item: $selectedSpot) { spot in
       ParkingSpotScreen(spot: spot)
         .presentationDetents([.medium, .large])
+    }
+    .onChange(of: locationManager.hasLocation) { hadLocationBefore, hasLocationNow in
+      if !hadLocationBefore && hasLocationNow {
+        isTrackingUser = true
+      }
     }
   }
 }

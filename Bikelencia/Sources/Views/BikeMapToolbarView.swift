@@ -1,35 +1,11 @@
-import CoreLocation
 import CoreLocationUI
 import SwiftUI
-
-class ObserveLocation: NSObject, CLLocationManagerDelegate, ObservableObject {
-  let manager = CLLocationManager()
-
-  @Published var authorizationStatus: CLAuthorizationStatus
-
-  override init() {
-    authorizationStatus = manager.authorizationStatus
-    super.init()
-    manager.delegate = self
-  }
-
-  func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-    authorizationStatus = manager.authorizationStatus
-  }
-}
 
 struct BikeMapToolbarView: ToolbarContent {
   var isLoading: Bool
   var onLocationClick: (() -> Void) = {}
-
-  @ObservedObject var location = ObserveLocation()
-
-  var hasLocation: Bool {
-    switch location.authorizationStatus {
-    case .authorizedAlways, .authorizedWhenInUse: return true
-    default: return false
-    }
-  }
+  
+  @Environment(\.locationManager) var locationManager: LocationManager
 
   var locationButton: some View {
     let button = LocationButton(action: onLocationClick)
@@ -40,7 +16,7 @@ struct BikeMapToolbarView: ToolbarContent {
       .buttonStyle(.bordered)
 
     return Group {
-      if hasLocation {
+      if locationManager.hasLocation {
         button.labelStyle(.iconOnly)
       } else {
         button.labelStyle(.titleAndIcon)
