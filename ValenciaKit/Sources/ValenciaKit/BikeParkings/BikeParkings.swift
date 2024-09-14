@@ -1,13 +1,13 @@
 import CoreLocation
 
-public struct BikeParkings {
+public struct BikeParkings: Sendable {
   public static let empty = BikeParkings(spots: [])
 
   public var fetchedAt: Date? = Date.now
   public var updatedAt = Date.now
   public var spots: [Spot] = []
 
-  public struct Spot {
+  public struct Spot: Sendable {
     init(id: String, coordinate: CLLocationCoordinate2D, capacity: UInt, spotType: String? = nil) {
       self.id = id
       self.coordinate = coordinate
@@ -39,7 +39,7 @@ extension BikeParkings.Spot: Equatable {}
   }
 #endif
 
-extension CLLocationCoordinate2D: Equatable {
+extension CoreLocation.CLLocationCoordinate2D: Swift.Equatable {
   public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
     lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
   }
