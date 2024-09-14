@@ -1,19 +1,13 @@
 import SwiftUI
 
-private struct IsShowingSettingsKey: EnvironmentKey {
-  static let defaultValue: Binding<Bool> = .constant(false)
-}
-
 extension EnvironmentValues {
-  var isShowingSettings: Binding<Bool> {
-    get { self[IsShowingSettingsKey.self] }
-    set { self[IsShowingSettingsKey.self] = newValue }
-  }
+  @Entry var showSettings: (() -> Void)?
 }
 
 @main
 struct BikelenciaApp: App {
   @State var isShowingSettings = false
+  @StateObject var appModel = AppModel()
 
   var body: some Scene {
     WindowGroup {
@@ -32,7 +26,11 @@ struct BikelenciaApp: App {
             }
           }
       }
-      .environment(\.isShowingSettings, $isShowingSettings)
+      .environmentObject(appModel)
+      .environment(\.showSettings, { isShowingSettings = true })
+      .task {
+        try? await appModel.updateData(userInitiated: false)
+      }
     }
   }
 }

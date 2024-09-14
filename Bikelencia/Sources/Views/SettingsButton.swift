@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct SettingsButton: View {
-  @Environment(\.isShowingSettings) var isShowing: Binding<Bool>
+  @Environment(\.showSettings) var showSettings: (() -> Void)?
 
   var body: some View {
     Button {
-      isShowing.wrappedValue = true
+      showSettings?()
     } label: {
       Label("Settings", systemImage: "gear")
     }

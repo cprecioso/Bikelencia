@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsScreen: View {
-  @ObservedObject var appModel = AppModel.shared
+  @EnvironmentObject var appModel: AppModel
 
   var settingsURL: URL? {
     URL(string: UIApplication.openSettingsURLString)

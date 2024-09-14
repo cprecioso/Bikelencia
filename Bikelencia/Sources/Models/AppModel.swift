@@ -3,15 +3,15 @@ import Combine
 import Foundation
 import ValenciaKit
 
-let cacheEngine = SQLiteStorageEngine.default(appendingPath: "BikeParkings")
+let cacheEngine = SQLiteStorageEngine(
+  directory: .caches(appendingPath: "BikeParkings"))!
 
-@MainActor
-class AppModel: ObservableObject {
-  @Published var isLoading = false
+final class AppModel: ObservableObject {
+  @MainActor @Published private(set) internal var isLoading = false
 
   @AsyncStoredValue(storage: cacheEngine) var bikeParkings: BikeParkings? = nil
 
-  var automaticURLSession: URLSession = {
+  nonisolated static let automaticURLSession: URLSession = {
     let configuration = URLSessionConfiguration.default
     configuration.requestCachePolicy = .useProtocolCachePolicy
     configuration.waitsForConnectivity = true
@@ -19,7 +19,7 @@ class AppModel: ObservableObject {
     return URLSession(configuration: configuration)
   }()
 
-  var userInitiatedURLSession: URLSession = {
+  nonisolated static let userInitiatedURLSession: URLSession = {
     let configuration = URLSessionConfiguration.default
     configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
     configuration.waitsForConnectivity = false
@@ -27,20 +27,16 @@ class AppModel: ObservableObject {
     return URLSession(configuration: configuration)
   }()
 
-  static var shared: AppModel = {
-    AppModel()
-  }()
-  private init() {}
-
   func updateData(userInitiated: Bool) async throws {
     isLoading = true
     defer { isLoading = false }
 
     // TODO Skip non-user initiated updates if the data is in the cache and low data mode is on
 
-    let urlSession = userInitiated ? userInitiatedURLSession : automaticURLSession
+    let urlSession =
+      userInitiated ? Self.userInitiatedURLSession : Self.automaticURLSession
 
     let parkings = try await BikeParkings.fetch(urlSession: urlSession)
-    try await $bikeParkings.set(parkings)
+    try await self.$bikeParkings.set(parkings)
   }
 }
