@@ -1,18 +1,19 @@
 import { LOCALES, Locale, i18n } from "@/locales";
 import { Metadata } from "next";
 import Link from "next/link";
-import { Children, Fragment } from "react";
+import { Children, Fragment, ReactNode } from "react";
 import * as styles from "./layout-styles.css";
 
-type Params = {
+export type Params = {
   locale: Locale;
 };
 
-export const generateMetadata = ({
-  params: { locale },
+export const generateMetadata = async ({
+  params,
 }: {
-  params: Params;
-}): Metadata => {
+  params: Promise<Params>;
+}): Promise<Metadata> => {
+  const { locale } = await params;
   const { t } = i18n(locale);
   return { title: t("app-name") };
 };
@@ -28,13 +29,14 @@ const WithSeparator = ({ children }: { children: React.ReactNode }) => (
   </>
 );
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: {
-  children: React.ReactNode;
-  params: Params;
+  children: ReactNode;
+  params: Promise<Params>;
 }) {
+  const { locale } = await params;
   const { t } = i18n(locale);
 
   return (

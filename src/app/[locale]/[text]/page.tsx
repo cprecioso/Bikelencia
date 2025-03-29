@@ -1,18 +1,20 @@
-import { LOCALES, Locale, i18n } from "@/locales";
+import { Locale, i18n } from "@/locales";
 import { parse as parseMarkdown } from "marked";
+import type { Params as ParentParams } from "../layout";
 
 const enum Text {
   Privacy = "privacy-policy",
   Support = "support",
 }
 
-type Params = { locale: Locale; text: Text };
+export type Params = { locale: Locale; text: Text };
 
 export default async function TextPage({
-  params: { locale, text },
+  params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }) {
+  const { locale, text } = await params;
   const { t } = i18n(locale);
 
   return (
@@ -23,7 +25,9 @@ export default async function TextPage({
   );
 }
 
-export const generateStaticParams = async (): Promise<Params[]> =>
-  LOCALES.flatMap((locale) =>
-    [Text.Privacy, Text.Support].map((text) => ({ locale, text })),
-  );
+export const generateStaticParams = async ({
+  params: { locale },
+}: {
+  params: ParentParams;
+}): Promise<Params[]> =>
+  [Text.Privacy, Text.Support].map((text) => ({ locale, text }));

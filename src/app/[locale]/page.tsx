@@ -1,7 +1,8 @@
-import { LOCALES, Locale, i18n } from "@/locales";
+import { Locale, i18n } from "@/locales";
 import { Metadata } from "next";
 import Image from "next/image";
 import icon from "../icon.png";
+import type { Params as ParentParams } from "./layout";
 import downloadImageEn from "./media/download_en.svg";
 import downloadImageEs from "./media/download_es.svg";
 import * as styles from "./styles.css";
@@ -11,7 +12,7 @@ const getAppStoreImage = (locale: Locale) => {
   return downloadImageEn;
 };
 
-type Params = {
+export type Params = {
   locale: Locale;
 };
 
@@ -22,10 +23,11 @@ export const metadata: Metadata = {
 };
 
 export default async function IndexPage({
-  params: { locale },
+  params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }) {
+  const { locale } = await params;
   const { t } = i18n(locale);
 
   return (
@@ -58,5 +60,8 @@ export default async function IndexPage({
   );
 }
 
-export const generateStaticParams = async (): Promise<Params[]> =>
-  LOCALES.map((locale) => ({ locale }));
+export const generateStaticParams = async ({
+  params: { locale },
+}: {
+  params: ParentParams;
+}): Promise<Params[]> => [{ locale }];
