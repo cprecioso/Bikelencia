@@ -4,7 +4,7 @@ let teamName = "design.precioso"
 let productName = "Bikelencia"
 
 let exportSketchAppIcon = {
-  let inputFile = Path.relativeToRoot("Bikelencia/Resources/AppIcon.icon")
+  let inputFile = Path.relativeToRoot("AppIcon.icon")
   let outputDir = Path.relativeToRoot(
     "Bikelencia/Resources/Assets.xcassets/AppIcon.appiconset"
   )
@@ -64,7 +64,7 @@ let project = Project(
         "ITSAppUsesNonExemptEncryption": false,
       ]),
       sources: ["Bikelencia/Sources/**"],
-      resources: ["Bikelencia/Resources/*"],
+      resources: ["Bikelencia/Resources/**"],
       entitlements: .dictionary([
         "com.apple.developer.team-identifier": "$(DEVELOPMENT_TEAM)",
         "com.apple.security.application-groups": ["group.\(teamName)"],
