@@ -4,19 +4,18 @@ let teamName = "design.precioso"
 let productName = "Bikelencia"
 
 let exportSketchAppIcon = {
-  let inputFile = Path.relativeToRoot("Icon.sketch")
-  let outputDir = Path.relativeToRoot("Bikelencia/Resources/Assets.xcassets/AppIcon.appiconset")
+  let inputFile = Path.relativeToRoot("Bikelencia/Resources/AppIcon.icon")
+  let outputDir = Path.relativeToRoot(
+    "Bikelencia/Resources/Assets.xcassets/AppIcon.appiconset"
+  )
 
   return TargetScript.pre(
-    path: "/Applications/Sketch.app/Contents/MacOS/sketchtool",
+    path: Path.relativeToRoot("Scripts/export-icons.sh"),
     arguments: [
-      "export",
-      "slices",
       inputFile.pathString,
-      "--output=\(outputDir.pathString)",
-      "--overwriting=YES",
+      outputDir.pathString,
     ],
-    name: "Export Sketch App Icon",
+    name: "Export Icon Composer App Icon",
     inputPaths: [.glob(inputFile)],
     outputPaths: [outputDir],
     basedOnDependencyAnalysis: true
@@ -65,7 +64,7 @@ let project = Project(
         "ITSAppUsesNonExemptEncryption": false,
       ]),
       sources: ["Bikelencia/Sources/**"],
-      resources: ["Bikelencia/Resources/**"],
+      resources: ["Bikelencia/Resources/*"],
       entitlements: .dictionary([
         "com.apple.developer.team-identifier": "$(DEVELOPMENT_TEAM)",
         "com.apple.security.application-groups": ["group.\(teamName)"],
