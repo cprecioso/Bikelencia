@@ -1,4 +1,5 @@
 {
+  "color-space-for-untagged-svg-colors" : "display-p3",
   "fill" : {
     "automatic-gradient" : "srgb:0.27666,0.39179,0.48866,1.00000"
   },
