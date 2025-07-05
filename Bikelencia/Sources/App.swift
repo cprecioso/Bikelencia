@@ -7,7 +7,8 @@ extension EnvironmentValues {
 @main
 struct BikelenciaApp: App {
   @State var isShowingSettings = false
-  @StateObject var appModel = AppModel()
+  @State var spotsController = SpotsController()
+  @State var locationManager = LocationManager()
 
   var body: some Scene {
     WindowGroup {
@@ -26,10 +27,13 @@ struct BikelenciaApp: App {
             }
           }
       }
-      .environmentObject(appModel)
+      .environment(locationManager)
       .environment(\.showSettings, { isShowingSettings = true })
-      .task {
-        try? await appModel.updateData(userInitiated: false)
+      .environment(spotsController)
+      .task(id: spotsController.needsUpdate, priority: .background) {
+        if spotsController.needsUpdate {
+          try? await spotsController.updateData(userInitiated: false)
+        }
       }
     }
   }

@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct SettingsScreen: View {
-  @EnvironmentObject var appModel: AppModel
-
+  @Environment(SpotsController.self) private var spotsController
+  
   var settingsURL: URL? {
     URL(string: UIApplication.openSettingsURLString)
   }
@@ -40,7 +40,7 @@ struct SettingsScreen: View {
           destination: URL(string: "http://www.valencia.es/dadesobertes/")!,
           image: "arrow.forward.circle")
 
-        if let updatedAt = appModel.bikeParkings?.updatedAt {
+        if let updatedAt = spotsController.bikeParkings.value?.updatedAt {
           makeListRow(Text("Last modified")) {
             Text(updatedAt, style: .date)
           }
@@ -48,7 +48,7 @@ struct SettingsScreen: View {
       } header: {
         Text("Data source")
       } footer: {
-        if let fetchedAt = appModel.bikeParkings?.fetchedAt {
+        if let fetchedAt = spotsController.bikeParkings.value?.fetchedAt {
           Text("Last updated \(fetchedAt, style: .relative) ago")
         } else {
           Text("Not yet updated. Pull down to update the data.")
@@ -56,7 +56,7 @@ struct SettingsScreen: View {
       }
     }
     .refreshable {
-      try? await appModel.updateData(userInitiated: true)
+      try? await spotsController.updateData(userInitiated: true)
     }
     .navigationTitle("Settings")
   }

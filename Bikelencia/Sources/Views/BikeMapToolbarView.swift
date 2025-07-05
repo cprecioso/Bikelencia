@@ -5,7 +5,7 @@ struct BikeMapToolbarView: ToolbarContent {
   var isLoading: Bool
   var onLocationClick: (() -> Void) = {}
   
-  @Environment(\.locationManager) var locationManager: LocationManager
+  @Environment(LocationManager.self) private var locationManager
 
   var locationButton: some View {
     let button = LocationButton(action: onLocationClick)

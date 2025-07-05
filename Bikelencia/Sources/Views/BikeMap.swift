@@ -4,9 +4,9 @@ import ValenciaKit
 
 struct MapView: View {
   @Binding var position: MapCameraPosition
-  @EnvironmentObject var appModel: AppModel
   @State var selectedSpot: BikeParkings.Spot? = nil
-  @Environment(\.locationManager) var locationManager: LocationManager
+  @Environment(LocationManager.self) private var locationManager
+  @Environment(SpotsController.self) private var spotsController
 
   var body: some View {
     Map(
@@ -16,7 +16,7 @@ struct MapView: View {
       if locationManager.hasLocation {
         UserAnnotation()
       }
-      ForEach(appModel.bikeParkings?.spots ?? []) { spot in
+      ForEach(spotsController.bikeParkings.value?.spots ?? []) { spot in
         BikeMapSpotAnnotation(spot: spot, onTap: { selectedSpot = spot })
       }
     }

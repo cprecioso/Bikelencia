@@ -1,10 +1,6 @@
 import CoreLocation
 import SwiftUI
 
-extension EnvironmentValues {
-  @Entry var locationManager = LocationManager()
-}
-
 @Observable
 final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
   private let manager = CLLocationManager()
