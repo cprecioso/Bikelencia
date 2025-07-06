@@ -4,12 +4,12 @@ import ValenciaKit
 
 struct BikeMapSpotAnnotation: MapContent {
   var spot: BikeParkings.Spot
-  var onTap: () -> Void
+  var setSelection: (BikeParkings.Spot) -> Void
 
   var body: some MapContent {
     Annotation("Spot", coordinate: spot.coordinate) {
       ContentView(spot: spot)
-        .onTapGesture(perform: onTap)
+        .onTapGesture { setSelection(spot) }
     }
     .annotationTitles(.hidden)
   }

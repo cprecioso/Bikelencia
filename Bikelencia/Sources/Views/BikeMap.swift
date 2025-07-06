@@ -4,10 +4,14 @@ import ValenciaKit
 
 struct MapView: View {
   @Binding var position: MapCameraPosition
-  @State var selectedSpot: BikeParkings.Spot? = nil
+  @Binding var selectedSpot: BikeParkings.Spot?
   @Environment(LocationManager.self) private var locationManager
   @Environment(SpotsController.self) private var spotsController
   var mapScope: Namespace.ID
+
+  func setSelected(_ spot: BikeParkings.Spot) {
+    self.selectedSpot = spot
+  }
 
   var body: some View {
     Map(
@@ -17,7 +21,7 @@ struct MapView: View {
     ) {
       UserAnnotation()
       ForEach(spotsController.bikeParkings.value?.spots ?? []) { spot in
-        BikeMapSpotAnnotation(spot: spot, onTap: { selectedSpot = spot })
+        BikeMapSpotAnnotation(spot: spot, setSelection: setSelected)
       }
     }
     .mapStyle(.standard(pointsOfInterest: .excludingAll, showsTraffic: true))

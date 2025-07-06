@@ -10,7 +10,11 @@ struct BikeMapScreen: View {
   @Namespace private var mapScope
 
   var body: some View {
-    MapView(position: $position, mapScope: mapScope)
+      MapView(
+        position: $position,
+        selectedSpot: $selectedSpot,
+        mapScope: mapScope
+      )
       .tint(.myLocationDot)
       .toolbar {
         BikeMapToolbarView(
