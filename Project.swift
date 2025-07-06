@@ -3,25 +3,6 @@ import ProjectDescription
 let teamName = "design.precioso"
 let productName = "Bikelencia"
 
-let exportSketchAppIcon = {
-  let inputFile = Path.relativeToRoot("AppIcon.icon")
-  let outputDir = Path.relativeToRoot(
-    "Bikelencia/Resources/Assets.xcassets/AppIcon.appiconset"
-  )
-
-  return TargetScript.pre(
-    path: Path.relativeToRoot("Scripts/export-icons.sh"),
-    arguments: [
-      inputFile.pathString,
-      outputDir.pathString,
-    ],
-    name: "Export Icon Composer App Icon",
-    inputPaths: [.glob(inputFile)],
-    outputPaths: [outputDir],
-    basedOnDependencyAnalysis: true
-  )
-}()
-
 let project = Project(
   name: productName,
   options: .options(
@@ -63,12 +44,11 @@ let project = Project(
         "ITSAppUsesNonExemptEncryption": false,
       ]),
       sources: ["Bikelencia/Sources/**"],
-      resources: ["Bikelencia/Resources/**"],
+      resources: ["Bikelencia/Resources/*"],
       entitlements: .dictionary([
         "com.apple.developer.team-identifier": "$(DEVELOPMENT_TEAM)",
         "com.apple.security.application-groups": ["group.\(teamName)"],
       ]),
-      scripts: [exportSketchAppIcon],
       dependencies: [
         .package(product: "ValenciaKit")
       ],
