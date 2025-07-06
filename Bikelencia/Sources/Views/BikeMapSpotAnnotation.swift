@@ -5,7 +5,7 @@ import ValenciaKit
 struct BikeMapSpotAnnotation: MapContent {
   var spot: BikeParkings.Spot
   var onTap: () -> Void
-  
+
   var body: some MapContent {
     Annotation("Spot", coordinate: spot.coordinate) {
       ContentView(spot: spot)
@@ -15,7 +15,7 @@ struct BikeMapSpotAnnotation: MapContent {
   }
 }
 
-fileprivate struct ContentView: View {
+private struct ContentView: View {
   var spot: BikeParkings.Spot
 
   var side: CGFloat {

@@ -9,4 +9,7 @@ let MapInitialRect = MKMapRect(
   size: MKMapSize(width: 79000, height: 79000))
 
 let MapInitialFallbackPosition = MapCameraPosition.rect(MapInitialRect)
-let PreferredMapPosition = MapCameraPosition.userLocation(followsHeading: true, fallback: MapInitialFallbackPosition)
+let PreferredMapPosition = MapCameraPosition.userLocation(
+  followsHeading: true,
+  fallback: MapInitialFallbackPosition
+)

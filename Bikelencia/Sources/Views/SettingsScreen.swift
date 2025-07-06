@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SettingsScreen: View {
   @Environment(SpotsController.self) private var spotsController
-  
+
   var settingsURL: URL? {
     URL(string: UIApplication.openSettingsURLString)
   }

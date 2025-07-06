@@ -34,7 +34,7 @@ let project = Project(
     )
   ),
   packages: [
-    .local(path: "./ValenciaKit"),
+    .local(path: "./ValenciaKit")
   ],
   settings: .settings(base: [
     "DEVELOPMENT_TEAM": "K6ZPYZVLC6",
@@ -70,7 +70,7 @@ let project = Project(
       ]),
       scripts: [exportSketchAppIcon],
       dependencies: [
-        .package(product: "ValenciaKit"),
+        .package(product: "ValenciaKit")
       ],
       settings: .settings(base: [
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor"
