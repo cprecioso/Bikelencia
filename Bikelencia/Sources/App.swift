@@ -1,5 +1,5 @@
-import SwiftUI
 import BikelenciaCore
+import SwiftUI
 
 extension EnvironmentValues {
   @Entry var showSettings: (() -> Void)?
