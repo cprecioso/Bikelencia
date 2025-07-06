@@ -6,14 +6,12 @@ import ValenciaKit
 struct BikeMapScreen: View {
   @State var position = PreferredMapPosition
   @State var selectedSpot: BikeParkings.Spot? = nil
-  
   @Environment(SpotsController.self) private var spotsController
-  @Namespace var mapScope
+  @Namespace private var mapScope
 
   var body: some View {
     MapView(position: $position, mapScope: mapScope)
     .tint(.myLocationDot)
-    .ignoresSafeArea()
     .toolbar {
       BikeMapToolbarView(
         isLoading: spotsController.isLoading,

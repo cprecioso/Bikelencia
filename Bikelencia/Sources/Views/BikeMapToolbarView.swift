@@ -5,9 +5,9 @@ import SwiftUI
 struct BikeMapToolbarView: ToolbarContent {
   var isLoading: Bool
   var onLocationClick: (() -> Void) = {}
+  var mapScope: Namespace.ID
 
   @Environment(LocationManager.self) private var locationManager
-  var mapScope: Namespace.ID
 
   var locationButton: some View {
     Group {
@@ -16,23 +16,22 @@ struct BikeMapToolbarView: ToolbarContent {
       } else {
         LocationButton(action: onLocationClick)
           .labelStyle(.titleAndIcon)
+          .cornerRadius(5)
+          .symbolVariant(.fill)
       }
     }
     .foregroundColor(.white)
-    .tint(.myLocationDot)
-    .cornerRadius(5)
-    .symbolVariant(.fill)
-    .buttonStyle(.bordered)
+    .tint(.accent)
   }
 
   var body: some ToolbarContent {
     Group {
-      ToolbarItem(placement: .navigationBarLeading) {
+      ToolbarItem(placement: .topBarLeading) {
         locationButton
       }
 
       if isLoading {
-        ToolbarItem(placement: .navigationBarTrailing) {
+        ToolbarItem(placement: .topBarTrailing) {
           ProgressView()
         }
       }

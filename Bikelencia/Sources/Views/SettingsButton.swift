@@ -9,7 +9,5 @@ struct SettingsButton: View {
     } label: {
       Label("Settings", systemImage: "gear")
     }
-    .labelStyle(.iconOnly)
-    .buttonStyle(.borderedProminent)
   }
 }
