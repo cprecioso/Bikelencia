@@ -1,4 +1,5 @@
 import SwiftUI
+import BikelenciaCore
 
 struct SettingsScreen: View {
   @Environment(SpotsController.self) private var spotsController

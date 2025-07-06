@@ -2,6 +2,11 @@ import ProjectDescription
 
 let teamName = "design.precioso"
 let productName = "Bikelencia"
+let marketingVersion = "1.2"
+let bundleIdentifier = "\(teamName).\(productName)"
+
+let destinations: Destinations = .iOS
+let deploymentTargets: DeploymentTargets = .iOS("18.0")
 
 let project = Project(
   name: productName,
@@ -23,16 +28,26 @@ let project = Project(
     "SWIFT_EMIT_LOC_STRINGS": true,
     "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": true,
     "SWIFT_VERSION": "5.0",
+    "MARKETING_VERSION": .string(marketingVersion),
   ]),
   targets: [
     .target(
+      name: "BikelenciaCore",
+      destinations: destinations,
+      product: .framework,
+      bundleId: "\(bundleIdentifier).Core",
+      deploymentTargets: deploymentTargets,
+      sources: ["BikelenciaCore/**"],
+      dependencies: [.package(product: "ValenciaKit")]
+    ),
+    .target(
       name: "Bikelencia",
-      destinations: [.iPhone, .iPad],
+      destinations: destinations,
       product: .app,
-      bundleId: "\(teamName).\(productName)",
-      deploymentTargets: .iOS("18.0"),
+      bundleId: bundleIdentifier,
+      deploymentTargets: deploymentTargets,
       infoPlist: .extendingDefault(with: [
-        "CFBundleShortVersion": "1.2",
+        "CFBundleShortVersion": "$(MARKETING_VERSION)",
         "NSLocationDefaultAccuracyReduced": false,
         "UILaunchScreen": [
           "UIColorName": "MapsBackground"
@@ -48,14 +63,14 @@ let project = Project(
       resources: ["Bikelencia/Resources/*"],
       entitlements: .dictionary([
         "com.apple.developer.team-identifier": "$(DEVELOPMENT_TEAM)",
-        "com.apple.security.application-groups": ["group.\(teamName)"],
+        "com.apple.security.application-groups": ["group.\(bundleIdentifier)"],
       ]),
       dependencies: [
-        .package(product: "ValenciaKit")
+        .target(name: "BikelenciaCore")
       ],
       settings: .settings(base: [
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor"
       ])
-    )
+    ),
   ]
 )

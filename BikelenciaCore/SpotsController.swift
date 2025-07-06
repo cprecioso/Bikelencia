@@ -2,7 +2,7 @@ import Foundation
 import ValenciaKit
 
 extension URLSession {
-  fileprivate static var automaticDownload: URLSession {
+  static var automaticDownload: URLSession {
     let configuration = URLSessionConfiguration.default
     configuration.requestCachePolicy = .useProtocolCachePolicy
     configuration.waitsForConnectivity = true
@@ -10,7 +10,7 @@ extension URLSession {
     return URLSession(configuration: configuration)
   }
 
-  fileprivate static var userInitiatedDownload: URLSession {
+  static var userInitiatedDownload: URLSession {
     let configuration = URLSessionConfiguration.default
     configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
     configuration.waitsForConnectivity = false
@@ -24,10 +24,12 @@ extension TimeInterval {
 }
 
 @Observable
-final class SpotsController {
-  private(set) var isLoading = false
+public final class SpotsController {
+  public init() {}
 
-  var bikeParkings = StoredJSONObservable(
+  private(set) public var isLoading = false
+
+  private(set) public var bikeParkings = StoredJSONObservable(
     BikeParkings.self,
     at: URL.cachesDirectory.appending(
       path: "cached-bike-parkings.json",
@@ -36,7 +38,7 @@ final class SpotsController {
   )
 
   private let updater = SpotUpdater()
-  func updateData(userInitiated: Bool = false) async throws {
+  public func updateData(userInitiated: Bool = false) async throws {
     isLoading = true
     defer { isLoading = false }
     bikeParkings.value = try await updater.update(
@@ -44,7 +46,7 @@ final class SpotsController {
     )
   }
 
-  var needsUpdate: Bool {
+  public var needsUpdate: Bool {
     guard bikeParkings.ready else { return false }
 
     if let bikeParkings = bikeParkings.value,

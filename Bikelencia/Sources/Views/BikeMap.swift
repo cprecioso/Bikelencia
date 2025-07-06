@@ -1,6 +1,7 @@
 import MapKit
 import SwiftUI
 import ValenciaKit
+import BikelenciaCore
 
 struct MapView: View {
   @Binding var position: MapCameraPosition

@@ -2,6 +2,7 @@ import CoreLocation
 import MapKit
 import SwiftUI
 import ValenciaKit
+import BikelenciaCore
 
 struct BikeMapScreen: View {
   @State var position = PreferredMapPosition
