@@ -8,9 +8,10 @@ struct BikeMapScreen: View {
   @State var selectedSpot: BikeParkings.Spot? = nil
   
   @Environment(SpotsController.self) private var spotsController
+  @Namespace var mapScope
 
   var body: some View {
-    MapView(position: $position)
+    MapView(position: $position, mapScope: mapScope)
     .tint(.myLocationDot)
     .ignoresSafeArea()
     .toolbar {
@@ -18,11 +19,14 @@ struct BikeMapScreen: View {
         isLoading: spotsController.isLoading,
         onLocationClick: {
           position = PreferredMapPosition
-        })
+        },
+        mapScope: mapScope
+      )
     }
     .sheet(item: $selectedSpot) { spot in
       ParkingSpotScreen(spot: spot)
         .presentationDetents([.medium, .large])
     }
+    .mapScope(mapScope)
   }
 }

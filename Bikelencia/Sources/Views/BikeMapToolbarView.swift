@@ -1,27 +1,28 @@
 import CoreLocationUI
+import MapKit
 import SwiftUI
 
 struct BikeMapToolbarView: ToolbarContent {
   var isLoading: Bool
   var onLocationClick: (() -> Void) = {}
-  
+
   @Environment(LocationManager.self) private var locationManager
+  var mapScope: Namespace.ID
 
   var locationButton: some View {
-    let button = LocationButton(action: onLocationClick)
-      .foregroundColor(.white)
-      .tint(.myLocationDot)
-      .cornerRadius(5)
-      .symbolVariant(.fill)
-      .buttonStyle(.bordered)
-
-    return Group {
+    Group {
       if locationManager.hasLocation {
-        button.labelStyle(.iconOnly)
+        MapUserLocationButton(scope: mapScope)
       } else {
-        button.labelStyle(.titleAndIcon)
+        LocationButton(action: onLocationClick)
+          .labelStyle(.titleAndIcon)
       }
     }
+    .foregroundColor(.white)
+    .tint(.myLocationDot)
+    .cornerRadius(5)
+    .symbolVariant(.fill)
+    .buttonStyle(.bordered)
   }
 
   var body: some ToolbarContent {

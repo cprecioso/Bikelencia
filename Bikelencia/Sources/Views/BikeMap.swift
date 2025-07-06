@@ -8,10 +8,13 @@ struct MapView: View {
   @Environment(LocationManager.self) private var locationManager
   @Environment(SpotsController.self) private var spotsController
 
+  var mapScope: Namespace.ID
+
   var body: some View {
     Map(
       position: $position,
-      interactionModes: .all
+      interactionModes: .all,
+      scope: mapScope
     ) {
       if locationManager.hasLocation {
         UserAnnotation()
