@@ -47,7 +47,7 @@ let project = Project(
       bundleId: bundleIdentifier,
       deploymentTargets: deploymentTargets,
       infoPlist: .extendingDefault(with: [
-        "CFBundleShortVersion": "$(MARKETING_VERSION)",
+        "CFBundleShortVersionString": "$(MARKETING_VERSION)",
         "NSLocationDefaultAccuracyReduced": false,
         "UILaunchScreen": [
           "UIColorName": "MapsBackground"
