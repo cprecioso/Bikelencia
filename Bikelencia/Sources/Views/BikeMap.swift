@@ -3,6 +3,17 @@ import MapKit
 import SwiftUI
 import ValenciaKit
 
+private struct SpotsMapContent: MapContent {
+  var spots: [BikeParkings.Spot]
+  var setSelected: (BikeParkings.Spot) -> Void
+
+  var body: some MapContent {
+    ForEach(spots, id: \.id) { spot in
+      BikeMapSpotAnnotation(spot: spot, setSelection: setSelected)
+    }
+  }
+}
+
 struct MapView: View {
   @Binding var position: MapCameraPosition
   @Binding var selectedSpot: BikeParkings.Spot?
@@ -21,9 +32,7 @@ struct MapView: View {
       scope: mapScope
     ) {
       UserAnnotation()
-      ForEach(spotsController.bikeParkings.value?.spots ?? []) { spot in
-        BikeMapSpotAnnotation(spot: spot, setSelection: setSelected)
-      }
+      SpotsMapContent(spots: spotsController.bikeParkings.value?.spots ?? [], setSelected: setSelected)
     }
     .mapStyle(.standard(pointsOfInterest: .excludingAll, showsTraffic: true))
     .tint(.myLocationDot)
