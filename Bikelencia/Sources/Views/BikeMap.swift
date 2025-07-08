@@ -32,7 +32,8 @@ struct MapView: View {
       scope: mapScope
     ) {
       UserAnnotation()
-      SpotsMapContent(spots: spotsController.bikeParkings.value?.spots ?? [], setSelected: setSelected)
+      SpotsMapContent(
+        spots: spotsController.bikeParkings.value?.spots ?? [], setSelected: setSelected)
     }
     .mapStyle(.standard(pointsOfInterest: .excludingAll, showsTraffic: true))
     .tint(.myLocationDot)
