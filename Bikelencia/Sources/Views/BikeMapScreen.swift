@@ -8,6 +8,7 @@ struct BikeMapScreen: View {
   @State var position = PreferredMapPosition
   @State var selectedSpot: BikeParkings.Spot? = nil
   @Environment(SpotsController.self) private var spotsController
+  @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Namespace private var mapScope
 
   var body: some View {
@@ -28,7 +29,11 @@ struct BikeMapScreen: View {
     }
     .sheet(item: $selectedSpot) { spot in
       ParkingSpotScreen(spot: spot)
-        .presentationDetents([.medium, .large])
+        .presentationDetents(
+          horizontalSizeClass == .compact
+            ? [.medium, .large]
+            : []
+        )
     }
     .mapScope(mapScope)
   }
