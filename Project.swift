@@ -31,9 +31,9 @@ let project = Project(
       "SWIFT_EMIT_LOC_STRINGS": true,
       "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": true,
     ]
-      .automaticCodeSigning(devTeam: "K6ZPYZVLC6")
-      .marketingVersion(marketingVersion)
-      .swiftVersion("5.0")
+    .automaticCodeSigning(devTeam: "K6ZPYZVLC6")
+    .marketingVersion(marketingVersion)
+    .swiftVersion("5.0")
   ),
   targets: [
     .target(
