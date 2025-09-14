@@ -19,7 +19,6 @@ struct MapView: View {
   @Binding var selectedSpot: BikeParkings.Spot?
   @Environment(LocationManager.self) private var locationManager
   @Environment(SpotsController.self) private var spotsController
-  var mapScope: Namespace.ID
 
   func setSelected(_ spot: BikeParkings.Spot) {
     self.selectedSpot = spot
@@ -29,11 +28,17 @@ struct MapView: View {
     Map(
       position: $position,
       interactionModes: .all.subtracting(.pitch),
-      scope: mapScope
     ) {
       UserAnnotation()
       SpotsMapContent(
-        spots: spotsController.bikeParkings.value?.spots ?? [], setSelected: setSelected)
+        spots: spotsController.bikeParkings.value?.spots ?? [],
+        setSelected: setSelected
+      )
+    }
+    .mapControls {
+      if locationManager.hasLocation {
+        MapUserLocationButton()
+      }
     }
     .mapStyle(.standard(pointsOfInterest: .excludingAll, showsTraffic: true))
     .tint(.myLocationDot)
