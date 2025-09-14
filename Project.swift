@@ -22,14 +22,19 @@ let project = Project(
   packages: [
     .local(path: "./ValenciaKit")
   ],
-  settings: .settings(base: [
-    "DEVELOPMENT_TEAM": "K6ZPYZVLC6",
-    "ENABLE_USER_SCRIPT_SANDBOXING": false,
-    "SWIFT_EMIT_LOC_STRINGS": true,
-    "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": true,
-    "SWIFT_VERSION": "5.0",
-    "MARKETING_VERSION": .string(marketingVersion),
-  ]),
+  settings: .settings(
+    base: [
+      "ENABLE_USER_SCRIPT_SANDBOXING": false,
+      "ENABLE_MODULE_VERIFIER": true,
+      "MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS": "gnu11 gnu++14",
+      "STRING_CATALOG_GENERATE_SYMBOLS": true,
+      "SWIFT_EMIT_LOC_STRINGS": true,
+      "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": true,
+    ]
+      .automaticCodeSigning(devTeam: "K6ZPYZVLC6")
+      .marketingVersion(marketingVersion)
+      .swiftVersion("5.0")
+  ),
   targets: [
     .target(
       name: "BikelenciaCore",
