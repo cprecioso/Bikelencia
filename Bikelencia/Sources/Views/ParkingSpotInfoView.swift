@@ -1,29 +1,19 @@
 import CoreLocation
+import MapKit
 import SwiftUI
 
 struct ParkingSpotInfoView: View {
   var coordinate: CLLocationCoordinate2D
 
-  @State var placemark: CLPlacemark?
+  @State var mapItem: MKMapItem?
   @State var isLoading = true
 
   var placemarkText: String? {
-    guard let placemark else { return nil }
-    if let name = placemark.name {
-      return name
-    }
-
-    if let thoroughfare = placemark.thoroughfare {
-      if let subThoroughfare = placemark.subThoroughfare {
-        return String(
-          localized: "\(thoroughfare) (\(subThoroughfare))",
-          comment: "Thoroughfare (sub-thoroughfare)")
-      } else {
-        return thoroughfare
-      }
-    }
-
-    return nil
+    mapItem?.name
+      ?? mapItem?.addressRepresentations?.fullAddress(
+        includingRegion: false,
+        singleLine: true
+      )
   }
 
   @Sendable
@@ -33,11 +23,15 @@ struct ParkingSpotInfoView: View {
       isLoading = false
     }
 
-    let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-    let placemarks = try? await CLGeocoder().reverseGeocodeLocation(location)
+    let location = CLLocation(
+      latitude: coordinate.latitude,
+      longitude: coordinate.longitude
+    )
+    let mapItems = try? await MKReverseGeocodingRequest(location: location)?
+      .mapItems
 
     withAnimation {
-      placemark = placemarks?.first
+      mapItem = mapItems?.first
     }
   }
 
