@@ -63,6 +63,7 @@ struct ParkingSpotScreen: View {
           }
         }
         .listStyle(.grouped)
+        .contentMargins(.top, scene == nil ? 20 : 0)
       }
       .navigationTitle("Parking spot")
       .toolbar(.hidden)
