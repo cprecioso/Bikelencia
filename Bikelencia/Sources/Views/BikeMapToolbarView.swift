@@ -15,39 +15,30 @@ struct BikeMapToolbarView: ToolbarContent {
     Group {
       if hasLocation {
         MapUserLocationButton(scope: mapScope)
-          .matchedGeometryEffect(id: "location-button", in: animationNamespace)
       } else {
         LocationButton(action: onLocationClick)
           .labelStyle(.titleAndIcon)
           .cornerRadius(5)
           .symbolVariant(.fill)
-          .matchedGeometryEffect(id: "location-button", in: animationNamespace)
       }
     }
     .foregroundColor(.white)
     .tint(.accent)
-    .onChange(of: locationManager.hasLocation, initial: true) { _, newValue in
-      withAnimation {
-        self.hasLocation = newValue
-      }
-    }
   }
 
   var body: some ToolbarContent {
-    Group {
-      ToolbarItem(placement: .topBarLeading) {
-        locationButton
-      }
+    ToolbarItem(placement: .topBarLeading) {
+      locationButton
+    }
 
-      if isLoading {
-        ToolbarItem(placement: .topBarTrailing) {
-          ProgressView()
-        }
+    if isLoading {
+      ToolbarItem(placement: .topBarTrailing) {
+        ProgressView()
       }
+    }
 
-      ToolbarItem(placement: .secondaryAction) {
-        SettingsButton()
-      }
+    ToolbarItem(placement: .secondaryAction) {
+      SettingsButton()
     }
   }
 }
