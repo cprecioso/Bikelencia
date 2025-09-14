@@ -39,6 +39,8 @@ struct MapView: View {
       if locationManager.hasLocation {
         MapUserLocationButton()
       }
+      MapCompass()
+      MapScaleView()
     }
     .mapStyle(.standard(pointsOfInterest: .excludingAll, showsTraffic: true))
     .tint(.myLocationDot)
