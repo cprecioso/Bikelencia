@@ -39,13 +39,13 @@ extension BikeParkings.Spot: Equatable {}
   }
 #endif
 
-extension CoreLocation.CLLocationCoordinate2D: Swift.Equatable {
+extension CLLocationCoordinate2D: @retroactive Equatable {
   public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
     lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
   }
 }
 
-extension CLLocationCoordinate2D: Codable {
+extension CLLocationCoordinate2D: @retroactive Codable {
   enum CodingKeys: String, CodingKey {
     case latitude, longitude
   }
