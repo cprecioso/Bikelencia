@@ -26,7 +26,6 @@
     },
     "NSLocationTemporaryUsageDescriptionDictionary" : {
       "comment" : "Privacy - Location Temporary Usage Description Dictionary",
-      "extractionState" : "manual",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -50,7 +49,6 @@
     },
     "NSLocationWhenInUseUsageDescription" : {
       "comment" : "Privacy - Location When In Use Usage Description",
-      "extractionState" : "manual",
       "localizations" : {
         "ca" : {
           "stringUnit" : {

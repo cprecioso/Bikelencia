@@ -53,6 +53,10 @@ let project = Project(
       deploymentTargets: deploymentTargets,
       infoPlist: .extendingDefault(with: [
         "CFBundleShortVersionString": "$(MARKETING_VERSION)",
+        "NSLocationTemporaryUsageDescriptionDictionary":
+          "Bikelencia uses your location only to show where you are in the map.",
+        "NSLocationWhenInUseUsageDescription":
+          "Bikelencia uses your location to show where you are in the map.",
         "NSLocationDefaultAccuracyReduced": false,
         "UILaunchScreen": [
           "UIColorName": "MapsBackground"
