@@ -28,6 +28,7 @@ extension BikeParkings: Equatable {}
 extension BikeParkings.Spot: Identifiable {}
 extension BikeParkings.Spot: Codable {}
 extension BikeParkings.Spot: Equatable {}
+extension BikeParkings.Spot: Hashable {}
 
 #if canImport(MapKit)
   import MapKit
@@ -39,13 +40,12 @@ extension BikeParkings.Spot: Equatable {}
   }
 #endif
 
-extension CLLocationCoordinate2D: @retroactive Equatable {
+extension CLLocationCoordinate2D: Swift.Equatable {
   public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
     lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
   }
 }
-
-extension CLLocationCoordinate2D: @retroactive Codable {
+extension CLLocationCoordinate2D: Swift.Encodable, Swift.Decodable {
   enum CodingKeys: String, CodingKey {
     case latitude, longitude
   }
@@ -61,5 +61,12 @@ extension CLLocationCoordinate2D: @retroactive Codable {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(latitude, forKey: .latitude)
     try container.encode(longitude, forKey: .longitude)
+  }
+}
+
+extension CLLocationCoordinate2D: Swift.Hashable {
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(latitude)
+    hasher.combine(longitude)
   }
 }

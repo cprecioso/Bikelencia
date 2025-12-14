@@ -1,40 +1,13 @@
 {
-  "originHash" : "82bf860af691d0855b861ae5977e7ddd12e8d824f99e3d165f945df41fb5f299",
+  "originHash" : "cb9760e7a1e9e35410d193385bdbdb5c25abf3b3d4c8b0cf69219957303227bf",
   "pins" : [
     {
-      "identity" : "bodega",
+      "identity" : "clustermap",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mergesort/Bodega.git",
+      "location" : "https://github.com/vospennikov/ClusterMap.git",
       "state" : {
-        "revision" : "bfd8871e9c2590d31b200e54c75428a71483afdf",
-        "version" : "2.1.3"
-      }
-    },
-    {
-      "identity" : "boutique",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mergesort/Boutique.git",
-      "state" : {
-        "revision" : "28e295c131e6d7d766c13feda9f8c3b683adc1a5",
-        "version" : "2.4.5"
-      }
-    },
-    {
-      "identity" : "sqlite.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stephencelis/SQLite.swift.git",
-      "state" : {
-        "revision" : "4d543d811ee644fa4cc4bfa0be996b4dd6ba0f54",
-        "version" : "0.13.3"
-      }
-    },
-    {
-      "identity" : "swift-collections",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections",
-      "state" : {
-        "revision" : "937e904258d22af6e447a0b72c0bc67583ef64a2",
-        "version" : "1.0.4"
+        "revision" : "f3e60a742e6d3c149ce5d0c7424f373ef1b38140",
+        "version" : "2.1.1"
       }
     }
   ],

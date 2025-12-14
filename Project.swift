@@ -20,7 +20,8 @@ let project = Project(
     )
   ),
   packages: [
-    .local(path: "./ValenciaKit")
+    .local(path: "./ValenciaKit"),
+    .package(url: "https://github.com/vospennikov/ClusterMap.git", from: "2.1.1"),
   ],
   settings: .settings(
     base: [
@@ -75,7 +76,9 @@ let project = Project(
         "com.apple.security.application-groups": ["group.\(bundleIdentifier)"],
       ]),
       dependencies: [
-        .target(name: "BikelenciaCore")
+        .target(name: "BikelenciaCore"),
+        .package(product: "ClusterMap"),
+        .package(product: "ClusterMapSwiftUI"),
       ],
       settings: .settings(base: [
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor"

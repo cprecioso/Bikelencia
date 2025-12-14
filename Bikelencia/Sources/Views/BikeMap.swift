@@ -1,48 +1,45 @@
 import BikelenciaCore
+import ClusterMap
 import MapKit
 import SwiftUI
 import ValenciaKit
 
-private struct SpotsMapContent: MapContent {
-  var spots: [BikeParkings.Spot]
-  var setSelected: (BikeParkings.Spot) -> Void
-
-  var body: some MapContent {
-    ForEach(spots, id: \.id) { spot in
-      BikeMapSpotAnnotation(spot: spot, setSelection: setSelected)
-    }
-  }
-}
+extension BikeParkings.Spot: ClusterMap.CoordinateIdentifiable {}
 
 struct MapView: View {
   @Binding var position: MapCameraPosition
   @Binding var selectedSpot: BikeParkings.Spot?
-  @Environment(LocationManager.self) private var locationManager
   @Environment(SpotsController.self) private var spotsController
+
+  private var spots: [BikeParkings.Spot] {
+    spotsController.bikeParkings.value?.spots ?? []
+  }
 
   func setSelected(_ spot: BikeParkings.Spot) {
     self.selectedSpot = spot
   }
 
   var body: some View {
-    Map(
-      position: $position,
-      interactionModes: .all.subtracting(.pitch),
-    ) {
-      UserAnnotation()
-      SpotsMapContent(
-        spots: spotsController.bikeParkings.value?.spots ?? [],
-        setSelected: setSelected
-      )
-    }
-    .mapControls {
-      if locationManager.hasLocation {
-        MapUserLocationButton()
+    ClusteredMap(items: spots) { items, clusters in
+      Map(
+        position: $position,
+        interactionModes: .all.subtracting(.pitch),
+      ) {
+        UserAnnotation()
+        ForEach(items) { spot in
+          BikeMapSpotAnnotation(spot: spot, setSelection: setSelected)
+        }
+        ForEach(clusters) { cluster in
+          BikeMapClusterAnnotation(cluster: cluster)
+        }
       }
-      MapCompass()
-      MapScaleView()
+      .mapControls {
+        MapUserLocationButton()
+        MapCompass()
+        MapScaleView()
+      }
+      .mapStyle(.standard(pointsOfInterest: .excludingAll, showsTraffic: true))
+      .tint(.myLocationDot)
     }
-    .mapStyle(.standard(pointsOfInterest: .excludingAll, showsTraffic: true))
-    .tint(.myLocationDot)
   }
 }
