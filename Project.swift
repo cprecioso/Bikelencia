@@ -6,7 +6,7 @@ let marketingVersion = "1.3"
 let bundleIdentifier = "\(teamName).\(productName)"
 
 let destinations: Destinations = .iOS
-let deploymentTargets: DeploymentTargets = .iOS("26.0")
+let deploymentTargets: DeploymentTargets = .iOS("26.2")
 
 let project = Project(
   name: productName,
