@@ -16,12 +16,7 @@ struct BikeMapScreen: View {
       selectedSpot: $selectedSpot,
     )
     .toolbar {
-      BikeMapToolbarView(
-        isLoading: spotsController.isLoading,
-        onLocationClick: {
-          position = PreferredMapPosition
-        },
-      )
+      BikeMapToolbarView(isLoading: spotsController.isLoading)
     }
     .sheet(item: $selectedSpot) { spot in
       ParkingSpotScreen(spot: spot)

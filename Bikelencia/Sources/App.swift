@@ -31,6 +31,11 @@ struct BikelenciaApp: App {
       .environment(locationManager)
       .environment(\.showSettings, { isShowingSettings = true })
       .environment(spotsController)
+      .onAppear {
+        if locationManager.authorizationStatus == .notDetermined {
+          locationManager.requestLocationPermission()
+        }
+      }
       .task(id: spotsController.needsUpdate, priority: .background) {
         if spotsController.needsUpdate {
           try? await spotsController.updateData(userInitiated: false)
