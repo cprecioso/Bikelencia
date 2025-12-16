@@ -19,8 +19,6 @@ export const iconContainer = style({
 
 export const icon = style({
   objectFit: "contain",
-  borderRadius: "5%",
-  border: "1px solid lightgray",
 });
 
 export const headingContainer = style({});
