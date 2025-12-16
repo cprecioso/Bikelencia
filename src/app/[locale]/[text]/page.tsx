@@ -1,5 +1,6 @@
-import { Locale, i18n } from "@/locales";
+import { Locale, i18n, isLocale } from "@/locales";
 import { parse as parseMarkdown } from "marked";
+import { notFound } from "next/navigation";
 import type { Params as ParentParams } from "../layout";
 
 const enum Text {
@@ -30,4 +31,6 @@ export const generateStaticParams = async ({
 }: {
   params: ParentParams;
 }): Promise<Params[]> =>
-  [Text.Privacy, Text.Support].map((text) => ({ locale, text }));
+  isLocale(locale)
+    ? [Text.Privacy, Text.Support].map((text) => ({ locale, text }))
+    : notFound();

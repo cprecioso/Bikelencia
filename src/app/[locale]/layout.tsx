@@ -1,11 +1,12 @@
-import { LOCALES, Locale, i18n } from "@/locales";
+import { LOCALES, i18n, isLocale } from "@/locales";
 import { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Children, Fragment, ReactNode } from "react";
 import * as styles from "./layout-styles.css";
 
 export type Params = {
-  locale: Locale;
+  locale: string;
 };
 
 export const generateMetadata = async ({
@@ -14,6 +15,8 @@ export const generateMetadata = async ({
   params: Promise<Params>;
 }): Promise<Metadata> => {
   const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+
   const { t } = i18n(locale);
   return { title: t("app-name") };
 };
@@ -37,6 +40,8 @@ export default async function RootLayout({
   params: Promise<Params>;
 }) {
   const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+
   const { t } = i18n(locale);
 
   return (

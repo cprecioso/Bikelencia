@@ -1,6 +1,7 @@
-import { Locale, i18n } from "@/locales";
+import { Locale, i18n, isLocale } from "@/locales";
 import { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import icon from "../icon.png";
 import type { Params as ParentParams } from "./layout";
 import downloadImageEn from "./media/download_en.svg";
@@ -64,4 +65,4 @@ export const generateStaticParams = async ({
   params: { locale },
 }: {
   params: ParentParams;
-}): Promise<Params[]> => [{ locale }];
+}): Promise<Params[]> => (isLocale(locale) ? [{ locale }] : notFound());

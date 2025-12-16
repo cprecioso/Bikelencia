@@ -12,3 +12,6 @@ export const LOCALES: Locale[] = [
 
 export const DEFAULT_LOCALE = Locale.English;
 DEFAULT_LOCALE satisfies Locale;
+
+export const isLocale = (value: string): value is Locale =>
+  LOCALES.includes(value as Locale);
