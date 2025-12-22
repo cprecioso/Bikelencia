@@ -4,6 +4,10 @@ globalStyle("*", {
   boxSizing: "border-box",
 });
 
+globalStyle(":root", {
+  colorScheme: "light dark",
+});
+
 export const body = style({
   margin: "2em 0",
   fontFamily: "system-ui, sans-serif",
