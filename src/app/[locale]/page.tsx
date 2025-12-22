@@ -1,4 +1,4 @@
-import { Locale, i18n, isLocale } from "@/locales";
+import { LOCALES, Locale, i18n, isLocale } from "@/locales";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -17,10 +17,27 @@ export type Params = {
   locale: Locale;
 };
 
-export const metadata: Metadata = {
-  itunes: {
-    appId: "6450419237",
-  },
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> => {
+  const currentLocale = (await params).locale;
+  if (!isLocale(currentLocale)) notFound();
+
+  return {
+    itunes: {
+      appId: "6450419237",
+    },
+    alternates: {
+      languages: Object.fromEntries(
+        LOCALES.filter((locale) => locale != currentLocale).map((locale) => [
+          locale,
+          `/${locale}`,
+        ]),
+      ),
+    },
+  };
 };
 
 export default async function IndexPage({
@@ -33,15 +50,15 @@ export default async function IndexPage({
 
   return (
     <div className={styles.container}>
-        <Image
-          className={styles.icon}
+      <Image
+        className={styles.icon}
         width={300}
         height={300}
-          src={icon}
-          alt={t("icon-alt")}
-          priority
-          quality={100}
-        />
+        src={icon}
+        alt={t("icon-alt")}
+        priority
+        quality={100}
+      />
 
       <div className={styles.headingContainer}>
         <h1>{t("app-name")}</h1>
