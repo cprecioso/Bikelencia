@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Children, Fragment, ReactNode } from "react";
-import * as styles from "./layout-styles.css";
+import * as styles from "./styles.css";
 
 export type Params = {
   locale: string;
@@ -45,7 +45,7 @@ export default async function RootLayout({
   const { t } = i18n(locale);
 
   return (
-    <html lang={locale} className={styles.html}>
+    <html lang={locale}>
       <body className={styles.body}>
         <main>{children}</main>
         <nav className={styles.nav}>

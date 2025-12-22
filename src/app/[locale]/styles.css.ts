@@ -1,4 +1,19 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
+
+globalStyle("*", {
+  boxSizing: "border-box",
+});
+
+export const body = style({
+  margin: "2em 0",
+  fontFamily: "system-ui, sans-serif",
+  textAlign: "center",
+});
+
+export const nav = style({
+  textAlign: "center",
+  marginTop: "2em",
+});
 
 export const container = style({
   display: "flex",
@@ -10,15 +25,9 @@ export const container = style({
   padding: "1em",
 });
 
-export const iconContainer = style({
-  position: "relative",
-  width: "100%",
-  aspectRatio: "1",
-  maxWidth: "300px",
-});
-
 export const icon = style({
   objectFit: "contain",
+  maxWidth: "300px",
 });
 
 export const headingContainer = style({});
