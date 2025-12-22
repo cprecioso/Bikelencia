@@ -1,8 +1,8 @@
-import { LOCALES, i18n, isLocale } from "@/locales";
+import { isLocale, LOCALES, i18n as makeI18n } from "@/locales";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Children, Fragment, ReactNode } from "react";
+import { ReactNode } from "react";
+import { NavMenu } from "./nav-menu";
 import * as styles from "./styles.css";
 
 export type Params = {
@@ -17,20 +17,9 @@ export const generateMetadata = async ({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
 
-  const { t } = i18n(locale);
+  const { t } = makeI18n(locale);
   return { title: t("app-name") };
 };
-
-const WithSeparator = ({ children }: { children: React.ReactNode }) => (
-  <>
-    {Children.map(children, (child, i) => (
-      <Fragment>
-        {i === 0 ? null : " | "}
-        {child}
-      </Fragment>
-    ))}
-  </>
-);
 
 export default async function RootLayout({
   children,
@@ -42,20 +31,14 @@ export default async function RootLayout({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
 
-  const { t } = i18n(locale);
+  const i18n = makeI18n(locale);
 
   return (
     <html lang={locale}>
       <body className={styles.body}>
         <main>{children}</main>
         <nav className={styles.nav}>
-          <WithSeparator>
-            <Link href={`/${locale}`}>{t("home-link")}</Link>
-            <Link href={`/${locale}/privacy-policy`}>
-              {t("privacy-policy-link")}
-            </Link>
-            <Link href={`/${locale}/support`}>{t("support-link")}</Link>
-          </WithSeparator>
+          <NavMenu i18n={i18n} />
         </nav>
       </body>
     </html>

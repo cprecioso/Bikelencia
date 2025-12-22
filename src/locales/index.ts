@@ -14,6 +14,7 @@ const defaultMessages = allMessages[DEFAULT_LOCALE];
 export type Key = keyof typeof defaultMessages;
 
 export interface I18n {
+  locale: Locale;
   t(this: void, key: Key): string;
 }
 
@@ -21,6 +22,7 @@ export const i18n = (locale: Locale): I18n => {
   const messages = allMessages[locale] ?? defaultMessages;
 
   return {
+    locale,
     t(key) {
       return key in messages ? messages[key] : key;
     },
