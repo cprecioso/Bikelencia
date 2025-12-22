@@ -33,16 +33,15 @@ export default async function IndexPage({
 
   return (
     <div className={styles.container}>
-      <div className={styles.iconContainer}>
         <Image
           className={styles.icon}
-          fill
+        width={300}
+        height={300}
           src={icon}
           alt={t("icon-alt")}
           priority
           quality={100}
         />
-      </div>
 
       <div className={styles.headingContainer}>
         <h1>{t("app-name")}</h1>
