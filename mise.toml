@@ -1,4 +1,5 @@
 [tools]
+corepack = "latest"
 deno = "latest"
 node = "lts"
 tuist = "latest"

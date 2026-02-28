@@ -1,3 +1,7 @@
+[[tools.corepack]]
+version = "0.34.6"
+backend = "npm:corepack"
+
 [[tools.deno]]
 version = "2.7.1"
 backend = "core:deno"
