@@ -1,3 +1,7 @@
+[[tools.deno]]
+version = "2.7.1"
+backend = "core:deno"
+
 [[tools.node]]
 version = "24.14.0"
 backend = "core:node"
