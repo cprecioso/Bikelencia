@@ -9,7 +9,7 @@ on:
     - cron: "0 0 * * *" # Every day at midnight
 
 concurrency:
-  group: "publish"
+  group: publish
   cancel-in-progress: false
 
 jobs:
@@ -17,10 +17,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+
       - uses: jdx/mise-action@v3
+
+      - uses: actions/setup-node@v6
+        with:
+          cache: yarn
+
+      - run: yarn install --immutable
+
       - run: node ./api/src/build.ts out
+
       - uses: actions/upload-pages-artifact@v4
-        with: { path: out }
+        with:
+          path: out
 
   deploy:
     permissions:
