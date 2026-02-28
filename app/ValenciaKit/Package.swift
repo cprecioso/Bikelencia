@@ -16,12 +16,14 @@ let package = Package(
     .package(url: "https://github.com/SwiftyLab/MetaCodable.git", from: "1.0.0")
   ],
   targets: [
+    .target(name: "CoreLocationCodable"),
     .target(
       name: "ValenciaKit",
       dependencies: [
+        "CoreLocationCodable",
         .product(name: "MetaCodable", package: "MetaCodable"),
         .product(name: "HelperCoders", package: "MetaCodable"),
       ]
-    )
+    ),
   ]
 )

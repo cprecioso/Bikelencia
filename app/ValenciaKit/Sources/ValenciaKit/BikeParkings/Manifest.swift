@@ -8,7 +8,7 @@ public struct Manifest: Sendable {
 
   @Codable
   public struct BikeParkingsInfo: Sendable {
-    @CodedBy(ISO8601DateCoder())
+    @CodedBy(LenientISO8601DateCoder())
     public var updatedAt: Date
     public var size: Int
   }

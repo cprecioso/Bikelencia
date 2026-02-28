@@ -49,7 +49,8 @@ final class BikelenciaDownloader: BADownloaderExtension {
 
     do {
       let rawData = try Data(contentsOf: fileURL)
-      let bikeParkings = try JSONDecoder().decode(BikeParkings.self, from: rawData)
+      var bikeParkings = try JSONDecoder().decode(BikeParkings.self, from: rawData)
+      bikeParkings.fetchedAt = .now
 
       let encoded = try JSONEncoder().encode(bikeParkings)
       try encoded.write(to: Self.cachedBikeParkingsURL, options: .atomic)

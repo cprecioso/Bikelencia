@@ -72,6 +72,7 @@ let project = Project(
         "BAMaxInstallSize": 2_000_000,
         "BAInitialDownloadRestrictions": [
           "BADownloadAllowance": 2_000_000,
+          "BAEssentialDownloadAllowance": 2_000_000,
           "BADownloadDomainAllowList": ["api.bikelencia.precioso.design"],
         ],
       ]),
@@ -101,6 +102,7 @@ let project = Project(
       bundleId: "\(bundleIdentifier).Downloader",
       deploymentTargets: deploymentTargets,
       infoPlist: .extendingDefault(with: [
+        "CFBundleShortVersionString": "$(MARKETING_VERSION)",
         "EXAppExtensionAttributes": [
           "EXExtensionPointIdentifier":
             "com.apple.background-asset-downloader-extension"
