@@ -6,10 +6,10 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # Every day at midnight
+    - cron: "0 0 * * *" # Every day at midnight
 
 concurrency:
-  group: 'publish'
+  group: "publish"
   cancel-in-progress: false
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
         with:
           cache: true
           deno-version: ${{ steps.deno-version.outputs.version }}
-      - run: deno run -A ./src/build.ts out
+      - run: deno run -A ./api/src/build.ts out
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
