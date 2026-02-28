@@ -226,6 +226,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@bikelencia/web@workspace:web":
+  version: 0.0.0-use.local
+  resolution: "@bikelencia/web@workspace:web"
+  dependencies:
+    "@types/negotiator": "npm:^0.6.4"
+    "@types/node": "npm:^24.10.4"
+    "@types/react": "npm:^19.2.7"
+    "@types/react-dom": "npm:^19.2.3"
+    "@vanilla-extract/css": "npm:^1.17.5"
+    "@vanilla-extract/next-plugin": "npm:^2.4.16"
+    eslint: "npm:^9.39.2"
+    eslint-config-next: "npm:16.0.10"
+    marked: "npm:^17.0.1"
+    negotiator: "npm:^1.0.0"
+    next: "npm:16.0.10"
+    react: "npm:^19.2.3"
+    react-dom: "npm:^19.2.3"
+    typescript: "npm:~5.9.3"
+  languageName: unknown
+  linkType: soft
+
 "@emnapi/runtime@npm:^1.7.0":
   version: 1.7.1
   resolution: "@emnapi/runtime@npm:1.7.1"
@@ -1415,31 +1436,6 @@ __metadata:
   checksum: 10c0/230520f1ff920b2d2ce3e372d77a33faa4fa60d802fe01ca4ffbc321ee06023fe9a741ac02793ee778040a16b7e497f7d60c504d1c402b8fdab6f03bb785a25f
   languageName: node
   linkType: hard
-
-"bikelencia-marketing@workspace:web":
-  version: 0.0.0-use.local
-  resolution: "bikelencia-marketing@workspace:web"
-  dependencies:
-    "@types/negotiator": "npm:^0.6.4"
-    "@types/node": "npm:^24.10.4"
-    "@types/react": "npm:^19.2.7"
-    "@types/react-dom": "npm:^19.2.3"
-    "@vanilla-extract/css": "npm:^1.17.5"
-    "@vanilla-extract/next-plugin": "npm:^2.4.16"
-    eslint: "npm:^9.39.2"
-    eslint-config-next: "npm:16.0.10"
-    marked: "npm:^17.0.1"
-    negotiator: "npm:^1.0.0"
-    next: "npm:16.0.10"
-    prettier: "npm:3.7.4"
-    prettier-plugin-organize-imports: "npm:4.3.0"
-    prettier-plugin-pkg: "npm:0.21.2"
-    prettier-plugin-sh: "npm:0.18.0"
-    react: "npm:^19.2.3"
-    react-dom: "npm:^19.2.3"
-    typescript: "npm:~5.9.3"
-  languageName: unknown
-  linkType: soft
 
 "brace-expansion@npm:^1.1.7":
   version: 1.1.11
