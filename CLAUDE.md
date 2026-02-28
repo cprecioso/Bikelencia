@@ -51,7 +51,7 @@ ESLint config is at `web/eslint.config.js` (flat config format). No explicit lin
 
 ```bash
 cd app
-tuist generate   # Generate Xcode project from Project.swift
+tuist generate  --no-open   # Generate Xcode project from Project.swift
 # Then build/run from Xcode
 ```
 
