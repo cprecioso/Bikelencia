@@ -4,7 +4,7 @@
     {
       "source": "/:path*",
       "destination": "https://cprecioso.github.io/valenciakit-api/:path",
-      "permanent": true
+      "permanent": false
     }
   ]
 }
