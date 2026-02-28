@@ -2,7 +2,7 @@ import ProjectDescription
 
 let teamName = "design.precioso"
 let productName = "Bikelencia"
-let marketingVersion = "1.3"
+let marketingVersion = "1.3.1"
 let bundleIdentifier = "\(teamName).\(productName)"
 
 let destinations: Destinations = .iOS
