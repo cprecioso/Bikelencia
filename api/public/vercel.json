@@ -5,11 +5,6 @@
       "source": "/api/:path*",
       "destination": "/:path.json",
       "permanent": false
-    },
-    {
-      "source": "/api/manifest",
-      "destination": "/manifest.json",
-      "permanent": false
     }
   ]
 }
