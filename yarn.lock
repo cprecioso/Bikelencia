@@ -222,6 +222,7 @@ __metadata:
     "@types/geojson": "npm:^7946.0.16"
     "@types/node": "npm:^24.11.0"
     ky: "npm:^1.14.3"
+    typescript: "npm:~5.9.3"
   languageName: unknown
   linkType: soft
 
