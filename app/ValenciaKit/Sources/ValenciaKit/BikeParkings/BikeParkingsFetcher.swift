@@ -1,6 +1,7 @@
 import Foundation
 
-private let JSON_DATA_URL = URL(string: "https://valenciakit.vercel.app/api/bike-parkings")!
+private let JSON_DATA_URL =
+  URL(string: "https://api.bikelencia.precioso.design/api/bike-parkings")!
 
 extension BikeParkings {
   static public func makeRequest() -> URLRequest {
