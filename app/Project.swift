@@ -70,7 +70,10 @@ let project = Project(
         "ITSAppUsesNonExemptEncryption": false,
       ]),
       sources: ["Bikelencia/Sources/**"],
-      resources: ["Bikelencia/Resources/*"],
+      resources: [
+        "Bikelencia/Resources/*",
+        "../resources/AppIcon.icon",
+      ],
       entitlements: .dictionary([
         "com.apple.developer.team-identifier": "$(DEVELOPMENT_TEAM)",
         "com.apple.security.application-groups": ["group.\(bundleIdentifier)"],

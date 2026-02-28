@@ -4,8 +4,9 @@
   "private": true,
   "workspaces": [
     "api",
-    "web",
-    "app"
+    "app",
+    "resources",
+    "web"
   ],
   "packageManager": "yarn@4.12.0",
   "devDependencies": {
