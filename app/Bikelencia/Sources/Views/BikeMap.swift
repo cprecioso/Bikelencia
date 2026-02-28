@@ -19,6 +19,27 @@ struct MapView: View {
     self.selectedSpot = spot
   }
 
+  func zoomToCluster(_ cluster: ClusterManager<BikeParkings.Spot>.ClusterAnnotation) {
+    let coordinates = cluster.memberAnnotations.map(\.coordinate)
+    guard let minLat = coordinates.map(\.latitude).min(),
+          let maxLat = coordinates.map(\.latitude).max(),
+          let minLon = coordinates.map(\.longitude).min(),
+          let maxLon = coordinates.map(\.longitude).max()
+    else { return }
+    let padding = 1.3
+    let span = MKCoordinateSpan(
+      latitudeDelta: (maxLat - minLat) * padding,
+      longitudeDelta: (maxLon - minLon) * padding
+    )
+    let center = CLLocationCoordinate2D(
+      latitude: (minLat + maxLat) / 2,
+      longitude: (minLon + maxLon) / 2
+    )
+    withAnimation {
+      position = .region(MKCoordinateRegion(center: center, span: span))
+    }
+  }
+
   var body: some View {
     ClusteredMap(items: spots) { items, clusters in
       Map(
@@ -30,7 +51,7 @@ struct MapView: View {
           BikeMapSpotAnnotation(spot: spot, setSelection: setSelected)
         }
         ForEach(clusters) { cluster in
-          BikeMapClusterAnnotation(cluster: cluster)
+          BikeMapClusterAnnotation(cluster: cluster, zoomIn: { zoomToCluster(cluster) })
         }
       }
       .mapControls {

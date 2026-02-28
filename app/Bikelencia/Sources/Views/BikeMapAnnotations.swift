@@ -18,6 +18,7 @@ struct BikeMapSpotAnnotation: MapContent {
 
 struct BikeMapClusterAnnotation: MapContent {
   var cluster: ClusterManager<BikeParkings.Spot>.ClusterAnnotation
+  var zoomIn: () -> Void
 
   var totalCapacity: UInt {
     cluster.memberAnnotations.reduce(0, { $0 + $1.capacity })
@@ -29,6 +30,7 @@ struct BikeMapClusterAnnotation: MapContent {
         count: cluster.memberAnnotations.count,
         capacity: totalCapacity
       )
+      .onTapGesture { zoomIn() }
     }
     .annotationTitles(.hidden)
   }
