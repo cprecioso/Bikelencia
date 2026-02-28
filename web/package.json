@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
-  "packageManager": "yarn@4.12.0",
   "engines": {
     "node": "22"
   },
@@ -28,10 +27,6 @@
     "@vanilla-extract/next-plugin": "^2.4.16",
     "eslint": "^9.39.2",
     "eslint-config-next": "16.0.10",
-    "prettier": "3.7.4",
-    "prettier-plugin-organize-imports": "4.3.0",
-    "prettier-plugin-pkg": "0.21.2",
-    "prettier-plugin-sh": "0.18.0",
     "typescript": "~5.9.3"
   }
 }

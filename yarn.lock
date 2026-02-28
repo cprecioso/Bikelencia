@@ -214,6 +214,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bikelencia/repo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@bikelencia/repo@workspace:."
+  dependencies:
+    prettier: "npm:3.7.4"
+    prettier-plugin-organize-imports: "npm:4.3.0"
+    prettier-plugin-pkg: "npm:0.21.2"
+    prettier-plugin-sh: "npm:0.18.0"
+    typescript: "npm:~5.9.3"
+  languageName: unknown
+  linkType: soft
+
 "@emnapi/runtime@npm:^1.7.0":
   version: 1.7.1
   resolution: "@emnapi/runtime@npm:1.7.1"
@@ -1404,9 +1416,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bikelencia-marketing@workspace:.":
+"bikelencia-marketing@workspace:web":
   version: 0.0.0-use.local
-  resolution: "bikelencia-marketing@workspace:."
+  resolution: "bikelencia-marketing@workspace:web"
   dependencies:
     "@types/negotiator": "npm:^0.6.4"
     "@types/node": "npm:^24.10.4"
