@@ -2,8 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/api/bike-parkings",
-      "destination": "/bike-parkings.json",
+      "source": "/api/:path*",
+      "destination": "/:path.json",
       "permanent": false
     },
     {
