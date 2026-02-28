@@ -1,3 +1,7 @@
+[[tools.node]]
+version = "24.14.0"
+backend = "core:node"
+
 [[tools.tuist]]
 version = "4.152.0"
 backend = "asdf:tuist"

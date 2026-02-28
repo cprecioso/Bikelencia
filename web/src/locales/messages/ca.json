@@ -1,0 +1,12 @@
+{
+  "home-link": "Inici",
+  "icon-alt": "Icona de Bikelencia",
+  "app-name": "Bikelencia",
+  "app-shortdesc": "Troba aparcabicis a València",
+  "download-link": "https://apps.apple.com/es/app/bikelencia/id6450419237",
+  "download-alt": "Descarrega Bikelencia des de l'App Store",
+  "privacy-policy-link": "Política de privacitat",
+  "privacy-policy": "Bikelencia no recopila explícitament cap dada del teu dispositiu.\n\nPer descarregar les dades del mapa, l'aplicació accedeix al domini valenciakit.vercel.app. Aquesta web està allotjada a Vercel i està sotmesa a la [Política de privacitat de Vercel](https://vercel.com/legal/privacy-policy).\n\nApple ens proporciona de forma predeterminada anàlisis anònims sobre l'ús de l'aplicació a través de la seua App Store. Aquestes dades estan sotmeses a la [Política de privacitat d'Apple](https://www.apple.com/legal/privacy/ca/).\n\nSi tens alguna pregunta, envia'ns un correu electrònic a [bikelencia@precioso.design](mailto:bikelencia@precioso.design).",
+  "support-link": "Suport",
+  "support": "Si tens problemes, preguntes o peticions, envia'ns un correu electrònic a [bikelencia@precioso.design](mailto:bikelencia@precioso.design)."
+}
