@@ -1,5 +1,6 @@
-import { assert } from "@std/assert";
-import { join } from "@std/path";
+import assert from "node:assert/strict";
+import * as fs from "node:fs/promises";
+import { join } from "node:path";
 import { fetchParkings } from "./fetch-parkings.ts";
 
 const bikeParkingsData = await fetchParkings();
@@ -17,9 +18,9 @@ const manifestFile = new TextEncoder().encode(
   JSON.stringify(manifestData, null, 2),
 );
 
-const dest = Deno.args[0];
+const dest = process.argv[2];
 assert(dest, "Destination directory must be provided as the first argument");
 
-await Deno.mkdir(dest, { recursive: true });
-await Deno.writeFile(join(dest, "bike-parkings.json"), bikeParkingsFile);
-await Deno.writeFile(join(dest, "manifest.json"), manifestFile);
+await fs.mkdir(dest, { recursive: true });
+await fs.writeFile(join(dest, "bike-parkings.json"), bikeParkingsFile);
+await fs.writeFile(join(dest, "manifest.json"), manifestFile);

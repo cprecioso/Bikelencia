@@ -1,0 +1,13 @@
+{
+  "name": "@bikelencia/api",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "ky": "^1.14.3"
+  },
+  "devDependencies": {
+    "@cprecioso/tsconfig": "^3.0.2",
+    "@types/geojson": "^7946.0.16",
+    "@types/node": "^24.11.0"
+  }
+}
