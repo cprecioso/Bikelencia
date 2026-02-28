@@ -1,23 +1,14 @@
 import Foundation
 
-private let JSON_DATA_URL =
-  URL(string: "https://api.bikelencia.precioso.design/api/bike-parkings")!
-
 extension BikeParkings {
   static public func makeRequest() -> URLRequest {
-    URLRequest(url: JSON_DATA_URL)
+    URLRequest(url: BikelenciaAPI.bikeParkingsURL)
   }
 
-  static public func fetch(urlSession: URLSession = URLSession(configuration: .ephemeral))
-    async throws -> BikeParkings
-  {
+  static public func fetch(
+    urlSession: URLSession = URLSession(configuration: .ephemeral)
+  ) async throws -> BikeParkings {
     let (rawData, _) = try await urlSession.data(for: makeRequest())
-
-    let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .jsDate
-
-    var data = try decoder.decode(BikeParkings.self, from: rawData)
-    data.fetchedAt = Date.now
-    return data
+    return try JSONDecoder().decode(BikeParkings.self, from: rawData)
   }
 }

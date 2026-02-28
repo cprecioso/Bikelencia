@@ -1,5 +1,5 @@
 import Foundation
-import ValenciaKit
+@_exported import ValenciaKit
 
 extension URLSession {
   static var automaticDownload: URLSession {
@@ -31,19 +31,19 @@ public final class SpotsController {
 
   private(set) public var bikeParkings = StoredJSONObservable(
     BikeParkings.self,
-    at: URL.cachesDirectory.appending(
-      path: "cached-bike-parkings.json",
-      directoryHint: .notDirectory
-    )
+    at: FileManager.default.containerURL(
+      forSecurityApplicationGroupIdentifier: BikelenciaConfig.appGroupIdentifier
+    )!.appending(path: "cached-bike-parkings.json", directoryHint: .notDirectory)
   )
 
   private let updater = SpotUpdater()
   public func updateData(userInitiated: Bool = false) async throws {
     isLoading = true
     defer { isLoading = false }
-    bikeParkings.value = try await updater.update(
-      userInitiated: userInitiated
-    )
+    let newData = try await updater.update(userInitiated: userInitiated)
+    bikeParkings.value = newData
+    UserDefaults(suiteName: BikelenciaConfig.appGroupIdentifier)?
+      .set(newData.updatedAt.timeIntervalSince1970, forKey: "lastKnownUpdatedAt")
   }
 
   public var needsUpdate: Bool {

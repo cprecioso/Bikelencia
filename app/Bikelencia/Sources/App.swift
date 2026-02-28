@@ -1,3 +1,4 @@
+import BackgroundAssets
 import BikelenciaCore
 import SwiftUI
 
@@ -10,6 +11,15 @@ struct BikelenciaApp: App {
   @State var isShowingSettings = false
   @State var spotsController = SpotsController()
   @State var locationManager = LocationManager()
+
+  private func promotePendingDownloads() {
+    Task {
+      guard let downloads = try? await BADownloadManager.shared.currentDownloads else { return }
+      for download in downloads {
+        try? BADownloadManager.shared.startForegroundDownload(download)
+      }
+    }
+  }
 
   var body: some Scene {
     WindowGroup {
@@ -35,6 +45,7 @@ struct BikelenciaApp: App {
         if locationManager.authorizationStatus == .notDetermined {
           locationManager.requestLocationPermission()
         }
+        promotePendingDownloads()
       }
       .task(id: spotsController.needsUpdate, priority: .background) {
         if spotsController.needsUpdate {

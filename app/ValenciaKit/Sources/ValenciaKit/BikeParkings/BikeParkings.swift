@@ -1,9 +1,14 @@
 import CoreLocation
+import HelperCoders
+import MetaCodable
 
+@Codable
 public struct BikeParkings: Sendable {
   public static let empty = BikeParkings(spots: [])
 
+  @CodedBy(ISO8601DateCoder())
   public var fetchedAt: Date? = Date.now
+  @CodedBy(ISO8601DateCoder())
   public var updatedAt = Date.now
   public var spots: [Spot] = []
 
@@ -22,7 +27,6 @@ public struct BikeParkings: Sendable {
   }
 }
 
-extension BikeParkings: Codable {}
 extension BikeParkings: Equatable {}
 
 extension BikeParkings.Spot: Identifiable {}

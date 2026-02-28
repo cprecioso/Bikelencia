@@ -68,6 +68,12 @@ let project = Project(
           "UIApplicationSupportsMultipleScenes": false
         ],
         "ITSAppUsesNonExemptEncryption": false,
+        "BAManifestURL": "https://api.bikelencia.precioso.design/api/manifest",
+        "BAMaxInstallSize": 2_000_000,
+        "BAInitialDownloadRestrictions": [
+          "BADownloadAllowance": 2_000_000,
+          "BADownloadDomainAllowList": ["api.bikelencia.precioso.design"],
+        ],
       ]),
       sources: ["Bikelencia/Sources/**"],
       resources: [
@@ -80,12 +86,34 @@ let project = Project(
       ]),
       dependencies: [
         .target(name: "BikelenciaCore"),
+        .target(name: "BikelenciaDownloader"),
         .package(product: "ClusterMap"),
         .package(product: "ClusterMapSwiftUI"),
       ],
       settings: .settings(base: [
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor"
       ])
+    ),
+    .target(
+      name: "BikelenciaDownloader",
+      destinations: destinations,
+      product: .extensionKitExtension,
+      bundleId: "\(bundleIdentifier).Downloader",
+      deploymentTargets: deploymentTargets,
+      infoPlist: .extendingDefault(with: [
+        "EXAppExtensionAttributes": [
+          "EXExtensionPointIdentifier":
+            "com.apple.background-asset-downloader-extension"
+        ]
+      ]),
+      sources: ["BikelenciaDownloader/**"],
+      entitlements: .dictionary([
+        "com.apple.developer.team-identifier": "$(DEVELOPMENT_TEAM)",
+        "com.apple.security.application-groups": ["group.\(bundleIdentifier)"],
+      ]),
+      dependencies: [
+        .target(name: "BikelenciaCore"),
+      ]
     ),
   ]
 )
