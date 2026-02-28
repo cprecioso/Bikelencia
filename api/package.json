@@ -2,6 +2,9 @@
   "name": "@bikelencia/api",
   "type": "module",
   "private": true,
+  "scripts": {
+    "build": "node ./src/build.ts ./out"
+  },
   "dependencies": {
     "ky": "^1.14.3"
   },
