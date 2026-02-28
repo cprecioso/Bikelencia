@@ -49,14 +49,10 @@ final class BikelenciaDownloader: BADownloaderExtension {
 
     do {
       let rawData = try Data(contentsOf: fileURL)
-      var bikeParkings = try JSONDecoder().decode(BikeParkings.self, from: rawData)
-      bikeParkings.fetchedAt = .now
-
-      let encoded = try JSONEncoder().encode(bikeParkings)
-      try encoded.write(to: Self.cachedBikeParkingsURL, options: .atomic)
+      try rawData.write(to: Self.cachedBikeParkingsURL, options: .atomic)
 
       Self.sharedDefaults.set(
-        bikeParkings.updatedAt.timeIntervalSince1970,
+        Date.now.timeIntervalSince1970,
         forKey: Self.lastUpdatedAtKey
       )
     } catch {

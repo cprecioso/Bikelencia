@@ -49,7 +49,7 @@ struct SettingsScreen: View {
       } header: {
         Text("Data source")
       } footer: {
-        if let fetchedAt = spotsController.bikeParkings.value?.fetchedAt {
+        if let fetchedAt = spotsController.lastFetchedAt {
           Text("Last updated \(fetchedAt, style: .relative) ago")
         } else {
           Text("Not yet updated. Pull down to update the data.")

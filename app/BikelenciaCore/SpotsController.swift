@@ -36,24 +36,35 @@ public final class SpotsController {
     )!.appending(path: "cached-bike-parkings.json", directoryHint: .notDirectory)
   )
 
+  private static let lastFetchedAtKey = "lastKnownUpdatedAt"
+
+  private var sharedDefaults: UserDefaults? {
+    UserDefaults(suiteName: BikelenciaConfig.appGroupIdentifier)
+  }
+
+  public var lastFetchedAt: Date? {
+    let timestamp = sharedDefaults?.double(forKey: Self.lastFetchedAtKey) ?? 0
+    guard timestamp > 0 else { return nil }
+    return Date(timeIntervalSince1970: timestamp)
+  }
+
   private let updater = SpotUpdater()
   public func updateData(userInitiated: Bool = false) async throws {
     isLoading = true
     defer { isLoading = false }
     let newData = try await updater.update(userInitiated: userInitiated)
     bikeParkings.value = newData
-    UserDefaults(suiteName: BikelenciaConfig.appGroupIdentifier)?
-      .set(newData.updatedAt.timeIntervalSince1970, forKey: "lastKnownUpdatedAt")
+    sharedDefaults?.set(Date.now.timeIntervalSince1970, forKey: Self.lastFetchedAtKey)
   }
 
   public var needsUpdate: Bool {
     guard bikeParkings.ready else { return false }
 
-    if let bikeParkings = bikeParkings.value,
-      !bikeParkings.spots.isEmpty,
-      let fetchedAt = bikeParkings.fetchedAt,
-      Date.now.timeIntervalSince(fetchedAt) <= .oneMonth
-    {
+    guard let bikeParkings = bikeParkings.value, !bikeParkings.spots.isEmpty else {
+      return true
+    }
+
+    if let lastFetchedAt, Date.now.timeIntervalSince(lastFetchedAt) <= .oneMonth {
       return false
     }
 

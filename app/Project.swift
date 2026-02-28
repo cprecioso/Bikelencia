@@ -103,10 +103,11 @@ let project = Project(
       deploymentTargets: deploymentTargets,
       infoPlist: .extendingDefault(with: [
         "CFBundleShortVersionString": "$(MARKETING_VERSION)",
+        "CFBundleIdentifier": "$(PRODUCT_BUNDLE_IDENTIFIER)",
         "EXAppExtensionAttributes": [
           "EXExtensionPointIdentifier":
             "com.apple.background-asset-downloader-extension"
-        ]
+        ],
       ]),
       sources: ["BikelenciaDownloader/**"],
       entitlements: .dictionary([
@@ -114,7 +115,7 @@ let project = Project(
         "com.apple.security.application-groups": ["group.\(bundleIdentifier)"],
       ]),
       dependencies: [
-        .target(name: "BikelenciaCore"),
+        .target(name: "BikelenciaCore")
       ]
     ),
   ]

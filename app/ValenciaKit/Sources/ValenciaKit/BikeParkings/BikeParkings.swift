@@ -6,8 +6,6 @@ import MetaCodable
 @Codable
 public struct BikeParkings: Sendable {
   @CodedBy(LenientISO8601DateCoder())
-  public var fetchedAt: Date? = Date.now
-  @CodedBy(LenientISO8601DateCoder())
   public var updatedAt: Date = Date.now
   public var spots: [Spot] = []
 

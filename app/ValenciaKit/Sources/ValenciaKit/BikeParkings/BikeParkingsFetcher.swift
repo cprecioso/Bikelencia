@@ -9,8 +9,6 @@ extension BikeParkings {
     urlSession: URLSession = URLSession(configuration: .ephemeral)
   ) async throws -> BikeParkings {
     let (rawData, _) = try await urlSession.data(for: makeRequest())
-    var bikeParkings = try JSONDecoder().decode(BikeParkings.self, from: rawData)
-    bikeParkings.fetchedAt = .now
-    return bikeParkings
+    return try JSONDecoder().decode(BikeParkings.self, from: rawData)
   }
 }
