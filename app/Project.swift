@@ -70,6 +70,7 @@ let project = Project(
         "ITSAppUsesNonExemptEncryption": false,
         "BAManifestURL": "https://api.bikelencia.precioso.design/api/manifest",
         "BAMaxInstallSize": 2_000_000,
+        "BAEssentialMaxInstallSize": 2_000_000,
         "BAInitialDownloadRestrictions": [
           "BADownloadAllowance": 2_000_000,
           "BAEssentialDownloadAllowance": 2_000_000,
@@ -104,6 +105,7 @@ let project = Project(
       infoPlist: .extendingDefault(with: [
         "CFBundleShortVersionString": "$(MARKETING_VERSION)",
         "CFBundleIdentifier": "$(PRODUCT_BUNDLE_IDENTIFIER)",
+        "CFBundleDisplayName": "Bikelencia Downloader",
         "EXAppExtensionAttributes": [
           "EXExtensionPointIdentifier":
             "com.apple.background-asset-downloader-extension"
