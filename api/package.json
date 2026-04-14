@@ -6,7 +6,8 @@
     "build": "node ./src/build.ts ./public"
   },
   "dependencies": {
-    "ky": "^1.14.3"
+    "ky": "^2.0.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@cprecioso/tsconfig": "^3.0.2",

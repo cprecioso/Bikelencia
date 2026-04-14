@@ -1,20 +1,20 @@
 import type { GeoJSON } from "geojson";
 import ky from "ky";
 import assert from "node:assert/strict";
+import * as z from "zod/mini";
 
 const DATASET_URL =
-  "https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/aparcaments-bicicletes-aparcamientos-bicicletas";
+  "https://opendata.vlci.valencia.es/api/3/action/package_show?id=ba531c74-8f0b-4da9-98da-4d6d3b74a351";
+
 const GEOJSON_URL =
-  "https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/aparcaments-bicicletes-aparcamientos-bicicletas/exports/geojson";
+  "https://geoportal.valencia.es/server/rest/services/OPENDATA/Trafico/MapServer/206/query?where=1%3D1&outFields=*&f=geojson";
 
-export const getModifiedDateString = async () => {
-  const data = await ky(DATASET_URL).json<
-    { metas?: { default?: { modified?: string } } } | undefined
-  >();
-
-  const modified = data?.metas?.default?.modified;
-  if (modified) return modified;
-};
+export const getModifiedDateString = async () =>
+  (
+    await ky(DATASET_URL).json(
+      z.object({ result: z.object({ last_updated: z.coerce.date() }) }),
+    )
+  ).result.last_updated;
 
 const assertType: <Value extends { type: string }, Type extends Value["type"]>(
   value: Value,
@@ -23,16 +23,11 @@ const assertType: <Value extends { type: string }, Type extends Value["type"]>(
   assert.equal(value.type.toLowerCase(), type.toLowerCase());
 
 export const fetchParkings = async () => {
-  const dataResponse = await ky(GEOJSON_URL, {
-    headers: { Accept: "application/json" },
-  });
+  const updatedAt = (await getModifiedDateString()) || new Date(0);
 
-  const updatedAtString =
-    dataResponse.headers.get("Last-Modified") ||
-    (await getModifiedDateString());
-  const updatedAt = updatedAtString ? new Date(updatedAtString) : new Date(0);
-
-  const data = await dataResponse.json<GeoJSON>();
+  // We don't use Zod here because it would have a significant performance
+  // impact by iterating over the whole dataset.
+  const data = await ky(GEOJSON_URL).json<GeoJSON>();
   assertType(data, "FeatureCollection");
 
   if (data.features.length === 0) {
