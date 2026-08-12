@@ -29,14 +29,14 @@ export function NavMenu({ i18n }: { i18n: I18n }) {
     <>
       <p>
         <Sep sep=" | ">
-          {MENU_ITEMS.map(({ makeHref, ...rest }) => ({
-            ...rest,
-            href: makeHref({ locale: currentLocale }),
-          })).map(({ href, label }) => (
-            <Link key={href} href={href}>
-              {i18n.t(label)}
-            </Link>
-          ))}
+          {MENU_ITEMS.map(({ makeHref, label }) => {
+            const href = makeHref({ locale: currentLocale });
+            return (
+              <Link key={href} href={href}>
+                {i18n.t(label)}
+              </Link>
+            );
+          })}
         </Sep>
       </p>
       <p>

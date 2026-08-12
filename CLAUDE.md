@@ -25,6 +25,8 @@ Package manager: **Yarn 4.12.0** (via Corepack). Do not use npm.
 yarn install            # Install all JS dependencies
 yarn prettier --check . # Check formatting
 yarn prettier --write . # Fix formatting
+yarn lint               # Lint all workspaces (oxlint)
+yarn lint:fix           # Lint and apply auto-fixes
 ```
 
 ### API (`api/`)
@@ -45,7 +47,7 @@ yarn build # Production build
 yarn start # Serve production build
 ```
 
-ESLint config is at `web/eslint.config.js` (flat config format). No explicit lint script — run `npx eslint .` from `web/`.
+Linting is repo-wide, not per-workspace — run `yarn lint` from the root.
 
 ### iOS App (`app/`)
 
@@ -130,3 +132,7 @@ Path alias: `@/*` maps to `web/src/*`.
 ## Formatting
 
 Prettier is configured at the repo root with plugins for import sorting (`prettier-plugin-organize-imports`), `package.json` formatting (`prettier-plugin-pkg`), and shell scripts (`prettier-plugin-sh`).
+
+## Linting
+
+[oxlint](https://oxc.rs/docs/guide/usage/linter) is configured at the repo root in `.oxlintrc.json` and covers every workspace in one pass. The base config enables the `import`, `oxc`, `promise`, `typescript`, and `unicorn` plugins; a `web/**` override adds `jsx-a11y`, `nextjs`, and `react`. oxlint has no formatting rules, so it does not overlap with Prettier and needs no `eslint-config-prettier` equivalent.
