@@ -5,6 +5,7 @@
   "workspaces": [
     "api",
     "app",
+    "data",
     "resources",
     "web"
   ],

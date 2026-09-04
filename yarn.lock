@@ -228,6 +228,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@bikelencia/data@workspace:data":
+  version: 0.0.0-use.local
+  resolution: "@bikelencia/data@workspace:data"
+  dependencies:
+    "@cprecioso/tsconfig": "npm:^4.1.0"
+    "@std/assert": "jsr:^1.0.19"
+    "@types/geojson": "npm:^7946.0.16"
+    "@types/node": "npm:^24.13.3"
+    ky: "npm:^2.0.2"
+    typescript: "npm:~7.0.2"
+    zod: "npm:^4.5.4"
+  languageName: unknown
+  linkType: soft
+
 "@bikelencia/repo@workspace:.":
   version: 0.0.0-use.local
   resolution: "@bikelencia/repo@workspace:."
@@ -771,6 +785,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jsr/std__internal@npm:^1.0.12":
+  version: 1.0.14
+  resolution: "@jsr/std__internal@npm:1.0.14::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__internal%2F1.0.14.tgz"
+  checksum: 10c0/c6df89e03d3374207deb36366349c1ebfdc3c0150692d817c2819389b4d551e016f82fb1dced313e3cd107b7a5aa24a85db4a5ab21628376246b0430c5673c53
+  languageName: node
+  linkType: hard
+
 "@next/env@npm:16.3.0":
   version: 16.3.0
   resolution: "@next/env@npm:16.3.0"
@@ -1130,6 +1151,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@std/assert@jsr:^1.0.19, @std/assert@npm:@jsr/std__assert@^1.0.19":
+  version: 1.0.19
+  resolution: "@jsr/std__assert@npm:1.0.19::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__assert%2F1.0.19.tgz"
+  dependencies:
+    "@jsr/std__internal": "npm:^1.0.12"
+  checksum: 10c0/0d513937101f20d8d547e5a3fdf71a08877b03e26bbf0a86f84db09d3c4ff261e4ba59fa81ce130d73aa9cf76b57a92b3902bc32416e2dacac8b29ff1d1dcc3f
+  languageName: node
+  linkType: hard
+
 "@swc/core-darwin-arm64@npm:1.15.47":
   version: 1.15.47
   resolution: "@swc/core-darwin-arm64@npm:1.15.47"
@@ -1305,16 +1335,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 24.11.0
-  resolution: "@types/node@npm:24.11.0"
-  dependencies:
-    undici-types: "npm:~7.16.0"
-  checksum: 10c0/4fb7390259e3b158d25dbecf52de8ce70fa18a4ed0949c9444bb6384517c361fa19781e6821ca8c18dc5f6af43eab72e9e159e07000e6b1286d082e8585d8c41
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^24.13.3":
+"@types/node@npm:*, @types/node@npm:^24.13.3":
   version: 24.13.3
   resolution: "@types/node@npm:24.13.3"
   dependencies:
@@ -2929,13 +2950,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~7.16.0":
-  version: 7.16.0
-  resolution: "undici-types@npm:7.16.0"
-  checksum: 10c0/3033e2f2b5c9f1504bdc5934646cb54e37ecaca0f9249c983f7b1fc2e87c6d18399ebb05dc7fd5419e02b2e915f734d872a65da2e3eeed1813951c427d33cc9a
-  languageName: node
-  linkType: hard
-
 "undici-types@npm:~7.18.0":
   version: 7.18.2
   resolution: "undici-types@npm:7.18.2"
@@ -3068,9 +3082,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^4.4.3":
-  version: 4.4.3
-  resolution: "zod@npm:4.4.3"
-  checksum: 10c0/7ea31b558e88f9faf44f31dd185e2e1cbf51fed3081787fb96cc2534749b50c0acfc6da7f0922a7353ed092dd358c7d50c28ea96c94d04af64191bd33152eca3
+"zod@npm:^4.4.3, zod@npm:^4.5.4":
+  version: 4.5.4
+  resolution: "zod@npm:4.5.4"
+  checksum: 10c0/511a2a4d1a6f875dfdd70a1586989a8b14ef126776cd6218a2c760b9f65f14ef389ec20d92ee1aa4fcb4566d4ff3fa012956044f9dc503510d82e4c756a8ba92
   languageName: node
   linkType: hard
