@@ -34,6 +34,10 @@ export const outputSchema = z.object({
     .array(),
 });
 
+export const fullOutputSchema = outputSchema.extend({
+  updatedAt: z.date(),
+});
+
 export const transformSchema = z.codec(inputSchema, outputSchema, {
   decode(data) {
     return {

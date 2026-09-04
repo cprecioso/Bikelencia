@@ -2,11 +2,17 @@
   "name": "@bikelencia/data",
   "type": "module",
   "private": true,
+  "imports": {
+    "#/data.json": "./out/data.json"
+  },
   "exports": {
-    "./data.json": "./out/data.json"
+    "./data": "./src/data.ts"
   },
   "scripts": {
-    "refresh": "node --import=zod/compile ./src/refresh.ts ./out/data.json"
+    "refresh": "node --import=zod/compile ./src/refresh.ts"
+  },
+  "dependencies": {
+    "execa": "^10.0.1"
   },
   "devDependencies": {
     "@cprecioso/tsconfig": "^4.1.0",

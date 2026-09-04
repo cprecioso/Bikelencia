@@ -1,0 +1,30 @@
+name: Refresh data
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Every day at midnight
+  push:
+    branches:
+      - main
+
+jobs:
+  refresh-data:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: jdx/mise-action@v4
+      - uses: actions/setup-node@v7
+        with: { cache: yarn, package-manager-cache: yarn }
+
+      - run: yarn install --mode=immutable
+      - run: yarn workspace @bikelencia/data refresh
+
+      - run: git config --global user.name "github-actions[bot]"
+      - run: git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - run: git add data
+      - run: git commit -m "Refresh data" || echo "No changes to commit"
+      - run: git push
