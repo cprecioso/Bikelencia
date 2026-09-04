@@ -21,7 +21,8 @@ jobs:
         with: { cache: yarn, package-manager-cache: yarn }
 
       - run: yarn install --immutable
-      - run: yarn workspace @bikelencia/data refresh
+      - run: yarn run refresh
+        working-directory: data
 
       - run: git config --global user.name "github-actions[bot]"
       - run: git config --global user.email "github-actions[bot]@users.noreply.github.com"
