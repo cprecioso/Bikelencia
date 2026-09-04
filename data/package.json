@@ -2,9 +2,6 @@
   "name": "@bikelencia/data",
   "type": "module",
   "private": true,
-  "imports": {
-    "#/data.json": "./out/data.json"
-  },
   "exports": {
     "./data": "./src/data.ts"
   },
