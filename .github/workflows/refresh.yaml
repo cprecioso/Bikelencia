@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v7
         with: { cache: yarn, package-manager-cache: yarn }
 
-      - run: yarn install --mode=immutable
+      - run: yarn install --immutable
       - run: yarn workspace @bikelencia/data refresh
 
       - run: git config --global user.name "github-actions[bot]"
