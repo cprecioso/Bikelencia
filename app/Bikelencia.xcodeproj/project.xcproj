@@ -130,13 +130,6 @@
                 { "path": "BikelenciaCore-Info.plist" },
                 { "path": "BikelenciaDownloader-Info.plist" },
               ],
-            }, {
-              "kind": "group",
-              "path": "Sources",
-              "children": [
-                { "path": "TuistAssets+Bikelencia.swift", "target-membership": [ "Bikelencia/compile-sources" ] },
-                { "path": "TuistBundle+Bikelencia.swift", "target-membership": [ "Bikelencia/compile-sources" ] },
-              ],
             },
           ],
         },
