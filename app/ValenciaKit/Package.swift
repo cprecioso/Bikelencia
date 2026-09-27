@@ -13,7 +13,7 @@ let package = Package(
     .library(name: "ValenciaKit", targets: ["ValenciaKit"])
   ],
   dependencies: [
-    .package(url: "https://github.com/SwiftyLab/MetaCodable.git", from: "1.0.0")
+    .package(url: "https://github.com/SwiftyLab/MetaCodable.git", from: "1.6.1")
   ],
   targets: [
     .target(name: "CoreLocationCodable"),

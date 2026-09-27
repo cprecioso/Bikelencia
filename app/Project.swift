@@ -21,7 +21,7 @@ let project = Project(
   ),
   packages: [
     .local(path: "./ValenciaKit"),
-    .package(url: "https://github.com/vospennikov/ClusterMap.git", from: "2.1.1"),
+    .package(url: "https://github.com/vospennikov/ClusterMap.git", from: "3.0.0"),
   ],
   settings: .settings(
     base: [

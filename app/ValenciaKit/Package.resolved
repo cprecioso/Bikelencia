@@ -1,13 +1,13 @@
 {
-  "originHash" : "ef2a3ddeeaf65a796e52c3643e718cd683ff10f7ffcebdc004b7d18f958a7e45",
+  "originHash" : "2bf45f274c5e2b3a12d343c2906bf5d4d23a1835e3454267b882b4d420ebb8a3",
   "pins" : [
     {
       "identity" : "metacodable",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftyLab/MetaCodable.git",
       "state" : {
-        "revision" : "c2a6cc907e2f95463ba8f2b55432bd2aee8a4bfd",
-        "version" : "1.6.0"
+        "revision" : "3d4bfeb949c0f31ef80fdc3af8f77c5b35ecaea4",
+        "version" : "1.6.1"
       }
     },
     {
