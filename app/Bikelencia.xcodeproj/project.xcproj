@@ -191,11 +191,12 @@
         "CODE_SIGN_IDENTITY": "iPhone Developer",
         "ENABLE_PREVIEWS": "YES",
         "INFOPLIST_FILE": "Derived/InfoPlists/Bikelencia-Info.plist",
-        "IPHONEOS_DEPLOYMENT_TARGET": "26.2",
+        "IPHONEOS_DEPLOYMENT_TARGET": "27",
         "LD_RUNPATH_SEARCH_PATHS": [
           "$(inherited)",
           "@executable_path/Frameworks",
         ],
+        "MARKETING_VERSION": "1.5",
         "OTHER_LDFLAGS": [
           "$(inherited)",
           "-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
@@ -243,7 +244,7 @@
         "DYLIB_INSTALL_NAME_BASE": "@rpath",
         "INFOPLIST_FILE": "Derived/InfoPlists/BikelenciaCore-Info.plist",
         "INSTALL_PATH": "$(LOCAL_LIBRARY_DIR)/Frameworks",
-        "IPHONEOS_DEPLOYMENT_TARGET": "26.2",
+        "IPHONEOS_DEPLOYMENT_TARGET": "27",
         "LD_RUNPATH_SEARCH_PATHS": [
           "$(inherited)",
           "@executable_path/Frameworks",
@@ -291,12 +292,13 @@
         "CODE_SIGN_ENTITLEMENTS": "Derived/Entitlements/BikelenciaDownloader.entitlements",
         "CODE_SIGN_IDENTITY": "iPhone Developer",
         "INFOPLIST_FILE": "Derived/InfoPlists/BikelenciaDownloader-Info.plist",
-        "IPHONEOS_DEPLOYMENT_TARGET": "26.2",
+        "IPHONEOS_DEPLOYMENT_TARGET": "27",
         "LD_RUNPATH_SEARCH_PATHS": [
           "$(inherited)",
           "@executable_path/Frameworks",
           "@executable_path/../../Frameworks",
         ],
+        "MARKETING_VERSION": "1.5",
         "OTHER_LDFLAGS": [
           "$(inherited)",
           "-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
