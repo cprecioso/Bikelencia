@@ -22,15 +22,15 @@ Package manager: **Yarn 4.12.0** (via Corepack). Do not use npm.
 ### Monorepo (root)
 
 ```bash
-yarn install          # Install all JS dependencies
-yarn prettier --check .  # Check formatting
-yarn prettier --write .  # Fix formatting
+yarn install            # Install all JS dependencies
+yarn prettier --check . # Check formatting
+yarn prettier --write . # Fix formatting
 ```
 
 ### API (`api/`)
 
 ```bash
-yarn workspace @bikelencia/api build   # Regenerate static JSON into api/public/
+yarn workspace @bikelencia/api build # Regenerate static JSON into api/public/
 # or: cd api && node ./src/build.ts ./public
 ```
 
@@ -40,18 +40,18 @@ The build fetches GeoJSON from Valencia's OpenDataSoft API and outputs `bike-par
 
 ```bash
 cd web
-yarn dev       # Dev server (Next.js with webpack)
-yarn build     # Production build
-yarn start     # Serve production build
+yarn dev   # Dev server (Next.js with webpack)
+yarn build # Production build
+yarn start # Serve production build
 ```
 
-ESLint config is at `web/eslint.config.js` (flat config format). No explicit lint script — run `npx eslint .` from `web/`.
+Linting uses [oxlint](https://oxc.rs/docs/guide/usage/linter), configured in `web/.oxlintrc.json` (Next.js, React, JSX a11y, import and TypeScript plugins). Type-aware rules are enabled via `oxlint-tsgolint`. Run `yarn lint` from `web/`.
 
 ### iOS App (`app/`)
 
 ```bash
 cd app
-tuist generate  --no-open   # Generate Xcode project from Project.swift
+tuist generate --no-open # Generate Xcode project from Project.swift
 # Then build/run from Xcode
 ```
 
@@ -113,6 +113,7 @@ The `BikelenciaDownloader` target (`app/BikelenciaDownloader/`) is an Extension 
 - `app/Project.swift` — Tuist target definition with `BAManifestURL`, download size limits, and domain allowlist in Info.plist
 
 **Data sharing:** The extension and main app share data through:
+
 - App group `UserDefaults` for the `lastKnownUpdatedAt` timestamp
 - App group container filesystem for the cached `cached-bike-parkings.json` file
 

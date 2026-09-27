@@ -6,13 +6,13 @@
     "build": "node ./src/build.ts ./public"
   },
   "dependencies": {
-    "ky": "^2.0.0",
-    "zod": "^4.3.6"
+    "ky": "^2.1.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@cprecioso/tsconfig": "^3.0.2",
+    "@cprecioso/tsconfig": "^4.1.0",
     "@types/geojson": "^7946.0.16",
-    "@types/node": "^24.11.0",
-    "typescript": "~5.9.3"
+    "@types/node": "^24.13.6",
+    "typescript": "~7.0.2"
   }
 }
