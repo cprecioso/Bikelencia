@@ -78,10 +78,7 @@ let project = Project(
         ],
       ]),
       sources: ["Bikelencia/Sources/**"],
-      resources: [
-        "Bikelencia/Resources/*",
-        "../resources/AppIcon.icon",
-      ],
+      resources: ["Bikelencia/Resources/*"],
       entitlements: .dictionary([
         "com.apple.developer.team-identifier": "$(DEVELOPMENT_TEAM)",
         "com.apple.security.application-groups": ["group.\(bundleIdentifier)"],

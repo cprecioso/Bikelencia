@@ -1,7 +1,4 @@
 {
   "name": "@bikelencia/app",
-  "private": true,
-  "devDependencies": {
-    "@bikelencia/resources": "workspace:*"
-  }
+  "private": true
 }

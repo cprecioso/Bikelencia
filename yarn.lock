@@ -221,8 +221,6 @@ __metadata:
 "@bikelencia/app@workspace:app":
   version: 0.0.0-use.local
   resolution: "@bikelencia/app@workspace:app"
-  dependencies:
-    "@bikelencia/resources": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -252,12 +250,6 @@ __metadata:
     prettier-plugin-pkg: "npm:0.22.1"
     prettier-plugin-sh: "npm:0.19.0"
     typescript: "npm:~7.0.2"
-  languageName: unknown
-  linkType: soft
-
-"@bikelencia/resources@workspace:*, @bikelencia/resources@workspace:resources":
-  version: 0.0.0-use.local
-  resolution: "@bikelencia/resources@workspace:resources"
   languageName: unknown
   linkType: soft
 
