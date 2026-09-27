@@ -1,5 +1,6 @@
 import BackgroundAssets
 import BikelenciaCore
+import ExtensionFoundation
 import Foundation
 
 @main
