@@ -23,6 +23,7 @@ extension TimeInterval {
   fileprivate static let oneMonth: TimeInterval = 30 * 24 * 60 * 60  // 30 days
 }
 
+@MainActor
 @Observable
 public final class SpotsController {
   public init() {}

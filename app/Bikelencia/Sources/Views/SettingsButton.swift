@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsButton: View {
-  @Environment(\.showSettings) var showSettings: (() -> Void)?
+  @Environment(\.showSettings) private var showSettings
 
   var body: some View {
     Button {

@@ -3,7 +3,7 @@ import ClusterMapSwiftUI
 import MapKit
 import SwiftUI
 
-typealias Clusterable = CoordinateIdentifiable & Hashable & Identifiable
+typealias Clusterable = CoordinateIdentifiable & Hashable & Identifiable & Sendable
 
 struct ClusteredMap<Item: Clusterable, Map: View>: View {
   typealias Cluster = ClusterManager<Item>.ClusterAnnotation
@@ -39,7 +39,7 @@ struct ClusteredMap<Item: Clusterable, Map: View>: View {
       updateClusters()
     }
     .onChange(of: items, initial: true) { _, newValue in
-      Task.detached {
+      Task {
         await clusterManager.removeAll()
         await clusterManager.add(newValue)
         updateClusters()
@@ -47,30 +47,28 @@ struct ClusteredMap<Item: Clusterable, Map: View>: View {
     }
   }
 
-  nonisolated func updateClusters() {
-    Task.detached {
+  func updateClusters() {
+    Task {
       let difference = await clusterManager.reload(
         mapViewSize: mapSize,
         coordinateRegion: coordinateRegion
       )
 
-      await MainActor.run {
-        for removal in difference.removals {
-          switch removal {
-          case .annotation(let annotation):
-            annotations.removeAll { $0 == annotation }
-          case .cluster(let cluster):
-            clusters.removeAll { $0.id == cluster.id }
-          }
+      for removal in difference.removals {
+        switch removal {
+        case .annotation(let annotation):
+          annotations.removeAll { $0 == annotation }
+        case .cluster(let cluster):
+          clusters.removeAll { $0.id == cluster.id }
         }
+      }
 
-        for insertion in difference.insertions {
-          switch insertion {
-          case .annotation(let annotation):
-            annotations.append(annotation)
-          case .cluster(let cluster):
-            clusters.append(cluster)
-          }
+      for insertion in difference.insertions {
+        switch insertion {
+        case .annotation(let annotation):
+          annotations.append(annotation)
+        case .cluster(let cluster):
+          clusters.append(cluster)
         }
       }
     }

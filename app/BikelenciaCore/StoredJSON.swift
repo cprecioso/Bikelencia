@@ -30,8 +30,9 @@ public actor StoredJSON<Value: Codable> {
   }
 }
 
+@MainActor
 @Observable
-public final class StoredJSONObservable<Value: Codable> {
+public final class StoredJSONObservable<Value: Codable & Sendable> {
   let storedJSON: StoredJSON<Value>
 
   public init(_ type: Value.Type, at fileURL: URL) {

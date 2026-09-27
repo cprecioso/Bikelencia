@@ -2,8 +2,16 @@ import BackgroundAssets
 import BikelenciaCore
 import SwiftUI
 
+struct ShowSettingsAction {
+  var isPresented: Binding<Bool>
+
+  func callAsFunction() {
+    isPresented.wrappedValue = true
+  }
+}
+
 extension EnvironmentValues {
-  @Entry var showSettings: (() -> Void)?
+  @Entry var showSettings: ShowSettingsAction?
 }
 
 @main
@@ -39,7 +47,7 @@ struct BikelenciaApp: App {
           }
       }
       .environment(locationManager)
-      .environment(\.showSettings, { isShowingSettings = true })
+      .environment(\.showSettings, ShowSettingsAction(isPresented: $isShowingSettings))
       .environment(spotsController)
       .onAppear {
         if locationManager.authorizationStatus == .notDetermined {
