@@ -40,7 +40,7 @@
             "BikelenciaDownloader/frameworks",
           ],
         },
-        { "path": "<PRODUCTS>/BikelenciaDownloader.appex", "id": "C82E74CA5C9E537842F763AA", "type": "wrapper.app-extension", "index": false, "target-membership": [ { "build-phase": "Bikelencia/copy/Embed ExtensionKit Extensions", "header-preservation": "remove-on-copy" } ] },
+        { "path": "<PRODUCTS>/BikelenciaDownloader.appex", "id": "C82E74CA5C9E537842F763AA", "type": "wrapper.extensionkit-extension", "index": false, "target-membership": [ { "build-phase": "Bikelencia/copy/Embed ExtensionKit Extensions", "header-preservation": "remove-on-copy" } ] },
       ],
     }, {
       "kind": "group",
