@@ -1,7 +1,6 @@
 [tools]
 deno = "latest"
 node = "24"
-tuist = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["yarn"]
