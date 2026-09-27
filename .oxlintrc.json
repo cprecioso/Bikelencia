@@ -1,0 +1,42 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["import", "oxc", "promise", "typescript", "unicorn"],
+  "categories": {
+    "correctness": "error",
+    "perf": "error",
+    "suspicious": "error"
+  },
+  "options": {
+    "typeAware": true
+  },
+  "ignorePatterns": [
+    ".yarn",
+    "api/public",
+    "web/.next",
+    "web/out",
+    "web/next-env.d.ts"
+  ],
+  "rules": {
+    // Sequential paging genuinely needs to await inside the loop.
+    "no-await-in-loop": "off",
+    "typescript/no-unsafe-type-assertion": "off"
+  },
+  "settings": {
+    "next": {
+      "rootDir": "web/"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["web/**"],
+      "plugins": ["jsx-a11y", "nextjs", "react"],
+      "rules": {
+        // tsconfig sets `jsx: react-jsx`, so JSX compiles through the automatic
+        // runtime and never references `React`. oxlint has no setting for the
+        // runtime, and the rule takes no options, so switching it off is what
+        // its own docs prescribe.
+        "react/react-in-jsx-scope": "off"
+      }
+    }
+  ]
+}

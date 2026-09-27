@@ -1,0 +1,5 @@
+.yarn/
+api/public/
+web/.next/
+web/out/
+web/next-env.d.ts
