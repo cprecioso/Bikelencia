@@ -2,6 +2,7 @@
   "name": "@bikelencia/web",
   "type": "module",
   "private": true,
+  "packageManager": "yarn@4.18.1",
   "engines": {
     "node": "22"
   },
