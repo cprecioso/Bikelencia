@@ -1,4 +1,0 @@
-{
-  "include": ["src/**/*"],
-  "extends": "@cprecioso/tsconfig/node-native"
-}

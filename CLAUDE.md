@@ -7,8 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Bikelencia is an iOS app that shows bike parking locations in Valencia, Spain. This is a monorepo with four workspaces:
 
 - **app/** — iOS app (SwiftUI, managed by Tuist)
-- **web/** — Marketing site (TanStack Start)
-- **api/** — Static JSON API (pre-built data files served via GitHub Pages)
+- **web/** — Marketing site and JSON API (TanStack Start, deployed to GitHub Pages)
+- **data/** — Bike parking data fetched from Valencia's open data portal
 - **resources/** — Shared assets (app icon source files)
 
 ## Tool Versions
@@ -29,14 +29,13 @@ yarn lint               # Lint all workspaces (oxlint)
 yarn lint:fix           # Lint and apply auto-fixes
 ```
 
-### API (`api/`)
+### Data (`data/`)
 
 ```bash
-yarn workspace @bikelencia/api build # Regenerate static JSON into api/public/
-# or: cd api && node ./src/build.ts ./public
+yarn workspace @bikelencia/data refresh # Fetch the latest data into data/out/data.json
 ```
 
-The build fetches GeoJSON from Valencia's OpenDataSoft API and outputs `api/bike-parkings` and `api/manifest`. The `Build API` GitHub Actions workflow (`build.yaml`, on push to `main` or manually) builds the API and deploys it to GitHub Pages. The `Refresh data` workflow (`refresh.yaml`, daily at midnight UTC or manually) refreshes and commits the data, then calls `Build API`.
+The refresh fetches GeoJSON from Valencia's geoportal. `@bikelencia/data/data` exports it with `updatedAt` taken from the last commit touching the file, so it needs git history. The `Build site` GitHub Actions workflow (`build.yaml`, on push to `main` or manually) runs the web `build:static` and deploys it to GitHub Pages. The `Refresh data` workflow (`refresh.yaml`, daily at midnight UTC or manually) refreshes and commits the data, then calls `Build site`.
 
 ### Web (`web/`)
 
@@ -120,13 +119,13 @@ The `BikelenciaDownloader` target (`app/BikelenciaDownloader/`) is an Extension 
 - App group `UserDefaults` for the `lastKnownUpdatedAt` timestamp
 - App group container filesystem for the cached `cached-bike-parkings.json` file
 
-### API Server
+### API
 
-Not a running server — just static JSON files in `api/public/`, deployed to GitHub Pages at `api.bikelencia.precioso.design`. Pages has no rewrites, so the build writes extensionless files at `/api/bike-parkings` and `/api/manifest` (the URLs the app uses, served as `application/octet-stream`). The build script (`api/src/build.ts`) runs as a plain Node.js TypeScript file (no compilation step needed).
+Served by the marketing site at `/api/bike-parkings` and `/api/manifest` (the URLs the app uses), from server routes in `web/src/routes/api/`. A Vite plugin in `vite.config.ts` reads `@bikelencia/data/data` at build time and exposes it as `virtual:bike-parkings`, so no git or repo is needed at runtime. Both routes are prerendered into extensionless files, so static hosts like GitHub Pages (which has no rewrites) serve them as `application/octet-stream`; a server serves them as `application/json`. The site is deployed to GitHub Pages at `api.bikelencia.precioso.design`.
 
 ### Marketing Site
 
-[TanStack Start](https://tanstack.com/start) on Vite, with file-based routes in `src/routes/` (`routeTree.gen.ts` is generated, do not edit). Locale-based routing via a `$locale` segment (en/es/ca) whose `params.parse` rejects unknown locales, so they 404. Uses Vanilla Extract (`*.css.ts` files) for styling. `/` (`src/routes/index.tsx`) redirects to a locale: its server handler negotiates `Accept-Language`, and its component does the same from `navigator.languages` on the client. Every other page is prerendered at build time (configured in `vite.config.ts`). Nitro builds the server output, auto-detecting the host preset (e.g. Vercel). `build:static` (`--mode static`) switches Nitro to its `static` preset and prerenders `/` too, so only the client redirect remains.
+[TanStack Start](https://tanstack.com/start) on Vite, with file-based routes in `src/routes/` (`routeTree.gen.ts` is generated, do not edit). Locale-based routing via a `$locale` segment (en/es/ca) whose `params.parse` rejects unknown locales, so they 404. Uses Vanilla Extract (`*.css.ts` files) for styling. `/` (`src/routes/index.tsx`) redirects to a locale: its server handler negotiates `Accept-Language`, and its component does the same from `navigator.languages` on the client. Every other page is prerendered at build time (configured in `vite.config.ts`). Nitro builds the server output, auto-detecting the host preset (e.g. Vercel). `build:static` (`--mode static`) switches Nitro to its `static` preset, whose crawler prerenders everything including `/`, so only the client redirect remains. Start's own prerender is off there, since it would only see the static output.
 
 Path alias: `@/*` maps to `web/src/*`.
 

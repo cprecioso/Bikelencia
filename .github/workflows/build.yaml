@@ -1,4 +1,4 @@
-name: Build API
+name: Build site
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
         required: false
 
 jobs:
-  build-api:
+  build:
     runs-on: ubuntu-latest
 
     permissions:
@@ -30,12 +30,12 @@ jobs:
         with: { cache: yarn, package-manager-cache: yarn }
 
       - run: yarn install --immutable
-      - run: yarn workspace @bikelencia/api build
+      - run: yarn workspace @bikelencia/web build:static
       - uses: actions/upload-pages-artifact@v5
-        with: { path: api/public }
+        with: { path: web/.output/public }
 
-  deploy-api:
-    needs: build-api
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
 
     concurrency:

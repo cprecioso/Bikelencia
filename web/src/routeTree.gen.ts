@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LocaleRouteRouteImport } from './routes/$locale/route'
 import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
 import { Route as LocaleTextRouteImport } from './routes/$locale/$text'
+import { Route as ApiBikeParkingsRouteImport } from './routes/api/bike-parkings'
+import { Route as ApiManifestRouteImport } from './routes/api/manifest'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,16 +36,30 @@ const LocaleTextRoute = LocaleTextRouteImport.update({
   path: '/$text',
   getParentRoute: () => LocaleRouteRoute,
 } as any)
+const ApiBikeParkingsRoute = ApiBikeParkingsRouteImport.update({
+  id: '/api/bike-parkings',
+  path: '/api/bike-parkings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiManifestRoute = ApiManifestRouteImport.update({
+  id: '/api/manifest',
+  path: '/api/manifest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$locale': typeof LocaleRouteRouteWithChildren
   '/$locale/$text': typeof LocaleTextRoute
+  '/api/bike-parkings': typeof ApiBikeParkingsRoute
+  '/api/manifest': typeof ApiManifestRoute
   '/$locale/': typeof LocaleIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$locale/$text': typeof LocaleTextRoute
+  '/api/bike-parkings': typeof ApiBikeParkingsRoute
+  '/api/manifest': typeof ApiManifestRoute
   '/$locale': typeof LocaleIndexRoute
 }
 export interface FileRoutesById {
@@ -51,19 +67,37 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$locale': typeof LocaleRouteRouteWithChildren
   '/$locale/$text': typeof LocaleTextRoute
+  '/api/bike-parkings': typeof ApiBikeParkingsRoute
+  '/api/manifest': typeof ApiManifestRoute
   '/$locale/': typeof LocaleIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$locale' | '/$locale/$text' | '/$locale/'
+  fullPaths:
+    | '/'
+    | '/$locale'
+    | '/$locale/$text'
+    | '/api/bike-parkings'
+    | '/api/manifest'
+    | '/$locale/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$locale/$text' | '/$locale'
-  id: '__root__' | '/' | '/$locale' | '/$locale/$text' | '/$locale/'
+  to:
+    '/' | '/$locale/$text' | '/api/bike-parkings' | '/api/manifest' | '/$locale'
+  id:
+    | '__root__'
+    | '/'
+    | '/$locale'
+    | '/$locale/$text'
+    | '/api/bike-parkings'
+    | '/api/manifest'
+    | '/$locale/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LocaleRouteRoute: typeof LocaleRouteRouteWithChildren
+  ApiBikeParkingsRoute: typeof ApiBikeParkingsRoute
+  ApiManifestRoute: typeof ApiManifestRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -96,6 +130,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleTextRouteImport
       parentRoute: typeof LocaleRouteRoute
     }
+    '/api/bike-parkings': {
+      id: '/api/bike-parkings'
+      path: '/api/bike-parkings'
+      fullPath: '/api/bike-parkings'
+      preLoaderRoute: typeof ApiBikeParkingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/manifest': {
+      id: '/api/manifest'
+      path: '/api/manifest'
+      fullPath: '/api/manifest'
+      preLoaderRoute: typeof ApiManifestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -116,6 +164,8 @@ const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LocaleRouteRoute: LocaleRouteRouteWithChildren,
+  ApiBikeParkingsRoute: ApiBikeParkingsRoute,
+  ApiManifestRoute: ApiManifestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

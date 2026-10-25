@@ -39,7 +39,7 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
   # Pushes made with GITHUB_TOKEN don't trigger other workflows, so call the build directly
-  build-api:
+  build:
     needs: refresh-data
     uses: ./.github/workflows/build.yaml
     with:

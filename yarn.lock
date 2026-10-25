@@ -382,17 +382,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bikelencia/api@workspace:api":
-  version: 0.0.0-use.local
-  resolution: "@bikelencia/api@workspace:api"
-  dependencies:
-    "@bikelencia/data": "workspace:*"
-    "@cprecioso/tsconfig": "npm:^4.1.0"
-    "@types/node": "npm:^24.13.6"
-    typescript: "npm:~7.0.2"
-  languageName: unknown
-  linkType: soft
-
 "@bikelencia/app@workspace:app":
   version: 0.0.0-use.local
   resolution: "@bikelencia/app@workspace:app"
@@ -432,6 +421,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@bikelencia/web@workspace:web"
   dependencies:
+    "@bikelencia/data": "workspace:*"
     "@tanstack/react-router": "npm:^1.170.0"
     "@tanstack/react-start": "npm:^1.169.0"
     "@types/negotiator": "npm:^0.6.5"

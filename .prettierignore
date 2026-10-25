@@ -1,5 +1,4 @@
 .yarn/
-api/public/
 web/.nitro/
 web/.output/
 web/.tanstack/
