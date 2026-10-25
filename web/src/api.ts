@@ -1,10 +1,14 @@
 import data from "@bikelencia/data/data";
 
-export const bikeParkingsFileSource = JSON.stringify(data);
+const encoder = new TextEncoder();
 
-export const manifestFileSource = JSON.stringify({
-  bikeParkings: {
-    updatedAt: data.updatedAt,
-    size: bikeParkingsFileSource.length,
-  },
-});
+export const bikeParkingsFileBuf = encoder.encode(JSON.stringify(data));
+
+export const manifestFileBuf = encoder.encode(
+  JSON.stringify({
+    bikeParkings: {
+      updatedAt: data.updatedAt,
+      size: bikeParkingsFileBuf.byteLength,
+    },
+  }),
+);
