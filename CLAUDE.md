@@ -95,7 +95,7 @@ The `BikelenciaDownloader` target (`app/BikelenciaDownloader/`) is an Extension 
 
 **How it works:**
 
-1. The system periodically calls the extension with the manifest URL configured in the app's Info.plist (`BAManifestURL`: `https://api.bikelencia.precioso.design/api/manifest`).
+1. The system periodically calls the extension with the manifest URL configured in the app's Info.plist (`BAManifestURL`: `https://bikelencia.precioso.design/api/manifest`).
 2. The extension fetches the manifest and compares `manifest.bikeParkings.updatedAt` against a cached `lastKnownUpdatedAt` timestamp stored in shared `UserDefaults` (app group: `group.design.precioso.Bikelencia`).
 3. If the server has newer data, it creates a `BAURLDownload` for the bike parkings endpoint.
 4. On successful download, the extension decodes the JSON as `BikeParkings`, sets `fetchedAt` to the current time, and writes it atomically to `cached-bike-parkings.json` in the shared app group container.
@@ -114,7 +114,7 @@ The `BikelenciaDownloader` target (`app/BikelenciaDownloader/`) is an Extension 
 
 ### API
 
-Served by the marketing site at `/api/bike-parkings` and `/api/manifest` (the URLs the app uses), from server routes in `web/src/routes/api/`. `web/src/api.ts` imports `@bikelencia/data/data`, which reads `updatedAt` from git, so the routes only work at build time. Both are prerendered (listed in `pages` in `vite.config.ts`, since nothing links to them) into extensionless files, so static hosts like GitHub Pages (which has no rewrites) serve them as `application/octet-stream`; a server serves them as `application/json`. The site is deployed to GitHub Pages at `api.bikelencia.precioso.design`.
+Served by the marketing site at `/api/bike-parkings` and `/api/manifest` (the URLs the app uses), from server routes in `web/src/routes/api/`. `web/src/api.ts` imports `@bikelencia/data/data`, which reads `updatedAt` from git, so the routes only work at build time. Both are prerendered (listed in `pages` in `vite.config.ts`, since nothing links to them) into extensionless files, so static hosts like GitHub Pages (which has no rewrites) serve them as `application/octet-stream`; a server serves them as `application/json`. The site is deployed to GitHub Pages at `bikelencia.precioso.design`.
 
 ### Marketing Site
 

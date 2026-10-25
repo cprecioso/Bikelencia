@@ -10,13 +10,13 @@
 		<integer>2000000</integer>
 		<key>BADownloadDomainAllowList</key>
 		<array>
-			<string>api.bikelencia.precioso.design</string>
+			<string>bikelencia.precioso.design</string>
 		</array>
 		<key>BAEssentialDownloadAllowance</key>
 		<integer>2000000</integer>
 	</dict>
 	<key>BAManifestURL</key>
-	<string>https://api.bikelencia.precioso.design/api/manifest</string>
+	<string>https://bikelencia.precioso.design/api/manifest</string>
 	<key>BAMaxInstallSize</key>
 	<integer>2000000</integer>
 	<key>CFBundleDevelopmentRegion</key>
