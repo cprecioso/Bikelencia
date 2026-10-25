@@ -32,7 +32,7 @@ jobs:
       - run: yarn install --immutable
       - run: yarn workspace @bikelencia/web build:static
       - uses: actions/upload-pages-artifact@v5
-        with: { path: web/.output/public }
+        with: { path: web/dist/client }
 
   deploy:
     needs: build
