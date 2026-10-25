@@ -41,7 +41,7 @@ jobs:
   # Pushes made with GITHUB_TOKEN don't trigger other workflows, so call the build directly
   build:
     needs: refresh-data
-    uses: ./.github/workflows/build.yaml
+    uses: $/.github/workflows/build.yaml
     with:
       ref: ${{ needs.refresh-data.outputs.sha }}
     permissions:
