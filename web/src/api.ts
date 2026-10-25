@@ -1,4 +1,6 @@
-import bikeParkingsData from "virtual:bike-parkings";
+import { bikeParkings } from "./bike-parkings.macro.ts" with { type: "macro" };
+
+const bikeParkingsData = bikeParkings();
 
 const encoder = new TextEncoder();
 

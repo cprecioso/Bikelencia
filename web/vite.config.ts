@@ -2,23 +2,9 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import viteReact from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
-import { defineConfig, type Plugin } from "vite";
+import Macros from "unplugin-macros/vite";
+import { defineConfig } from "vite";
 import { LOCALES } from "./src/locales/locales.ts";
-
-// Exposes the bike parkings data as `virtual:bike-parkings`. It is read from
-// git at build time, since a deployed server has neither the repo nor git.
-const bikeParkings = (): Plugin => {
-  const id = "virtual:bike-parkings";
-  return {
-    name: "bike-parkings",
-    resolveId: (source) => (source === id ? "\0" + id : undefined),
-    async load(source) {
-      if (source !== "\0" + id) return null;
-      const { default: data } = await import("@bikelencia/data/data");
-      return `export default ${JSON.stringify(data)};`;
-    },
-  };
-};
 
 // Not linked from any page, so crawling won't find them. Prerendering writes
 // them as extensionless files, which static hosts can serve as is.
@@ -36,7 +22,7 @@ export default defineConfig(({ command, mode }) => ({
     tsconfigPaths: true,
   },
   plugins: [
-    bikeParkings(),
+    Macros(),
     tanstackStart({
       prerender: {
         enabled: mode !== "static",

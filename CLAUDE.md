@@ -121,7 +121,7 @@ The `BikelenciaDownloader` target (`app/BikelenciaDownloader/`) is an Extension 
 
 ### API
 
-Served by the marketing site at `/api/bike-parkings` and `/api/manifest` (the URLs the app uses), from server routes in `web/src/routes/api/`. A Vite plugin in `vite.config.ts` reads `@bikelencia/data/data` at build time and exposes it as `virtual:bike-parkings`, so no git or repo is needed at runtime. Both routes are prerendered into extensionless files, so static hosts like GitHub Pages (which has no rewrites) serve them as `application/octet-stream`; a server serves them as `application/json`. The site is deployed to GitHub Pages at `api.bikelencia.precioso.design`.
+Served by the marketing site at `/api/bike-parkings` and `/api/manifest` (the URLs the app uses), from server routes in `web/src/routes/api/`. `web/src/bike-parkings.macro.ts` reads `@bikelencia/data/data` and is imported as an [unplugin-macros](https://github.com/unplugin/unplugin-macros) macro, so it runs at build time and the data is inlined; no git or repo is needed at runtime. Both routes are prerendered into extensionless files, so static hosts like GitHub Pages (which has no rewrites) serve them as `application/octet-stream`; a server serves them as `application/json`. The site is deployed to GitHub Pages at `api.bikelencia.precioso.design`.
 
 ### Marketing Site
 
