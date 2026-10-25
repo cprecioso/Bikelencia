@@ -4,12 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Bikelencia is an iOS app that shows bike parking locations in Valencia, Spain. This is a monorepo with four workspaces:
+Bikelencia is an iOS app that shows bike parking locations in Valencia, Spain. This is a monorepo with three workspaces:
 
 - **app/** — iOS app (SwiftUI)
 - **web/** — Marketing site and JSON API (TanStack Start, deployed to GitHub Pages)
 - **data/** — Bike parking data fetched from Valencia's open data portal
-- **resources/** — Shared assets (app icon source files)
 
 ## Tool Versions
 
