@@ -3,8 +3,6 @@
 .yarn/install-state.gz
 
 # build output
-/.output/
-/.nitro/
 /.tanstack/
 /dist/
 

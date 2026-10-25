@@ -20,5 +20,5 @@
     "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "exclude": ["node_modules", ".output", ".nitro", ".tanstack"]
+  "exclude": ["node_modules", ".tanstack", "dist"]
 }

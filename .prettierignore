@@ -1,5 +1,4 @@
 .yarn/
-web/.nitro/
-web/.output/
 web/.tanstack/
+web/dist/
 web/src/routeTree.gen.ts

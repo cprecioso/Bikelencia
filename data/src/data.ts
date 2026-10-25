@@ -1,16 +1,13 @@
 import { $ } from "execa";
-import * as fs from "node:fs/promises";
 import * as z from "zod";
-import { OUTPUT_FILE_PATH } from "./common.ts";
+import data from "../out/data.json" with { type: "json" };
 import type { fullOutputSchema } from "./schema.ts";
 
+// Kept independent of this file's location, so it still works once bundled:
+// the JSON is imported, and `:/` makes git resolve the path from the repo root.
 const { stdout } =
-  await $`git --no-pager log -1 --pretty=%cd --date=iso-strict ${OUTPUT_FILE_PATH}`;
+  await $`git --no-pager log -1 --pretty=%cd --date=iso-strict -- :/data/out/data.json`;
 const updatedAt = new Date(stdout);
-
-const data = await fs
-  .readFile(OUTPUT_FILE_PATH, "utf-8")
-  .then((content) => JSON.parse(content) as typeof import("../out/data.json"));
 
 const fullData: z.output<typeof fullOutputSchema> = { ...data, updatedAt };
 

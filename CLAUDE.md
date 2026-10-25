@@ -41,10 +41,10 @@ The refresh fetches GeoJSON from Valencia's geoportal. `@bikelencia/data/data` e
 
 ```bash
 cd web
-yarn dev          # Dev server (Vite, port 3000)
-yarn build        # Production build (prerenders pages) + type check
-yarn build:static # Fully static build (no server) into .output/public
-yarn start        # Serve production build from .output/
+yarn dev          # Dev server (Vite)
+yarn build        # Production build into dist/ (prerenders pages) + type check
+yarn build:static # Same, but `/` redirects on the client, for static hosts
+yarn preview      # Serve the production build
 ```
 
 Linting is repo-wide, not per-workspace — run `yarn lint` from the root.
@@ -121,11 +121,11 @@ The `BikelenciaDownloader` target (`app/BikelenciaDownloader/`) is an Extension 
 
 ### API
 
-Served by the marketing site at `/api/bike-parkings` and `/api/manifest` (the URLs the app uses), from server routes in `web/src/routes/api/`. `web/src/bike-parkings.macro.ts` reads `@bikelencia/data/data` and is imported as an [unplugin-macros](https://github.com/unplugin/unplugin-macros) macro, so it runs at build time and the data is inlined; no git or repo is needed at runtime. Both routes are prerendered into extensionless files, so static hosts like GitHub Pages (which has no rewrites) serve them as `application/octet-stream`; a server serves them as `application/json`. The site is deployed to GitHub Pages at `api.bikelencia.precioso.design`.
+Served by the marketing site at `/api/bike-parkings` and `/api/manifest` (the URLs the app uses), from server routes in `web/src/routes/api/`. `web/src/api.ts` imports `@bikelencia/data/data`, which reads `updatedAt` from git, so the routes only work at build time. Both are prerendered (listed in `pages` in `vite.config.ts`, since nothing links to them) into extensionless files, so static hosts like GitHub Pages (which has no rewrites) serve them as `application/octet-stream`; a server serves them as `application/json`. The site is deployed to GitHub Pages at `api.bikelencia.precioso.design`.
 
 ### Marketing Site
 
-[TanStack Start](https://tanstack.com/start) on Vite, with file-based routes in `src/routes/` (`routeTree.gen.ts` is generated, do not edit). Locale-based routing via a `$locale` segment (en/es/ca) whose `params.parse` rejects unknown locales, so they 404. Uses Vanilla Extract (`*.css.ts` files) for styling. `/` (`src/routes/index.tsx`) redirects to a locale: its server handler negotiates `Accept-Language`, and its component does the same from `navigator.languages` on the client. Every other page is prerendered at build time (configured in `vite.config.ts`). Nitro builds the server output, auto-detecting the host preset (e.g. Vercel). `build:static` (`--mode static`) switches Nitro to its `static` preset, whose crawler prerenders everything including `/`, so only the client redirect remains. Start's own prerender is off there, since it would only see the static output.
+[TanStack Start](https://tanstack.com/start) on Vite, with file-based routes in `src/routes/` (`routeTree.gen.ts` is generated, do not edit). Locale-based routing via a `$locale` segment (en/es/ca) whose `params.parse` rejects unknown locales, so they 404. Uses Vanilla Extract (`*.css.ts` files) for styling. `/` (`src/routes/index.tsx`) redirects to a locale: its server handler negotiates `Accept-Language`, and its component does the same from `navigator.languages` on the client. Start's prerenderer crawls from `/` and writes every page into `dist/client` at build time (configured in `vite.config.ts`); the server entry goes to `dist/server`. In `build:static` (`--mode static`), the `/` server handler falls through to the component, so its prerendered page does the client redirect. The `Build site` workflow deploys `dist/client`.
 
 Path alias: `@/*` maps to `web/src/*`.
 

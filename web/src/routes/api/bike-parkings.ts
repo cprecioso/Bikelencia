@@ -1,6 +1,13 @@
-import { bikeParkingsFile, jsonResponse } from "@/api";
+import { bikeParkingsFileSource } from "@/api";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/api/bike-parkings")({
-  server: { handlers: { GET: () => jsonResponse(bikeParkingsFile) } },
+  server: {
+    handlers: {
+      GET: () =>
+        new Response(bikeParkingsFileSource, {
+          headers: { "Content-Type": "application/json" },
+        }),
+    },
+  },
 });
