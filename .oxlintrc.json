@@ -12,24 +12,20 @@
   "ignorePatterns": [
     ".yarn",
     "api/public",
-    "web/.next",
-    "web/out",
-    "web/next-env.d.ts"
+    "web/.nitro",
+    "web/.output",
+    "web/.tanstack",
+    "web/src/routeTree.gen.ts"
   ],
   "rules": {
     // Sequential paging genuinely needs to await inside the loop.
     "no-await-in-loop": "off",
     "typescript/no-unsafe-type-assertion": "off"
   },
-  "settings": {
-    "next": {
-      "rootDir": "web/"
-    }
-  },
   "overrides": [
     {
       "files": ["web/**"],
-      "plugins": ["jsx-a11y", "nextjs", "react"],
+      "plugins": ["jsx-a11y", "react"],
       "rules": {
         // tsconfig sets `jsx: react-jsx`, so JSX compiles through the automatic
         // runtime and never references `React`. oxlint has no setting for the

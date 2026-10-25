@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Bikelencia is an iOS app that shows bike parking locations in Valencia, Spain. This is a monorepo with four workspaces:
 
 - **app/** — iOS app (SwiftUI, managed by Tuist)
-- **web/** — Marketing site (Next.js 16)
+- **web/** — Marketing site (TanStack Start)
 - **api/** — Static JSON API (pre-built data files served via GitHub Pages)
 - **resources/** — Shared assets (app icon source files)
 
@@ -42,9 +42,10 @@ The build fetches GeoJSON from Valencia's OpenDataSoft API and outputs `api/bike
 
 ```bash
 cd web
-yarn dev   # Dev server (Next.js with webpack)
-yarn build # Production build
-yarn start # Serve production build
+yarn dev          # Dev server (Vite, port 3000)
+yarn build        # Production build (prerenders pages) + type check
+yarn build:static # Fully static build (no server) into .output/public
+yarn start        # Serve production build from .output/
 ```
 
 Linting is repo-wide, not per-workspace — run `yarn lint` from the root.
@@ -125,7 +126,7 @@ Not a running server — just static JSON files in `api/public/`, deployed to Gi
 
 ### Marketing Site
 
-Next.js App Router with locale-based routing (`[locale]` dynamic segment for en/es/ca). Uses Vanilla Extract (`*.css.ts` files) for styling. Language detection via `Accept-Language` header negotiation in `src/proxy.ts`. All pages are statically generated.
+[TanStack Start](https://tanstack.com/start) on Vite, with file-based routes in `src/routes/` (`routeTree.gen.ts` is generated, do not edit). Locale-based routing via a `$locale` segment (en/es/ca) whose `params.parse` rejects unknown locales, so they 404. Uses Vanilla Extract (`*.css.ts` files) for styling. `/` (`src/routes/index.tsx`) redirects to a locale: its server handler negotiates `Accept-Language`, and its component does the same from `navigator.languages` on the client. Every other page is prerendered at build time (configured in `vite.config.ts`). Nitro builds the server output, auto-detecting the host preset (e.g. Vercel). `build:static` (`--mode static`) switches Nitro to its `static` preset and prerenders `/` too, so only the client redirect remains.
 
 Path alias: `@/*` maps to `web/src/*`.
 
@@ -135,4 +136,4 @@ Prettier is configured at the repo root with plugins for import sorting (`pretti
 
 ## Linting
 
-[oxlint](https://oxc.rs/docs/guide/usage/linter) is configured at the repo root in `.oxlintrc.json` and covers every workspace in one pass. The base config enables the `import`, `oxc`, `promise`, `typescript`, and `unicorn` plugins; a `web/**` override adds `jsx-a11y`, `nextjs`, and `react`. oxlint has no formatting rules, so it does not overlap with Prettier and needs no `eslint-config-prettier` equivalent.
+[oxlint](https://oxc.rs/docs/guide/usage/linter) is configured at the repo root in `.oxlintrc.json` and covers every workspace in one pass. The base config enables the `import`, `oxc`, `promise`, `typescript`, and `unicorn` plugins; a `web/**` override adds `jsx-a11y` and `react`. oxlint has no formatting rules, so it does not overlap with Prettier and needs no `eslint-config-prettier` equivalent.

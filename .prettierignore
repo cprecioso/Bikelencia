@@ -1,5 +1,6 @@
 .yarn/
 api/public/
-web/.next/
-web/out/
-web/next-env.d.ts
+web/.nitro/
+web/.output/
+web/.tanstack/
+web/src/routeTree.gen.ts
