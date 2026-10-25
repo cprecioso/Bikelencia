@@ -3,9 +3,11 @@ name: Refresh data
 on:
   schedule:
     - cron: "0 0 * * *" # Every day at midnight
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
 
 jobs:
   refresh-data:
@@ -13,6 +15,9 @@ jobs:
 
     permissions:
       contents: write
+
+    outputs:
+      sha: ${{ steps.push.outputs.sha }}
 
     steps:
       - uses: actions/checkout@v7
@@ -28,4 +33,18 @@ jobs:
       - run: git config --global user.email "github-actions[bot]@users.noreply.github.com"
       - run: git add data
       - run: git commit -m "Refresh data" || echo "No changes to commit"
-      - run: git push
+      - id: push
+        run: |
+          git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  # Pushes made with GITHUB_TOKEN don't trigger other workflows, so call the build directly
+  build-api:
+    needs: refresh-data
+    uses: ./.github/workflows/build.yaml
+    with:
+      ref: ${{ needs.refresh-data.outputs.sha }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

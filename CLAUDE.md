@@ -8,7 +8,7 @@ Bikelencia is an iOS app that shows bike parking locations in Valencia, Spain. T
 
 - **app/** — iOS app (SwiftUI, managed by Tuist)
 - **web/** — Marketing site (Next.js 16)
-- **api/** — Static JSON API (pre-built data files served via Vercel)
+- **api/** — Static JSON API (pre-built data files served via GitHub Pages)
 - **resources/** — Shared assets (app icon source files)
 
 ## Tool Versions
@@ -36,7 +36,7 @@ yarn workspace @bikelencia/api build # Regenerate static JSON into api/public/
 # or: cd api && node ./src/build.ts ./public
 ```
 
-The build fetches GeoJSON from Valencia's OpenDataSoft API and outputs `bike-parkings.json` and `manifest.json`. A GitHub Actions cron job triggers a Vercel redeploy daily at midnight UTC to refresh the data.
+The build fetches GeoJSON from Valencia's OpenDataSoft API and outputs `api/bike-parkings` and `api/manifest`. The `Build API` GitHub Actions workflow (`build.yaml`, on push to `main` or manually) builds the API and deploys it to GitHub Pages. The `Refresh data` workflow (`refresh.yaml`, daily at midnight UTC or manually) refreshes and commits the data, then calls `Build API`.
 
 ### Web (`web/`)
 
@@ -121,7 +121,7 @@ The `BikelenciaDownloader` target (`app/BikelenciaDownloader/`) is an Extension 
 
 ### API Server
 
-Not a running server — just static JSON files in `api/public/`. The Vercel config (`api/vercel.json`) rewrites `/api/bike-parkings` to `/bike-parkings.json` and `/api/manifest` to `/manifest.json`. The build script (`api/src/build.ts`) runs as a plain Node.js TypeScript file (no compilation step needed).
+Not a running server — just static JSON files in `api/public/`, deployed to GitHub Pages at `api.bikelencia.precioso.design`. Pages has no rewrites, so the build writes extensionless files at `/api/bike-parkings` and `/api/manifest` (the URLs the app uses, served as `application/octet-stream`). The build script (`api/src/build.ts`) runs as a plain Node.js TypeScript file (no compilation step needed).
 
 ### Marketing Site
 
