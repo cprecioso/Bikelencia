@@ -6031,21 +6031,21 @@
       "type": "A - Horquilla"
     },
     {
-      "id": "-0.34512020370888524:39.46120209810399",
-      "coordinate": {
-        "latitude": 39.46120209810399,
-        "longitude": -0.34512020370888524
-      },
-      "capacity": 12,
-      "type": "A - Horquilla"
-    },
-    {
       "id": "-0.3451406904330126:39.47146699218257",
       "coordinate": {
         "latitude": 39.47146699218257,
         "longitude": -0.3451406904330126
       },
       "capacity": 6,
+      "type": "A - Horquilla"
+    },
+    {
+      "id": "-0.3451524749084453:39.46113461193884",
+      "coordinate": {
+        "latitude": 39.46113461193884,
+        "longitude": -0.3451524749084453
+      },
+      "capacity": 12,
       "type": "A - Horquilla"
     },
     {
