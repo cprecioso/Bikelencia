@@ -20539,21 +20539,21 @@
       "type": "A - Horquilla"
     },
     {
+      "id": "-0.37459123230269653:39.467209048251725",
+      "coordinate": {
+        "latitude": 39.467209048251725,
+        "longitude": -0.37459123230269653
+      },
+      "capacity": 8,
+      "type": "A - Horquilla"
+    },
+    {
       "id": "-0.3745997620936054:39.46175587984701",
       "coordinate": {
         "latitude": 39.46175587984701,
         "longitude": -0.3745997620936054
       },
       "capacity": 6,
-      "type": "A - Horquilla"
-    },
-    {
-      "id": "-0.3746001636927622:39.46720304296084",
-      "coordinate": {
-        "latitude": 39.46720304296084,
-        "longitude": -0.3746001636927622
-      },
-      "capacity": 8,
       "type": "A - Horquilla"
     },
     {
